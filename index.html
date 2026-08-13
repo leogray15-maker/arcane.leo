@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arcane Archives</title>
-<meta name="description" content="Arcane Archives — education platform, skin healing tracker, peptides, and socials. One link for everything.">
+<title>Arcane Leo</title>
+<meta name="description" content="Heal your skin — and understand exactly why it works. The research, the tracker, and the peptides, all in one place.">
 
 <!-- Social preview -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Arcane Archives">
-<meta property="og:description" content="Education platform, skin healing tracker, peptides, and socials. One link for everything.">
+<meta property="og:title" content="Arcane Leo">
+<meta property="og:description" content="Heal your skin — and understand exactly why it works.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0b10">
 
@@ -133,19 +133,36 @@
 
   .link .body{min-width:0;flex:1}
   .link .title{display:block;font-weight:550;font-size:16px}
+  /* wraps rather than truncating, so longer copy still reads;
+     capped at two lines to keep cards even */
   .link .sub{
-    display:block;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
     margin-top:2px;
     color:var(--muted);
     font-size:13px;
     overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
   }
 
   .link .arrow{flex:none;color:var(--muted);transition:transform .18s ease,color .18s ease}
   .link:hover .arrow,.link:focus-visible .arrow{color:var(--gold);transform:translateX(3px)}
   .link .arrow svg{width:16px;height:16px;display:block}
+
+  /* optional accent badge, e.g. "Free" */
+  .link .badge{
+    flex:none;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    background:rgba(201,169,97,.12);
+    border:1px solid rgba(201,169,97,.3);
+    border-radius:999px;
+    padding:3px 9px;
+  }
 
   /* placeholder state: entry has no URL yet */
   .link.pending{opacity:.5;cursor:default}
@@ -214,8 +231,8 @@
         <circle cx="50" cy="53" r="12"/>
       </svg>
     </div>
-    <h1>Arcane Archives</h1>
-    <p class="tagline">Skin healing, peptides, and the research behind them — all in one place.</p>
+    <h1>Arcane Leo</h1>
+    <p class="tagline">Heal your skin — and understand exactly why it works.</p>
   </header>
 
   <!-- Links are generated from the LINKS array at the bottom of this file.
@@ -231,7 +248,7 @@
       Educational content only. Nothing here is medical advice — talk to a
       qualified clinician before starting any protocol.
     </p>
-    <p>&copy; <span id="year"></span> Arcane Archives</p>
+    <p>&copy; <span id="year"></span> Arcane Leo</p>
   </footer>
 
 </main>
@@ -249,28 +266,28 @@
 const LINKS = [
   {
     title: "Arcane Archives",
-    sub:   "Education platform — courses & research library",
-    url:   "#",
+    sub:   "Learn the protocols that actually work",
+    url:   "https://arcanearchives.shop",
     icon:  "book"
   },
   {
-    title: "Skin Healing Tracker",
-    sub:   "Log your protocol, track your progress",
-    url:   "#",
-    icon:  "spark"
+    title: "Arcane Track",
+    sub:   "See what's actually working",
+    url:   "https://arcanetrack.vercel.app",
+    icon:  "spark",
+    badge: "Free"
   },
   {
     title: "Arcane Peptides",
     sub:   "Shop research peptides",
-    url:   "#",
+    url:   "https://arcanepeptides.vercel.app",
     icon:  "flask"
   }
 ];
 
 const SOCIALS = [
-  { title: "Instagram", sub: "@arcane.archives", url: "#", icon: "instagram" },
-  { title: "TikTok",    sub: "@arcane.archives", url: "#", icon: "tiktok"    },
-  { title: "Email",     sub: "hello@arcanearchives.com", url: "#", icon: "mail" }
+  { title: "Instagram", sub: "@arcaneleo.g",   url: "https://instagram.com/arcaneleo.g", icon: "instagram" },
+  { title: "TikTok",    sub: "@arcane_advice", url: "https://tiktok.com/@arcane_advice", icon: "tiktok"    }
 ];
 
 /* ============================================================
@@ -302,7 +319,10 @@ function render(list, mountId) {
 
     // No URL yet: render as a non-interactive placeholder so the page still
     // reads correctly, but nobody can click through to nowhere.
-    const tag = live ? `<span class="arrow" aria-hidden="true">${ARROW}</span>`
+    const badge = live && item.badge
+      ? `<span class="badge">${esc(item.badge)}</span>` : "";
+
+    const tag = live ? `${badge}<span class="arrow" aria-hidden="true">${ARROW}</span>`
                      : `<span class="tag">Soon</span>`;
 
     const attrs = live
