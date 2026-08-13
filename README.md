@@ -86,6 +86,10 @@ Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
 
 - Palette is violet to match the Archives and Track logos — `--violet`,
   `--violet-lo`, `--violet-hi` in `:root`.
+- The Arcane mark is inline SVG, hand-traced from the brand logo, so it scales
+  and recolours with no image file. It's a close trace, not the original vector
+  — drop the real `.svg` in the repo and point `ICONS.mark` at it if you want
+  it pixel-exact.
 - Add an `og:image` (1200×630) when you have artwork; it controls the preview
   card when the link is shared.
 - The footer disclaimer covers educational-use, research-use, and
