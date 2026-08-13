@@ -3,36 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Arcane Leo</title>
-<meta name="description" content="Heal your skin — and understand exactly why it works. The research, the tracker, and the peptides, all in one place.">
+<title>Leo Gray | Arcane</title>
+<meta name="description" content="The knowledge they don't want you to know. Skin recovery protocols, peptides, and the research behind them.">
 
-<!-- Social preview -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Arcane Leo">
-<meta property="og:description" content="Heal your skin — and understand exactly why it works.">
+<meta property="og:title" content="Leo Gray | Arcane">
+<meta property="og:description" content="The Knowledge They Don't Want You To Know">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0b10">
+<meta name="theme-color" content="#08070d">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0b10'/><path d='M50 18 L78 66 H22 Z' fill='none' stroke='%23c9a961' stroke-width='7' stroke-linejoin='round'/><circle cx='50' cy='52' r='11' fill='none' stroke='%23c9a961' stroke-width='6'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23120e24'/><g fill='none' stroke='%23a78bfa' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'><path d='M32 10 L54 52 H10 Z'/><path d='M21 44 L32 24 L43 44'/></g></svg>">
 
 <style>
   :root{
-    --bg:#0b0b10;
-    --bg-glow-1:#1a1230;
-    --bg-glow-2:#0f1a22;
-    --card:rgba(255,255,255,.045);
-    --card-hover:rgba(255,255,255,.075);
-    --line:rgba(255,255,255,.10);
-    --line-hover:rgba(201,169,97,.45);
-    --text:#f2f0ea;
-    --muted:#9d9aa6;
-    --gold:#c9a961;
-    --radius:16px;
-    --maxw:520px;
+    --bg:#08070d;
+    --violet:#8b5cf6;
+    --violet-lo:#6d4df0;
+    --violet-hi:#a78bfa;
+    --card:rgba(255,255,255,.04);
+    --card-hi:rgba(255,255,255,.07);
+    --line:rgba(255,255,255,.09);
+    --text:#f4f2f8;
+    --muted:#9b96ac;
+    --radius:18px;
+    --maxw:540px;
   }
 
   *{box-sizing:border-box}
-
   html{-webkit-text-size-adjust:100%}
 
   body{
@@ -44,179 +41,250 @@
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
     display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:clamp(28px,7vw,64px) 20px 48px;
+    justify-content:center;
+    padding:clamp(24px,6vw,52px) 18px 40px;
   }
 
-  /* soft aurora wash behind everything */
   body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
     background:
-      radial-gradient(60% 45% at 50% -5%, var(--bg-glow-1) 0%, transparent 70%),
-      radial-gradient(55% 40% at 100% 100%, var(--bg-glow-2) 0%, transparent 70%);
+      radial-gradient(70% 46% at 50% -8%, rgba(109,77,240,.30) 0%, transparent 68%),
+      radial-gradient(50% 34% at 8% 42%, rgba(139,92,246,.11) 0%, transparent 70%),
+      radial-gradient(58% 40% at 100% 104%, rgba(76,60,160,.20) 0%, transparent 70%);
   }
 
   main{position:relative;width:100%;max-width:var(--maxw)}
 
-  /* ---------- header ---------- */
+  /* ================= hero ================= */
 
-  header{text-align:center;margin-bottom:clamp(28px,6vw,40px)}
+  .hero{text-align:center;margin-bottom:clamp(26px,5vw,34px)}
 
-  .mark{
-    width:72px;height:72px;
-    margin:0 auto 20px;
-    display:grid;place-items:center;
-    border:1px solid rgba(201,169,97,.35);
+  .avatar{
+    position:relative;
+    width:104px;height:104px;
+    margin:0 auto 18px;
     border-radius:50%;
-    background:radial-gradient(circle at 50% 30%,rgba(201,169,97,.14),transparent 70%);
+    padding:2.5px;
+    background:linear-gradient(150deg,var(--violet-hi),var(--violet-lo) 55%,rgba(255,255,255,.12));
+    box-shadow:0 0 40px -8px rgba(139,92,246,.55);
   }
-  .mark svg{width:36px;height:36px;display:block}
+  .avatar > *{
+    width:100%;height:100%;
+    border-radius:50%;
+    display:block;
+    object-fit:cover;
+    background:#140f26;
+  }
+  /* fallback mark shown when no photo is set */
+  .avatar .glyph{display:grid;place-items:center}
+  .avatar .glyph svg{width:46px;height:46px}
 
   h1{
     margin:0;
-    font-size:clamp(28px,7vw,36px);
-    font-weight:600;
-    letter-spacing:.02em;
+    font-size:clamp(27px,6.4vw,34px);
+    font-weight:650;
+    letter-spacing:-.02em;
   }
+  h1 .sep{color:var(--violet-hi);font-weight:400;margin:0 .18em}
 
   .tagline{
-    margin:10px auto 0;
-    max-width:38ch;
-    color:var(--muted);
-    font-size:15px;
+    margin:12px auto 0;
+    max-width:22ch;
+    font-size:clamp(15px,3.9vw,17px);
+    font-weight:500;
+    line-height:1.35;
+    background:linear-gradient(100deg,#fff 10%,var(--violet-hi) 92%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
 
-  /* ---------- links ---------- */
-
-  .links{
-    list-style:none;
-    margin:0;
-    padding:0;
-    display:flex;
-    flex-direction:column;
-    gap:12px;
+  .proof{
+    margin:16px auto 0;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:6px 14px 6px 11px;
+    border:1px solid rgba(139,92,246,.28);
+    border-radius:999px;
+    background:rgba(139,92,246,.09);
+    font-size:12.5px;
+    color:#cfc6ea;
   }
+  .proof .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:#4ade80;
+    box-shadow:0 0 0 3px rgba(74,222,128,.18);
+  }
+
+  /* ================= link cards ================= */
+
+  .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
 
   .link{
     display:flex;
     align-items:center;
     gap:14px;
-    padding:16px 18px;
+    padding:15px 17px;
     border:1px solid var(--line);
     border-radius:var(--radius);
     background:var(--card);
     color:inherit;
     text-decoration:none;
-    transition:background .18s ease,border-color .18s ease,transform .18s ease;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
   }
   .link:hover,.link:focus-visible{
-    background:var(--card-hover);
-    border-color:var(--line-hover);
+    background:var(--card-hi);
+    border-color:rgba(167,139,250,.45);
     transform:translateY(-2px);
+    box-shadow:0 10px 30px -14px rgba(139,92,246,.7);
   }
-  .link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .link:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
   .link:active{transform:translateY(0)}
 
   .link .icon{
     flex:none;
-    width:40px;height:40px;
+    width:42px;height:42px;
     display:grid;place-items:center;
-    border-radius:11px;
-    background:rgba(201,169,97,.10);
-    color:var(--gold);
+    border-radius:12px;
+    background:rgba(139,92,246,.13);
+    color:var(--violet-hi);
   }
-  .link .icon svg{width:20px;height:20px;display:block}
+  .link .icon svg{width:21px;height:21px;display:block}
 
   .link .body{min-width:0;flex:1}
-  .link .title{display:block;font-weight:550;font-size:16px}
-  /* wraps rather than truncating, so longer copy still reads;
-     capped at two lines to keep cards even */
+  .link .title{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
   .link .sub{
     display:-webkit-box;
     -webkit-box-orient:vertical;
     -webkit-line-clamp:2;
     line-clamp:2;
+    overflow:hidden;
     margin-top:2px;
     color:var(--muted);
     font-size:13px;
-    overflow:hidden;
   }
 
   .link .arrow{flex:none;color:var(--muted);transition:transform .18s ease,color .18s ease}
-  .link:hover .arrow,.link:focus-visible .arrow{color:var(--gold);transform:translateX(3px)}
+  .link:hover .arrow,.link:focus-visible .arrow{color:var(--violet-hi);transform:translateX(3px)}
   .link .arrow svg{width:16px;height:16px;display:block}
 
-  /* optional accent badge, e.g. "Free" */
-  .link .badge{
+  /* featured: the one card that should out-pull the rest */
+  .link.featured{
+    padding:19px 17px;
+    border-color:rgba(167,139,250,.42);
+    background:
+      linear-gradient(140deg,rgba(139,92,246,.20),rgba(99,72,220,.07) 60%,transparent),
+      var(--card);
+    box-shadow:0 0 34px -16px rgba(139,92,246,.85);
+  }
+  .link.featured .icon{background:linear-gradient(150deg,var(--violet),var(--violet-lo));color:#fff}
+  .link.featured .title{font-size:17px}
+
+  /* whatsapp gets its own accent — it's a conversation, not a product */
+  .link.chat .icon{background:rgba(37,211,102,.14);color:#25d366}
+  .link.chat:hover,.link.chat:focus-visible{
+    border-color:rgba(37,211,102,.42);
+    box-shadow:0 10px 30px -14px rgba(37,211,102,.55);
+  }
+  .link.chat:hover .arrow,.link.chat:focus-visible .arrow{color:#25d366}
+
+  .badge{
     flex:none;
     font-size:10px;
-    font-weight:600;
-    letter-spacing:.1em;
+    font-weight:700;
+    letter-spacing:.09em;
     text-transform:uppercase;
-    color:var(--gold);
-    background:rgba(201,169,97,.12);
-    border:1px solid rgba(201,169,97,.3);
+    color:var(--violet-hi);
+    background:rgba(139,92,246,.15);
+    border:1px solid rgba(167,139,250,.34);
     border-radius:999px;
     padding:3px 9px;
   }
 
-  /* placeholder state: entry has no URL yet */
-  .link.pending{opacity:.5;cursor:default}
-  .link.pending:hover{background:var(--card);border-color:var(--line);transform:none}
+  /* placeholder state for entries with no URL yet */
+  .link.pending{opacity:.45;cursor:default}
+  .link.pending:hover{background:var(--card);border-color:var(--line);transform:none;box-shadow:none}
   .link.pending .icon{background:rgba(255,255,255,.05);color:var(--muted)}
-  .link.pending .tag{
-    flex:none;
-    font-size:10px;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--muted);
+  .link.pending .badge{color:var(--muted);background:none;border-color:var(--line)}
+
+  /* ================= testimonial ================= */
+
+  .quote{
+    margin:26px 0 0;
+    padding:18px 19px;
     border:1px solid var(--line);
-    border-radius:999px;
-    padding:3px 9px;
+    border-left:2px solid var(--violet);
+    border-radius:14px;
+    background:rgba(255,255,255,.028);
+  }
+  .quote p{
+    margin:0;
+    font-size:14.5px;
+    line-height:1.6;
+    color:#ded9ea;
+  }
+  .quote footer{
+    margin-top:11px;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.02em;
   }
 
-  /* section divider label between primary + social groups */
+  /* ================= socials ================= */
+
   .divider{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin:30px 0 18px;
+    display:flex;align-items:center;gap:13px;
+    margin:28px 0 16px;
     color:var(--muted);
+    font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
+  }
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .socials{
+    list-style:none;margin:0;padding:0;
+    display:flex;gap:11px;
+  }
+  .socials li{flex:1 1 0;min-width:0}
+  .socials a{
+    display:flex;align-items:center;gap:10px;
+    padding:11px 14px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:var(--card);
+    color:var(--text);
+    text-decoration:none;
+    font-size:13.5px;font-weight:550;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease;
+  }
+  .socials .txt{display:flex;flex-direction:column;min-width:0;line-height:1.25}
+  .socials .txt > span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .socials a:hover,.socials a:focus-visible{
+    background:var(--card-hi);
+    border-color:rgba(167,139,250,.45);
+    transform:translateY(-2px);
+  }
+  .socials a:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
+  .socials svg{width:18px;height:18px;color:var(--violet-hi);display:block;flex:none}
+  .socials .handle{color:var(--muted);font-weight:400;font-size:11.5px}
+
+  /* ================= footer ================= */
+
+  footer.page{margin-top:34px;text-align:center;color:var(--muted);font-size:12px}
+  footer.page .disclaimer{
+    margin:0 auto 12px;
+    max-width:46ch;
     font-size:11px;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-  }
-  .divider::before,.divider::after{
-    content:"";
-    flex:1;
-    height:1px;
-    background:var(--line);
-  }
-
-  /* ---------- footer ---------- */
-
-  footer{
-    margin-top:40px;
-    text-align:center;
-    color:var(--muted);
-    font-size:12.5px;
-  }
-  footer a{color:var(--muted)}
-  footer .disclaimer{
-    margin:0 auto 14px;
-    max-width:44ch;
-    font-size:11.5px;
-    line-height:1.55;
-    opacity:.75;
+    line-height:1.6;
+    opacity:.72;
   }
 
   @media (prefers-reduced-motion:reduce){
     *{transition:none !important}
-    .link:hover{transform:none}
+    .link:hover,.socials a:hover{transform:none}
   }
 </style>
 </head>
@@ -224,55 +292,60 @@
 <body>
 <main>
 
-  <header>
-    <div class="mark" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none" stroke="#c9a961" stroke-width="5" stroke-linejoin="round">
-        <path d="M50 20 L77 66 H23 Z"/>
-        <circle cx="50" cy="53" r="12"/>
-      </svg>
-    </div>
-    <h1>Arcane Leo</h1>
-    <p class="tagline">Heal your skin — and understand exactly why it works.</p>
-  </header>
+  <section class="hero">
+    <div class="avatar" id="avatar"></div>
+    <h1>Leo Gray<span class="sep">|</span>Arcane</h1>
+    <p class="tagline">The Knowledge They Don't Want You To Know</p>
+    <div class="proof"><span class="dot"></span><span id="proof-text"></span></div>
+  </section>
 
-  <!-- Links are generated from the LINKS array at the bottom of this file.
-       Edit the URLs there — nothing in this markup needs to change. -->
-  <ul class="links" id="primary-links"></ul>
+  <ul class="links" id="links"></ul>
+
+  <blockquote class="quote" id="quote"></blockquote>
 
   <div class="divider">Follow</div>
+  <ul class="socials" id="socials"></ul>
 
-  <ul class="links" id="social-links"></ul>
-
-  <footer>
+  <footer class="page">
     <p class="disclaimer">
-      Educational content only. Nothing here is medical advice — talk to a
-      qualified clinician before starting any protocol.
+      Educational content only — not medical advice, and not a substitute for
+      care from a qualified clinician. Peptides are sold for research purposes.
+      Individual results vary.
     </p>
-    <p>&copy; <span id="year"></span> Arcane Leo</p>
+    <p>&copy; <span id="year"></span> Arcane</p>
   </footer>
 
 </main>
 
 <script>
-/* ============================================================
-   EDIT HERE — this is the only part you need to touch.
+/* ==========================================================================
+   EDIT HERE — everything you'd want to change lives in this block.
+   ========================================================================== */
 
-   Replace each `url` with the real destination. Any entry left
-   as "#" is skipped and won't render, so you can ship the page
-   with only the links that are live today and fill in the rest
-   later. Reorder freely; the page follows this order.
-   ============================================================ */
+/* Your photo. Drop a file next to index.html and put its name here,
+   e.g. "leo.jpg". Leave empty to show the Arcane mark instead. */
+const AVATAR = "";
+
+/* Small credibility line under the tagline. Keep it specific and true. */
+const PROOF = "2,500+ following across IG & TikTok";
 
 const LINKS = [
   {
-    title: "Arcane Archives",
-    sub:   "Learn the protocols that actually work",
+    title: "The Arcane Archives",
+    sub:   "Protocols, research, and the why behind them",
     url:   "https://arcanearchives.shop",
-    icon:  "book"
+    icon:  "book",
+    featured: true          // renders as the hero card
+  },
+  {
+    title: "Arcane Healing Protocols",
+    sub:   "The exact protocols, step by step",
+    url:   "#",             // TODO: needs its URL
+    icon:  "list"
   },
   {
     title: "Arcane Track",
-    sub:   "See what's actually working",
+    sub:   "Skin recovery & healing tracker",
     url:   "https://arcanetrack.vercel.app",
     icon:  "spark",
     badge: "Free"
@@ -282,69 +355,103 @@ const LINKS = [
     sub:   "Shop research peptides",
     url:   "https://arcanepeptides.vercel.app",
     icon:  "flask"
+  },
+  {
+    title: "WhatsApp me",
+    sub:   "Questions about your skin? Ask me",
+    url:   "#",             // TODO: https://wa.me/44XXXXXXXXXX (country code, no +, no spaces)
+    icon:  "whatsapp",
+    style: "chat"
   }
 ];
 
+/* Set to null to hide the testimonial entirely. */
+const QUOTE = {
+  text: "I'm messaging just to literally thank you for introducing me to peptides to heal eczema. I'm fully healed now and I've never felt better, after 4 months of hell.",
+  from: "Message received from a follower"
+};
+
 const SOCIALS = [
-  { title: "Instagram", sub: "@arcaneleo.g",   url: "https://instagram.com/arcaneleo.g", icon: "instagram" },
-  { title: "TikTok",    sub: "@arcane_advice", url: "https://tiktok.com/@arcane_advice", icon: "tiktok"    }
+  { name: "Instagram", handle: "@arcaneleo.g",   url: "https://instagram.com/arcaneleo.g", icon: "instagram" },
+  { name: "TikTok",    handle: "@arcane_advice", url: "https://tiktok.com/@arcane_advice", icon: "tiktok"    }
 ];
 
-/* ============================================================
-   Rendering — no need to edit below this line.
-   ============================================================ */
+/* ==========================================================================
+   Rendering — no need to edit below here.
+   ========================================================================== */
 
 const ICONS = {
+  mark:      '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M32 10 L54 52 H10 Z"/><path d="M21 44 L32 24 L43 44"/></svg>',
   book:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
-  spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/><circle cx="12" cy="12" r="3"/></svg>',
+  list:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
+  spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M5.9 5.9l2.5 2.5M15.6 15.6l2.5 2.5M18.1 5.9l-2.5 2.5M8.4 15.6l-2.5 2.5"/><circle cx="12" cy="12" r="3.2"/></svg>',
   flask:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7 15h10"/></svg>',
-  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>',
-  tiktok:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.2 5 4.4"/></svg>',
-  mail:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 8.1 5.4a1.6 1.6 0 0 0 1.8 0L21 7"/></svg>',
+  whatsapp:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a8.8 8.8 0 0 0-7.5 13.4L3.2 20.8l4.4-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.9 8.4c.2-.4.3-.4.5-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.3 0 .5a5.8 5.8 0 0 0 2.4 2.1c.2.1.4.1.5 0l.5-.6c.1-.2.3-.2.5-.1l1.4.7c.2.1.3.2.3.4a1.7 1.7 0 0 1-1.2 1.4c-.5.1-1.1.2-3-.8a8.2 8.2 0 0 1-3.2-3.5c-.4-1-.4-1.7-.3-2z"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>',
+  tiktok:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.2v11.4a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3.2c.4 2.7 2.3 4.3 5.1 4.5"/></svg>',
   link:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12.2 19"/></svg>'
 };
 
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
 
 const esc = s => String(s).replace(/[&<>"]/g, c =>
-  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
 
-function render(list, mountId) {
-  const mount = document.getElementById(mountId);
+const isLive = url => Boolean(url) && url !== "#";
 
-  mount.innerHTML = list.map(item => {
-    const live = item.url && item.url !== "#";
-    const external = /^https?:/i.test(item.url || "");
-    const icon = ICONS[item.icon] || ICONS.link;
+/* avatar: photo if one is set, otherwise the Arcane mark */
+document.getElementById("avatar").innerHTML = AVATAR
+  ? `<img src="${esc(AVATAR)}" alt="Leo Gray">`
+  : `<span class="glyph" style="color:var(--violet-hi)">${ICONS.mark}</span>`;
 
-    // No URL yet: render as a non-interactive placeholder so the page still
-    // reads correctly, but nobody can click through to nowhere.
-    const badge = live && item.badge
-      ? `<span class="badge">${esc(item.badge)}</span>` : "";
+document.getElementById("proof-text").textContent = PROOF;
 
-    const tag = live ? `${badge}<span class="arrow" aria-hidden="true">${ARROW}</span>`
-                     : `<span class="tag">Soon</span>`;
+document.getElementById("links").innerHTML = LINKS.map(item => {
+  const live = isLive(item.url);
+  const external = /^(https?:|https:\/\/wa\.me)/i.test(item.url || "");
 
-    const attrs = live
-      ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
-      : `aria-disabled="true"`;
+  const cls = ["link", item.featured ? "featured" : "", item.style || "", live ? "" : "pending"]
+    .filter(Boolean).join(" ");
 
-    return `
-      <li>
-        <a class="link${live ? "" : " pending"}" ${attrs}>
-          <span class="icon" aria-hidden="true">${icon}</span>
-          <span class="body">
-            <span class="title">${esc(item.title)}</span>
-            ${item.sub ? `<span class="sub">${esc(item.sub)}</span>` : ""}
-          </span>
-          ${tag}
-        </a>
-      </li>`;
-  }).join("");
+  const attrs = live
+    ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
+    : 'aria-disabled="true"';
+
+  const right = live
+    ? `${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
+    : `<span class="badge">Soon</span>`;
+
+  return `
+    <li>
+      <a class="${cls}" ${attrs}>
+        <span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>
+        <span class="body">
+          <span class="title">${esc(item.title)}</span>
+          ${item.sub ? `<span class="sub">${esc(item.sub)}</span>` : ""}
+        </span>
+        ${right}
+      </a>
+    </li>`;
+}).join("");
+
+const quoteEl = document.getElementById("quote");
+if (QUOTE && QUOTE.text) {
+  quoteEl.innerHTML =
+    `<p>&ldquo;${esc(QUOTE.text)}&rdquo;</p><footer>${esc(QUOTE.from || "")}</footer>`;
+} else {
+  quoteEl.remove();
 }
 
-render(LINKS, "primary-links");
-render(SOCIALS, "social-links");
+document.getElementById("socials").innerHTML = SOCIALS.filter(s => isLive(s.url)).map(s => `
+  <li>
+    <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
+      <span aria-hidden="true">${ICONS[s.icon] || ICONS.link}</span>
+      <span class="txt">
+        <span>${esc(s.name)}</span>
+        <span class="handle">${esc(s.handle || "")}</span>
+      </span>
+    </a>
+  </li>`).join("");
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>

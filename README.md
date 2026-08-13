@@ -1,90 +1,93 @@
-# Arcane Leo — link hub
+# Leo Gray | Arcane — link hub
 
-A single-page link hub: Arcane Archives (education), Arcane Track, Arcane
-Peptides, and socials. Built as one self-contained `index.html` — no build
-step, no dependencies, no framework.
+A Linktree replacement, built as one self-contained `index.html`. No build step,
+no dependencies, no monthly fee, no Linktree branding — and unlike Linktree it
+can show social proof, rank links by importance, and carry your own visual
+identity.
+
+## What still needs filling in
+
+| Item | Where | Status |
+| --- | --- | --- |
+| Arcane Healing Protocols URL | `LINKS` array | renders as **Soon** until set |
+| WhatsApp number | `LINKS` array | renders as **Soon** until set |
+| Profile photo | `AVATAR` const | falls back to the Arcane mark |
+
+For WhatsApp, the URL format is `https://wa.me/<number>` — country code
+included, no `+`, no spaces. A UK mobile `07700 900123` becomes
+`https://wa.me/447700900123`.
 
 ## Current links
 
 | Entry | Destination |
 | --- | --- |
-| Arcane Archives | https://arcanearchives.shop |
+| The Arcane Archives | https://arcanearchives.shop |
+| Arcane Healing Protocols | *(needs URL)* |
 | Arcane Track | https://arcanetrack.vercel.app |
 | Arcane Peptides | https://arcanepeptides.vercel.app |
+| WhatsApp me | *(needs number)* |
 | Instagram | https://instagram.com/arcaneleo.g |
 | TikTok | https://tiktok.com/@arcane_advice |
 
-## Editing the links
+## Editing
 
-Everything you need to change lives in two arrays near the bottom of
-`index.html`, under the `EDIT HERE` comment:
+Everything editable sits in one block near the bottom of `index.html`, marked
+`EDIT HERE`: `AVATAR`, `PROOF`, `LINKS`, `QUOTE`, and `SOCIALS`.
 
-```js
-const LINKS = [
-  { title: "Arcane Track", sub: "See what's actually working",
-    url: "https://arcanetrack.vercel.app", icon: "spark", badge: "Free" },
-  ...
-];
+Each entry in `LINKS` takes:
 
-const SOCIALS = [
-  { title: "Instagram", sub: "@arcaneleo.g",
-    url: "https://instagram.com/arcaneleo.g", icon: "instagram" },
-  ...
-];
-```
+- **`url`** — the destination. Set it to `"#"` and the card renders dimmed with
+  a **Soon** badge and isn't clickable.
+- **`title` / `sub`** — the label and the grey line under it. `sub` wraps to two
+  lines, so moderately long copy is fine.
+- **`icon`** — `book`, `list`, `spark`, `flask`, `whatsapp`, `instagram`,
+  `tiktok`, or `link`. Unknown values fall back to `link`.
+- **`badge`** — optional violet pill, e.g. `"Free"`, `"New"`, `"20% off"`.
+- **`featured: true`** — renders as the hero card: bigger, gradient-filled,
+  glowing. Use it on exactly one entry; its pull comes from being the only one.
+- **`style: "chat"`** — the green WhatsApp treatment.
 
-- **`url`** — the destination. Set it to `"#"` and the entry renders dimmed
-  with a **Soon** badge and isn't clickable — useful for announcing something
-  before it launches.
-- **`title` / `sub`** — the label and the small grey line under it. The `sub`
-  wraps to a second line if needed, so longer copy is fine.
-- **`icon`** — one of `book`, `spark`, `flask`, `instagram`, `tiktok`, `mail`,
-  `link`. Anything unrecognized falls back to `link`.
-- **`badge`** — optional gold pill on the right, e.g. `"Free"`, `"New"`,
-  `"20% off"`. Omit the field for no badge. Keep it to one or two badges across
-  the page — the pull comes from being the exception.
+Reorder the array to reorder the page. The markup is generated from it, so you
+never touch HTML.
 
-Reorder the arrays to reorder the page. Add or remove entries freely — the list
-is generated from the array, so the markup never needs touching.
+## Why it's laid out this way
 
-`http`/`https` links open in a new tab; `mailto:` links don't.
+- **The first card takes a disproportionate share of clicks**, so Archives is
+  featured and sits first. Move a different entry to the top if the priority
+  changes.
+- **Arcane Track is badged Free** — it's the cheapest yes for someone arriving
+  cold from TikTok, and it makes the paid links feel less like the only ask.
+- **WhatsApp sits last, styled differently.** It's the catch for people who
+  read everything and still want to talk before buying — the highest-intent
+  visitors you have.
+- **The testimonial sits below the links, not above.** It answers the doubt
+  that surfaces *after* someone considers buying, which is where proof does the
+  most work.
 
-## Ordering, and why it's set this way
+## The testimonial
 
-The first link takes a large share of all clicks, so the order is a real lever.
-Right now it runs Archives → Track (free) → Peptides: the flagship first, then
-a free tool that costs a cold visitor nothing to try, then the shop. If you'd
-rather push peptide sales directly, move that entry to the top of `LINKS`.
+`QUOTE` currently holds a message from your TikTok content. Set `QUOTE = null`
+to hide the section. Two things worth doing:
 
-## Adding a new icon
-
-Add an entry to the `ICONS` object with a 24×24 SVG that uses
-`stroke="currentColor"` so it picks up the gold accent automatically.
+- Confirm the sender is fine with it being quoted on a public page, even
+  unattributed.
+- Keep the attribution vague ("a follower") rather than inventing a name.
 
 ## Deploying
 
-The page is fully static — any host works.
+Fully static — any host works. **Vercel** is consistent with your other two
+sites: import the repo, leave the build command empty, publish directory is the
+repo root. **GitHub Pages:** Settings → Pages → deploy from branch, `/ (root)`.
 
-**GitHub Pages:** Settings → Pages → Source: `Deploy from a branch`, pick the
-branch and `/ (root)`.
-
-**Netlify / Vercel / Cloudflare Pages:** point at the repo, leave the build
-command empty, set the publish directory to the repo root.
-
-## Customizing the look
-
-Colors, spacing, and the max content width are CSS variables in the `:root`
-block at the top of the file. `--gold` is the accent used across icons, hover
-borders, and focus rings.
+Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
+`arcanearchives.shop` link in your Instagram bio for the new URL.
 
 ## Notes
 
-- The page title is **Arcane Leo** — the umbrella brand — so that "Arcane
-  Archives" stays the name of the education platform rather than the hub. Both
-  the `<h1>` and the `<title>`/`og:title` tags need changing together if you
-  rename it.
-- The footer carries an "educational content only / not medical advice"
-  disclaimer. Given the peptides and skin-protocol content, keep it.
-- Update the `og:` meta tags in `<head>` before sharing the link anywhere —
-  they control the preview card on socials. Add an `og:image` (1200×630) when
-  you have artwork.
+- Palette is violet to match the Archives and Track logos — `--violet`,
+  `--violet-lo`, `--violet-hi` in `:root`.
+- Add an `og:image` (1200×630) when you have artwork; it controls the preview
+  card when the link is shared.
+- The footer disclaimer covers educational-use, research-use, and
+  individual-results. Given the health claims in this niche and the existing
+  TikTok account warning, keep it.
