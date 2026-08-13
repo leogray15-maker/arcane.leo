@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arcane Archives</title>
+<meta name="description" content="Arcane Archives — education platform, skin healing tracker, peptides, and socials. One link for everything.">
+
+<!-- Social preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arcane Archives">
+<meta property="og:description" content="Education platform, skin healing tracker, peptides, and socials. One link for everything.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0b10">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0b10'/><path d='M50 18 L78 66 H22 Z' fill='none' stroke='%23c9a961' stroke-width='7' stroke-linejoin='round'/><circle cx='50' cy='52' r='11' fill='none' stroke='%23c9a961' stroke-width='6'/></svg>">
+
+<style>
+  :root{
+    --bg:#0b0b10;
+    --bg-glow-1:#1a1230;
+    --bg-glow-2:#0f1a22;
+    --card:rgba(255,255,255,.045);
+    --card-hover:rgba(255,255,255,.075);
+    --line:rgba(255,255,255,.10);
+    --line-hover:rgba(201,169,97,.45);
+    --text:#f2f0ea;
+    --muted:#9d9aa6;
+    --gold:#c9a961;
+    --radius:16px;
+    --maxw:520px;
+  }
+
+  *{box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    min-height:100svh;
+    background:var(--bg);
+    color:var(--text);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:clamp(28px,7vw,64px) 20px 48px;
+  }
+
+  /* soft aurora wash behind everything */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(60% 45% at 50% -5%, var(--bg-glow-1) 0%, transparent 70%),
+      radial-gradient(55% 40% at 100% 100%, var(--bg-glow-2) 0%, transparent 70%);
+  }
+
+  main{position:relative;width:100%;max-width:var(--maxw)}
+
+  /* ---------- header ---------- */
+
+  header{text-align:center;margin-bottom:clamp(28px,6vw,40px)}
+
+  .mark{
+    width:72px;height:72px;
+    margin:0 auto 20px;
+    display:grid;place-items:center;
+    border:1px solid rgba(201,169,97,.35);
+    border-radius:50%;
+    background:radial-gradient(circle at 50% 30%,rgba(201,169,97,.14),transparent 70%);
+  }
+  .mark svg{width:36px;height:36px;display:block}
+
+  h1{
+    margin:0;
+    font-size:clamp(28px,7vw,36px);
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+
+  .tagline{
+    margin:10px auto 0;
+    max-width:38ch;
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  /* ---------- links ---------- */
+
+  .links{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .link{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 18px;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--card);
+    color:inherit;
+    text-decoration:none;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease;
+  }
+  .link:hover,.link:focus-visible{
+    background:var(--card-hover);
+    border-color:var(--line-hover);
+    transform:translateY(-2px);
+  }
+  .link:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+  .link:active{transform:translateY(0)}
+
+  .link .icon{
+    flex:none;
+    width:40px;height:40px;
+    display:grid;place-items:center;
+    border-radius:11px;
+    background:rgba(201,169,97,.10);
+    color:var(--gold);
+  }
+  .link .icon svg{width:20px;height:20px;display:block}
+
+  .link .body{min-width:0;flex:1}
+  .link .title{display:block;font-weight:550;font-size:16px}
+  .link .sub{
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:13px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+
+  .link .arrow{flex:none;color:var(--muted);transition:transform .18s ease,color .18s ease}
+  .link:hover .arrow,.link:focus-visible .arrow{color:var(--gold);transform:translateX(3px)}
+  .link .arrow svg{width:16px;height:16px;display:block}
+
+  /* placeholder state: entry has no URL yet */
+  .link.pending{opacity:.5;cursor:default}
+  .link.pending:hover{background:var(--card);border-color:var(--line);transform:none}
+  .link.pending .icon{background:rgba(255,255,255,.05);color:var(--muted)}
+  .link.pending .tag{
+    flex:none;
+    font-size:10px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:3px 9px;
+  }
+
+  /* section divider label between primary + social groups */
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:30px 0 18px;
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+  }
+  .divider::before,.divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    margin-top:40px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12.5px;
+  }
+  footer a{color:var(--muted)}
+  footer .disclaimer{
+    margin:0 auto 14px;
+    max-width:44ch;
+    font-size:11.5px;
+    line-height:1.55;
+    opacity:.75;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+    .link:hover{transform:none}
+  }
+</style>
+</head>
+
+<body>
+<main>
+
+  <header>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none" stroke="#c9a961" stroke-width="5" stroke-linejoin="round">
+        <path d="M50 20 L77 66 H23 Z"/>
+        <circle cx="50" cy="53" r="12"/>
+      </svg>
+    </div>
+    <h1>Arcane Archives</h1>
+    <p class="tagline">Skin healing, peptides, and the research behind them — all in one place.</p>
+  </header>
+
+  <!-- Links are generated from the LINKS array at the bottom of this file.
+       Edit the URLs there — nothing in this markup needs to change. -->
+  <ul class="links" id="primary-links"></ul>
+
+  <div class="divider">Follow</div>
+
+  <ul class="links" id="social-links"></ul>
+
+  <footer>
+    <p class="disclaimer">
+      Educational content only. Nothing here is medical advice — talk to a
+      qualified clinician before starting any protocol.
+    </p>
+    <p>&copy; <span id="year"></span> Arcane Archives</p>
+  </footer>
+
+</main>
+
+<script>
+/* ============================================================
+   EDIT HERE — this is the only part you need to touch.
+
+   Replace each `url` with the real destination. Any entry left
+   as "#" is skipped and won't render, so you can ship the page
+   with only the links that are live today and fill in the rest
+   later. Reorder freely; the page follows this order.
+   ============================================================ */
+
+const LINKS = [
+  {
+    title: "Arcane Archives",
+    sub:   "Education platform — courses & research library",
+    url:   "#",
+    icon:  "book"
+  },
+  {
+    title: "Skin Healing Tracker",
+    sub:   "Log your protocol, track your progress",
+    url:   "#",
+    icon:  "spark"
+  },
+  {
+    title: "Arcane Peptides",
+    sub:   "Shop research peptides",
+    url:   "#",
+    icon:  "flask"
+  }
+];
+
+const SOCIALS = [
+  { title: "Instagram", sub: "@arcane.archives", url: "#", icon: "instagram" },
+  { title: "TikTok",    sub: "@arcane.archives", url: "#", icon: "tiktok"    },
+  { title: "Email",     sub: "hello@arcanearchives.com", url: "#", icon: "mail" }
+];
+
+/* ============================================================
+   Rendering — no need to edit below this line.
+   ============================================================ */
+
+const ICONS = {
+  book:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/><circle cx="12" cy="12" r="3"/></svg>',
+  flask:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7 15h10"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>',
+  tiktok:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.2 5 4.4"/></svg>',
+  mail:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 8.1 5.4a1.6 1.6 0 0 0 1.8 0L21 7"/></svg>',
+  link:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12.2 19"/></svg>'
+};
+
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>';
+
+const esc = s => String(s).replace(/[&<>"]/g, c =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function render(list, mountId) {
+  const mount = document.getElementById(mountId);
+
+  mount.innerHTML = list.map(item => {
+    const live = item.url && item.url !== "#";
+    const external = /^https?:/i.test(item.url || "");
+    const icon = ICONS[item.icon] || ICONS.link;
+
+    // No URL yet: render as a non-interactive placeholder so the page still
+    // reads correctly, but nobody can click through to nowhere.
+    const tag = live ? `<span class="arrow" aria-hidden="true">${ARROW}</span>`
+                     : `<span class="tag">Soon</span>`;
+
+    const attrs = live
+      ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
+      : `aria-disabled="true"`;
+
+    return `
+      <li>
+        <a class="link${live ? "" : " pending"}" ${attrs}>
+          <span class="icon" aria-hidden="true">${icon}</span>
+          <span class="body">
+            <span class="title">${esc(item.title)}</span>
+            ${item.sub ? `<span class="sub">${esc(item.sub)}</span>` : ""}
+          </span>
+          ${tag}
+        </a>
+      </li>`;
+  }).join("");
+}
+
+render(LINKS, "primary-links");
+render(SOCIALS, "social-links");
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
