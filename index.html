@@ -78,7 +78,9 @@
     object-fit:cover;
     background:#140f26;
   }
-  /* fallback mark shown when no photo is set */
+  /* a logo needs breathing room and must not be cropped, unlike a photo */
+  .avatar .logo{object-fit:contain;padding:22px}
+  /* traced fallback, used only until the real logo file is added */
   .avatar .glyph{display:grid;place-items:center}
   .avatar .glyph svg{width:54px;height:54px}
 
@@ -322,8 +324,17 @@
    EDIT HERE — everything you'd want to change lives in this block.
    ========================================================================== */
 
+/* Your real logo file. Upload the WHITE version next to index.html with this
+   exact name and the page uses it automatically — for the avatar and the
+   browser-tab icon. .svg is best (stays sharp at any size); .png works too,
+   just change the name here to match.
+
+   Until that file exists, the page falls back to a hand-traced copy of the
+   mark. The trace is close but is NOT the real logo. */
+const LOGO = "arcane-logo.svg";
+
 /* Your photo. Drop a file next to index.html and put its name here,
-   e.g. "leo.jpg". Leave empty to show the Arcane mark instead. */
+   e.g. "leo.jpg". Leave empty to show the logo instead. */
 const AVATAR = "";
 
 /* Small credibility line under the tagline. Keep it specific and true. */
@@ -400,10 +411,27 @@ const esc = s => String(s).replace(/[&<>"]/g, c =>
 
 const isLive = url => Boolean(url) && url !== "#";
 
-/* avatar: photo if one is set, otherwise the Arcane mark */
-document.getElementById("avatar").innerHTML = AVATAR
-  ? `<img src="${esc(AVATAR)}" alt="Leo Gray">`
-  : `<span class="glyph" style="color:var(--violet-hi)">${ICONS.mark}</span>`;
+/* Avatar priority: your photo > your real logo file > the traced fallback.
+   The logo is loaded by URL rather than inlined, so dropping the real file
+   into this folder swaps it in everywhere with no code change. */
+const avatarEl = document.getElementById("avatar");
+
+if (AVATAR) {
+  avatarEl.innerHTML = `<img src="${esc(AVATAR)}" alt="Leo Gray">`;
+} else {
+  avatarEl.innerHTML = `<span class="glyph" style="color:var(--violet-hi)">${ICONS.mark}</span>`;
+
+  if (LOGO) {
+    const probe = new Image();
+    probe.onload = () => {
+      avatarEl.innerHTML = `<img class="logo" src="${esc(LOGO)}" alt="Arcane">`;
+      // real file exists, so use it for the tab icon too
+      const fav = document.querySelector('link[rel="icon"]');
+      if (fav) fav.href = LOGO;
+    };
+    probe.src = LOGO;   // missing file just fails silently, keeping the trace
+  }
+}
 
 document.getElementById("proof-text").textContent = PROOF;
 

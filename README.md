@@ -5,13 +5,32 @@ no dependencies, no monthly fee, no Linktree branding — and unlike Linktree it
 can show social proof, rank links by importance, and carry your own visual
 identity.
 
+## Add your real logo (one upload, no code change)
+
+The mark currently on the page is **hand-traced by eye** from the logo images —
+close, but not the real artwork. To use the genuine file:
+
+1. Take the **white** version of the logo (`.svg` preferred — it stays sharp at
+   any size; `.png` also works).
+2. Rename it exactly **`arcane-logo.svg`**.
+3. Upload it into this repo next to `index.html`. On github.com: open the repo,
+   switch to this branch, then **Add file → Upload files**.
+
+That's it. The page detects the file and uses it for both the avatar and the
+browser-tab icon automatically. If the file isn't there, it silently falls back
+to the trace, so the page never breaks either way.
+
+Using a different name or extension? Change `LOGO` at the bottom of
+`index.html` to match.
+
 ## What still needs filling in
 
 | Item | Where | Status |
 | --- | --- | --- |
+| Real logo file | upload as `arcane-logo.svg` | traced fallback in use |
 | Arcane Healing Protocols URL | `LINKS` array | renders as **Soon** until set |
 | WhatsApp number | `LINKS` array | renders as **Soon** until set |
-| Profile photo | `AVATAR` const | falls back to the Arcane mark |
+| Profile photo | `AVATAR` const | falls back to the logo |
 
 For WhatsApp, the URL format is `https://wa.me/<number>` — country code
 included, no `+`, no spaces. A UK mobile `07700 900123` becomes
@@ -86,10 +105,8 @@ Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
 
 - Palette is violet to match the Archives and Track logos — `--violet`,
   `--violet-lo`, `--violet-hi` in `:root`.
-- The Arcane mark is inline SVG, hand-traced from the brand logo, so it scales
-  and recolours with no image file. It's a close trace, not the original vector
-  — drop the real `.svg` in the repo and point `ICONS.mark` at it if you want
-  it pixel-exact.
+- The inline traced mark is a fallback only. See "Add your real logo" above to
+  replace it with the genuine artwork.
 - Add an `og:image` (1200×630) when you have artwork; it controls the preview
   card when the link is shared.
 - The footer disclaimer covers educational-use, research-use, and
