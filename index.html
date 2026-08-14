@@ -12,7 +12,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#08070d">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23120e24'/><path fill='%23a78bfa' fill-rule='evenodd' d='M50 18 L79 68.5 C71.5 67.3 57.5 70 50 78.8 C42.5 70 28.5 67.3 21 68.5 Z M50 26.5 L60.5 46.5 C56.2 50.4 52.3 53.2 50 57.2 C47.7 53.2 43.8 50.4 39.5 46.5 Z M39 48.8 C33.6 54 29.8 60 28.6 65.9 C34.9 65.9 42.6 66.9 47.8 69.2 C47.8 62.5 44 54.5 39 48.8 Z M61 48.8 C66.4 54 70.2 60 71.4 65.9 C65.1 65.9 57.4 66.9 52.2 69.2 C52.2 62.5 56 54.5 61 48.8 Z'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='207 184 611 611'><rect x='207' y='184' width='611' height='611' rx='104' fill='%23120e24'/><g transform='translate(0.000000,1024.000000) scale(0.100000,-0.100000)' fill='%23a78bfa'><path d='M5082 8183 c-11 -10 -96 -157 -188 -328 -91 -170 -177 -328 -189 -350 -12 -22 -38 -69 -58 -105 -19 -36 -105 -193 -192 -350 -86 -157 -225 -409 -307 -560 -83 -151 -154 -279 -158 -285 -4 -5 -31 -55 -60 -110 -29 -55 -176 -322 -327 -593 -150 -271 -339 -613 -420 -760 -80 -147 -158 -289 -173 -317 -64 -114 -409 -741 -485 -880 -45 -82 -95 -174 -109 -204 l-28 -53 34 4 c18 3 94 17 168 31 375 72 800 61 1168 -29 478 -116 962 -391 1302 -738 30 -31 58 -56 63 -56 5 0 65 53 132 119 400 386 892 629 1465 722 89 15 194 22 365 26 208 4 262 2 405 -16 91 -12 211 -32 268 -45 56 -13 102 -21 102 -19 0 12 -122 234 -437 798 -77 138 -159 286 -183 330 -23 44 -62 114 -85 155 -23 41 -78 140 -122 220 -44 80 -130 235 -190 345 -61 110 -178 322 -261 470 -128 232 -301 547 -430 785 -19 36 -52 94 -72 130 -20 36 -57 101 -80 145 -24 44 -127 233 -230 420 -174 317 -382 699 -523 962 -33 62 -68 121 -79 133 -23 25 -59 26 -86 3z m102 -918 c29 -55 85 -163 126 -240 40 -77 138 -264 218 -415 290 -553 543 -1042 540 -1045 -2 -1 -41 -22 -88 -46 -108 -56 -279 -170 -379 -253 -161 -135 -340 -340 -432 -498 -22 -38 -43 -68 -47 -68 -4 0 -19 22 -33 48 -46 83 -179 253 -278 355 -158 163 -320 286 -533 404 -99 55 -106 61 -94 79 7 10 99 186 204 389 451 875 726 1395 735 1392 5 -1 32 -47 61 -102z m-1179 -2166 c119 -45 297 -142 410 -222 138 -98 317 -278 393 -396 76 -117 136 -252 167 -376 13 -52 45 -208 70 -347 26 -143 52 -259 60 -267 36 -37 49 1 110 344 54 300 98 439 187 590 95 161 261 340 424 457 135 97 475 262 494 241 4 -4 65 -120 135 -258 70 -137 174 -340 230 -450 171 -333 307 -606 303 -609 -1 -2 -75 -8 -163 -14 -643 -47 -1197 -279 -1610 -674 l-95 -90 -62 62 c-174 174 -367 309 -612 430 -326 160 -676 249 -1083 276 -57 3 -103 8 -103 9 0 6 660 1325 663 1325 1 0 38 -14 82 -31z'/></g></svg>">
 
 <style>
   :root{
@@ -78,11 +78,8 @@
     object-fit:cover;
     background:#140f26;
   }
-  /* a logo needs breathing room and must not be cropped, unlike a photo */
-  .avatar .logo{object-fit:contain;padding:22px}
-  /* traced fallback, used only until the real logo file is added */
   .avatar .glyph{display:grid;place-items:center}
-  .avatar .glyph svg{width:54px;height:54px}
+  .avatar .glyph svg{width:50px;height:50px}
 
   h1{
     margin:0;
@@ -324,17 +321,8 @@
    EDIT HERE — everything you'd want to change lives in this block.
    ========================================================================== */
 
-/* Your real logo file. Upload the WHITE version next to index.html with this
-   exact name and the page uses it automatically — for the avatar and the
-   browser-tab icon. .svg is best (stays sharp at any size); .png works too,
-   just change the name here to match.
-
-   Until that file exists, the page falls back to a hand-traced copy of the
-   mark. The trace is close but is NOT the real logo. */
-const LOGO = "arcane-logo.svg";
-
 /* Your photo. Drop a file next to index.html and put its name here,
-   e.g. "leo.jpg". Leave empty to show the logo instead. */
+   e.g. "leo.jpg". Leave empty to show the Arcane mark instead. */
 const AVATAR = "";
 
 /* Small credibility line under the tagline. Keep it specific and true. */
@@ -392,8 +380,8 @@ const SOCIALS = [
    ========================================================================== */
 
 const ICONS = {
-  /* the Arcane mark, traced from the brand logo */
-  mark:      '<svg viewBox="14 12 72 72" fill="currentColor"><path fill-rule="evenodd" d="M50 18 L79 68.5 C71.5 67.3 57.5 70 50 78.8 C42.5 70 28.5 67.3 21 68.5 Z M50 26.5 L60.5 46.5 C56.2 50.4 52.3 53.2 50 57.2 C47.7 53.2 43.8 50.4 39.5 46.5 Z M39 48.8 C33.6 54 29.8 60 28.6 65.9 C34.9 65.9 42.6 66.9 47.8 69.2 C47.8 62.5 44 54.5 39 48.8 Z M61 48.8 C66.4 54 70.2 60 71.4 65.9 C65.1 65.9 57.4 66.9 52.2 69.2 C52.2 62.5 56 54.5 61 48.8 Z"/></svg>',
+  /* the Arcane mark, vectorised from the brand artwork */
+  mark:      '<svg viewBox="239 204 547 570" fill="currentColor"><g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"><path d="M5082 8183 c-11 -10 -96 -157 -188 -328 -91 -170 -177 -328 -189 -350 -12 -22 -38 -69 -58 -105 -19 -36 -105 -193 -192 -350 -86 -157 -225 -409 -307 -560 -83 -151 -154 -279 -158 -285 -4 -5 -31 -55 -60 -110 -29 -55 -176 -322 -327 -593 -150 -271 -339 -613 -420 -760 -80 -147 -158 -289 -173 -317 -64 -114 -409 -741 -485 -880 -45 -82 -95 -174 -109 -204 l-28 -53 34 4 c18 3 94 17 168 31 375 72 800 61 1168 -29 478 -116 962 -391 1302 -738 30 -31 58 -56 63 -56 5 0 65 53 132 119 400 386 892 629 1465 722 89 15 194 22 365 26 208 4 262 2 405 -16 91 -12 211 -32 268 -45 56 -13 102 -21 102 -19 0 12 -122 234 -437 798 -77 138 -159 286 -183 330 -23 44 -62 114 -85 155 -23 41 -78 140 -122 220 -44 80 -130 235 -190 345 -61 110 -178 322 -261 470 -128 232 -301 547 -430 785 -19 36 -52 94 -72 130 -20 36 -57 101 -80 145 -24 44 -127 233 -230 420 -174 317 -382 699 -523 962 -33 62 -68 121 -79 133 -23 25 -59 26 -86 3z m102 -918 c29 -55 85 -163 126 -240 40 -77 138 -264 218 -415 290 -553 543 -1042 540 -1045 -2 -1 -41 -22 -88 -46 -108 -56 -279 -170 -379 -253 -161 -135 -340 -340 -432 -498 -22 -38 -43 -68 -47 -68 -4 0 -19 22 -33 48 -46 83 -179 253 -278 355 -158 163 -320 286 -533 404 -99 55 -106 61 -94 79 7 10 99 186 204 389 451 875 726 1395 735 1392 5 -1 32 -47 61 -102z m-1179 -2166 c119 -45 297 -142 410 -222 138 -98 317 -278 393 -396 76 -117 136 -252 167 -376 13 -52 45 -208 70 -347 26 -143 52 -259 60 -267 36 -37 49 1 110 344 54 300 98 439 187 590 95 161 261 340 424 457 135 97 475 262 494 241 4 -4 65 -120 135 -258 70 -137 174 -340 230 -450 171 -333 307 -606 303 -609 -1 -2 -75 -8 -163 -14 -643 -47 -1197 -279 -1610 -674 l-95 -90 -62 62 c-174 174 -367 309 -612 430 -326 160 -676 249 -1083 276 -57 3 -103 8 -103 9 0 6 660 1325 663 1325 1 0 38 -14 82 -31z"/></g></svg>',
   book:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
   list:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
   spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M5.9 5.9l2.5 2.5M15.6 15.6l2.5 2.5M18.1 5.9l-2.5 2.5M8.4 15.6l-2.5 2.5"/><circle cx="12" cy="12" r="3.2"/></svg>',
@@ -411,27 +399,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c =>
 
 const isLive = url => Boolean(url) && url !== "#";
 
-/* Avatar priority: your photo > your real logo file > the traced fallback.
-   The logo is loaded by URL rather than inlined, so dropping the real file
-   into this folder swaps it in everywhere with no code change. */
-const avatarEl = document.getElementById("avatar");
-
-if (AVATAR) {
-  avatarEl.innerHTML = `<img src="${esc(AVATAR)}" alt="Leo Gray">`;
-} else {
-  avatarEl.innerHTML = `<span class="glyph" style="color:var(--violet-hi)">${ICONS.mark}</span>`;
-
-  if (LOGO) {
-    const probe = new Image();
-    probe.onload = () => {
-      avatarEl.innerHTML = `<img class="logo" src="${esc(LOGO)}" alt="Arcane">`;
-      // real file exists, so use it for the tab icon too
-      const fav = document.querySelector('link[rel="icon"]');
-      if (fav) fav.href = LOGO;
-    };
-    probe.src = LOGO;   // missing file just fails silently, keeping the trace
-  }
-}
+/* Avatar: your photo if one is set, otherwise the Arcane mark. */
+document.getElementById("avatar").innerHTML = AVATAR
+  ? `<img src="${esc(AVATAR)}" alt="Leo Gray">`
+  : `<span class="glyph" style="color:var(--violet-hi)">${ICONS.mark}</span>`;
 
 document.getElementById("proof-text").textContent = PROOF;
 

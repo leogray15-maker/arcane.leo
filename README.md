@@ -5,32 +5,36 @@ no dependencies, no monthly fee, no Linktree branding — and unlike Linktree it
 can show social proof, rank links by importance, and carry your own visual
 identity.
 
-## Add your real logo (one upload, no code change)
+## Brand assets
 
-The mark currently on the page is **hand-traced by eye** from the logo images —
-close, but not the real artwork. To use the genuine file:
+`brand/` holds the logo artwork:
 
-1. Take the **white** version of the logo (`.svg` preferred — it stays sharp at
-   any size; `.png` also works).
-2. Rename it exactly **`arcane-logo.svg`**.
-3. Upload it into this repo next to `index.html`. On github.com: open the repo,
-   switch to this branch, then **Add file → Upload files**.
+| File | What it is |
+| --- | --- |
+| `arcane-mark.svg` | the mark as clean vector — traced from `arcane-mark-black.png` |
+| `arcane-mark-black.png` | plain mark, black |
+| `arcane-mark-white.png` | plain mark, white |
+| `arcane-archives-black.png` | Archives lockup (mark + wordmark), black |
+| `arcane-archives-white.png` | Archives lockup, white |
+| `arcane-track-icon.png` | Arcane Track app icon |
 
-That's it. The page detects the file and uses it for both the avatar and the
-browser-tab icon automatically. If the file isn't there, it silently falls back
-to the trace, so the page never breaks either way.
+The page doesn't load any of these at runtime — the mark is inlined as SVG in
+`index.html` (in `ICONS.mark` and the favicon), so it costs no network request,
+stays sharp at every size, and picks up the violet accent automatically. The
+files are here as the source of truth for anything else you make.
 
-Using a different name or extension? Change `LOGO` at the bottom of
-`index.html` to match.
+The vector was produced by thresholding the black PNG and tracing it, then
+checked against the original: it differs by 0.5% of the mark's area, all of it
+edge antialiasing. If you ever get the original vector from your designer, drop
+it in and I'll swap it for a byte-exact one.
 
 ## What still needs filling in
 
 | Item | Where | Status |
 | --- | --- | --- |
-| Real logo file | upload as `arcane-logo.svg` | traced fallback in use |
 | Arcane Healing Protocols URL | `LINKS` array | renders as **Soon** until set |
 | WhatsApp number | `LINKS` array | renders as **Soon** until set |
-| Profile photo | `AVATAR` const | falls back to the logo |
+| Profile photo | `AVATAR` const | falls back to the Arcane mark |
 
 For WhatsApp, the URL format is `https://wa.me/<number>` — country code
 included, no `+`, no spaces. A UK mobile `07700 900123` becomes
@@ -105,10 +109,10 @@ Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
 
 - Palette is violet to match the Archives and Track logos — `--violet`,
   `--violet-lo`, `--violet-hi` in `:root`.
-- The inline traced mark is a fallback only. See "Add your real logo" above to
-  replace it with the genuine artwork.
+- The mark in the page is the real logo, vectorised. See "Brand assets" above.
 - Add an `og:image` (1200×630) when you have artwork; it controls the preview
-  card when the link is shared.
+  card when the link is shared. `brand/arcane-archives-white.png` on a dark
+  background would do the job.
 - The footer disclaimer covers educational-use, research-use, and
   individual-results. Given the health claims in this niche and the existing
   TikTok account warning, keep it.
