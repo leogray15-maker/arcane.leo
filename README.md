@@ -32,23 +32,39 @@ it in and I'll swap it for a byte-exact one.
 
 | Item | Where | Status |
 | --- | --- | --- |
-| Arcane Healing Protocols URL | `LINKS` array | renders as **Soon** until set |
-| WhatsApp number | `LINKS` array | renders as **Soon** until set |
 | Profile photo | `AVATAR` const | falls back to the Arcane mark |
 
-For WhatsApp, the URL format is `https://wa.me/<number>` — country code
-included, no `+`, no spaces. A UK mobile `07700 900123` becomes
-`https://wa.me/447700900123`.
+Every link is now live; nothing renders as **Soon**.
+
+### WhatsApp link
+
+`https://wa.me/447405557399?text=<prefilled message>` — the number is in
+international form (leading `0` dropped, `44` prefixed), which is what `wa.me`
+requires. The `?text=` part prefills the first message so nobody has to work
+out what to say; edit that string in `LINKS` to change it.
+
+WhatsApp usernames exist but the `wa.me/<username>` form isn't reliably live
+for everyone yet, so the number is used here because it works on every device
+today. Once your username resolves, switching to it is a one-line change and
+has a real advantage: it stops publishing your mobile number on a public page.
+
+### Healing Protocols link
+
+This one goes **straight to Stripe checkout** — no product page in between. That
+works for warm traffic that already knows what it is, but cold visitors landing
+on a payment form usually bounce. Two things worth considering: put the price in
+a `badge` so nobody is surprised by the amount, or point the card at a short
+sales page that ends in the Stripe link.
 
 ## Current links
 
 | Entry | Destination |
 | --- | --- |
 | The Arcane Archives | https://arcanearchives.shop |
-| Arcane Healing Protocols | *(needs URL)* |
+| Arcane Healing Protocols | Stripe checkout (`buy.stripe.com/8x2aEW…`) |
 | Arcane Track | https://arcanetrack.vercel.app |
 | Arcane Peptides | https://arcanepeptides.vercel.app |
-| WhatsApp me | *(needs number)* |
+| WhatsApp me | `wa.me/447405557399` with a prefilled message |
 | Instagram | https://instagram.com/arcaneleo.g |
 | TikTok | https://tiktok.com/@arcane_advice |
 

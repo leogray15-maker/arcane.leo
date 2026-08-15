@@ -339,7 +339,7 @@ const LINKS = [
   {
     title: "Arcane Healing Protocols",
     sub:   "The exact protocols, step by step",
-    url:   "#",             // TODO: needs its URL
+    url:   "https://buy.stripe.com/8x2aEW7qc9x82wW1260Ba04",
     icon:  "list"
   },
   {
@@ -358,7 +358,10 @@ const LINKS = [
   {
     title: "WhatsApp me",
     sub:   "Questions about your skin? Ask me",
-    url:   "#",             // TODO: https://wa.me/44XXXXXXXXXX (country code, no +, no spaces)
+    // 07405557399 in international form: leading 0 dropped, 44 prefixed.
+    // ?text= prefills the message so nobody has to work out how to open.
+    url:   "https://wa.me/447405557399?text=" + encodeURIComponent(
+             "Hi Leo, I found you through your links page - I've got a question about my skin."),
     icon:  "whatsapp",
     style: "chat"
   }
