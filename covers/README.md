@@ -8,9 +8,20 @@ pip install fonttools brotli
 python3 covers/build.py
 ```
 
-Each cover emits twice: `<slug>.html` (a standalone page, what the PNGs are
-rendered from) and `<Name>.dc.html` (the same design as a canvas artboard).
-`canvas.json` lays the four out in a row.
+Each product emits four files: `<slug>.html` and `<slug>-banner.html` (the
+standalone pages the PNGs are rendered from), plus `<Name>.dc.html` and
+`<Name>Banner.dc.html` (the same two designs as canvas artboards). `canvas.json`
+puts the covers on one row and the banners on the row below.
+
+The banner is **not a crop of the cover**. A 2:3 portrait sliced to 10:3 loses
+the mark and most of the title, so the banner is laid out for its own shape:
+mark left, title and attributes right. Everything else — palette, typefaces,
+the kiss on The Arcane Game — is shared, so the two read as the same product.
+
+`thumb/*.webp` are the banners at 1080px wide, which is what the link hub
+loads. They are sized for the small end: the hub renders them at roughly a
+third of that, so the attribute row and the corner mark are deliberately
+larger than full-scale composition would want.
 
 ## What each cover carries
 

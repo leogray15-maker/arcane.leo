@@ -31,6 +31,38 @@
       "y": 0,
       "w": 800,
       "h": 1200
+    },
+    {
+      "file": "MainBanner.dc.html",
+      "title": "The Arcane Game \u2014 banner",
+      "x": 0,
+      "y": 1360,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "PrimalCodeBanner.dc.html",
+      "title": "The Primal Code \u2014 banner",
+      "x": 1280,
+      "y": 1360,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "Peptides101Banner.dc.html",
+      "title": "Peptides 101 \u2014 banner",
+      "x": 2560,
+      "y": 1360,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "DarkPsychCodexBanner.dc.html",
+      "title": "The Dark Psych Codex \u2014 banner",
+      "x": 3840,
+      "y": 1360,
+      "w": 1200,
+      "h": 360
     }
   ],
   "launch": {

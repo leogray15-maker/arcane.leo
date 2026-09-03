@@ -22,6 +22,7 @@ HERE = Path(__file__).resolve().parent
 FONT_DIR = Path("/mnt/skills/examples/canvas-design/canvas-fonts")
 
 W, H = 800, 1200
+BW, BH = 1200, 360      # banner: the landscape cut, for the link hub
 INK = "#f2f0f6"          # near-white, faintly warm
 DIM = "#8b8794"          # attribute row
 SOFT = "#a6a1b0"         # subtitle
@@ -195,6 +196,47 @@ def body(c: dict, accent: str) -> str:
 </div>"""
 
 
+def banner_body(c: dict, accent: str) -> str:
+    """The landscape cut. Not a crop of the cover — a portrait composition
+    sliced to 3:1 loses the mark and most of the title, so the banner is laid
+    out for its own shape: mark left, title and attributes right."""
+    return f"""
+<div style="position:relative;width:{BW}px;height:{BH}px;overflow:hidden;background:{BG};">
+
+  <div style="position:absolute;left:38%;top:50%;width:1120px;height:1120px;
+              transform:translate(-50%,-50%);pointer-events:none;opacity:.20;
+              background:radial-gradient(circle closest-side,{accent} 0%,transparent 72%);"></div>
+  <div style="position:absolute;left:0;right:0;bottom:0;height:190px;pointer-events:none;
+              opacity:.13;background:linear-gradient(to top,{accent} 0%,transparent 100%);"></div>
+
+  <div style="position:relative;height:100%;display:flex;align-items:center;
+              justify-content:center;gap:64px;padding:0 76px;">
+
+    <div style="flex:none;color:{accent};width:200px;height:200px;">
+      <svg viewBox="0 0 120 130" width="200" height="200" fill="none" stroke="currentColor"
+           stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">{ICONS[c['icon']]}</svg>
+    </div>
+
+    <div style="min-width:0;">
+      <div style="font-family:'ArcaneDisplay',Impact,'Haettenschweiler','Arial Narrow',sans-serif;
+                  font-size:88px;line-height:.86;letter-spacing:.006em;
+                  white-space:nowrap;position:relative;">
+        <div style="color:{INK};">{c['line1']}</div>
+        <div style="color:{accent};">{c['line2']}</div>
+        {'<div style="position:absolute;left:196px;top:8px;width:96px;height:77px;'
+         'transform:rotate(-15deg);pointer-events:none;">' + KISS + '</div>'
+         if c.get('kiss') else ''}
+      </div>
+      <div style="font-family:'ArcaneMeta','Helvetica Neue',Arial,sans-serif;font-size:22px;
+                  letter-spacing:.22em;color:{DIM};margin-top:26px;">{c['meta']}</div>
+    </div>
+  </div>
+
+  <div style="position:absolute;right:38px;bottom:30px;width:46px;height:46px;
+              color:{INK};opacity:.55;">{MARK}</div>
+</div>"""
+
+
 def build():
     for c in COVERS:
         used = "".join({*(c["line1"] + c["line2"] + c["meta"] + c["sub"]
@@ -210,8 +252,15 @@ def build():
             f"<!doctype html><html><head><meta charset=utf-8><title>{c['line1']} {c['line2']}"
             f"</title><style>{css}</style></head><body>{body(c, c['accent'])}</body></html>")
 
+        (HERE / f"{c['slug']}-banner.html").write_text(
+            f"<!doctype html><html><head><meta charset=utf-8><title>{c['line1']} {c['line2']}"
+            f" banner</title><style>{css}</style></head><body>"
+            f"{banner_body(c, c['accent'])}</body></html>")
+
         props = ('{"accent":{"editor":"color","default":"' + c["accent"] + '"},'
                  '"$preview":{"width":' + str(W) + ',"height":' + str(H) + '}}')
+        bprops = ('{"accent":{"editor":"color","default":"' + c["accent"] + '"},'
+                  '"$preview":{"width":' + str(BW) + ',"height":' + str(BH) + '}}')
         (HERE / f"{c['name']}.dc.html").write_text(
             "<!doctype html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n"
             "<script src=\"./support.js\"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n"
@@ -221,12 +270,24 @@ def build():
             "class Component extends DCLogic {\n"
             f"  renderVals() {{ return {{ accent: this.props.accent ?? '{c['accent']}' }}; }}\n"
             "}\n</script>\n</body>\n</html>\n")
-        print(f"  {c['slug']}.html + {c['name']}.dc.html")
+        (HERE / f"{c['name']}Banner.dc.html").write_text(
+            "<!doctype html>\n<html>\n<head>\n<meta charset=\"utf-8\">\n"
+            "<script src=\"./support.js\"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n"
+            f"<style>{css}a{{color:{c['accent']};}}a:hover{{color:{INK};}}</style>\n</helmet>\n"
+            + banner_body(c, "{{accent}}")
+            + "\n</x-dc>\n<script data-dc-script data-props='" + bprops + "'>\n"
+            "class Component extends DCLogic {\n"
+            f"  renderVals() {{ return {{ accent: this.props.accent ?? '{c['accent']}' }}; }}\n"
+            "}\n</script>\n</body>\n</html>\n")
+        print(f"  {c['slug']}.html + banner + {c['name']}.dc.html")
 
     # One row of frames, 80px of clear space between each.
     boards = [{"file": f"{c['name']}.dc.html", "title": c["label"],
                "x": i * (W + 80), "y": 0, "w": W, "h": H}
               for i, c in enumerate(COVERS)]
+    boards += [{"file": f"{c['name']}Banner.dc.html", "title": f"{c['label']} — banner",
+                "x": i * (BW + 80), "y": H + 160, "w": BW, "h": BH}
+               for i, c in enumerate(COVERS)]
     (HERE / "canvas.json").write_text(json.dumps(
         {"artboards": boards, "launch": {"view": "canvas"}}, indent=2) + "\n")
 
@@ -234,23 +295,23 @@ def build():
     print("built", len(COVERS), "covers + canvas.json")
 
 
-def thumbs(w=240):
-    """Downscale each rendered cover into a link-hub thumbnail.
+def thumbs(w=1080):
+    """Downscale each rendered banner into the image the link hub loads.
 
     Reads the PNGs rather than producing them — see "Regenerating the PNGs" in
-    the README. Skips silently for any cover not rendered yet.
+    the README. Skips silently for any banner not rendered yet.
     """
     out = HERE / "thumb"
     out.mkdir(exist_ok=True)
     for c in COVERS:
-        src = HERE / f"{c['slug']}.png"
+        src = HERE / f"{c['slug']}-banner.png"
         if not src.exists():
             print(f"  no {src.name} yet — thumbnail skipped")
             continue
         im = Image.open(src).convert("RGB")
-        im = im.resize((w, round(w * H / W)), Image.LANCZOS)
+        im = im.resize((w, round(w * BH / BW)), Image.LANCZOS)
         dst = out / f"{c['slug']}.webp"
-        im.save(dst, "WEBP", quality=86, method=6)
+        im.save(dst, "WEBP", quality=84, method=6)
         print(f"  thumb/{dst.name}  {dst.stat().st_size // 1024}KB")
 
 
