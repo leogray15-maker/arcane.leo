@@ -179,6 +179,19 @@
   }
   .link .icon svg{width:21px;height:21px;display:block}
 
+  /* A product with real cover art shows it instead of a glyph. It is the same
+     image the buyer meets at checkout, so the card and the till agree. */
+  .link .cover{
+    flex:none;
+    width:44px;height:66px;
+    border-radius:7px;
+    overflow:hidden;
+    background:#0d0b16;
+    border:1px solid rgba(255,255,255,.11);
+    box-shadow:0 7px 18px -9px rgba(0,0,0,.95);
+  }
+  .link .cover img{width:100%;height:100%;display:block;object-fit:cover}
+
   .link .body{min-width:0;flex:1}
   .link .title{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
   .link .sub{
@@ -402,7 +415,7 @@ const LINKS = [
     title: "Peptides 101",
     sub:   "Everything you need to know before you start",
     url:   "https://buy.stripe.com/5kQ00i39WaBc5J85im0Ba05",
-    icon:  "molecule"
+    cover: "covers/thumb/peptides-101.webp"
   },
   {
     title: "Arcane Track",
@@ -423,13 +436,15 @@ const LINKS = [
     title: "Deep & Dark Psychology",
     sub:   "The complete masterclass on how people really work",
     url:   "https://buy.stripe.com/7sYfZgh0MfVw2wW8uy0Ba07",
-    icon:  "eye"
+    // the cover brands this one "The Dark Psych Codex"; the card keeps the
+    // Stripe product name so the checkout page doesn't look like a surprise
+    cover: "covers/thumb/dark-psych-codex.webp"
   },
   {
     title: "The Arcane Game",
     sub:   "Attraction, social dynamics & status",
     url:   "https://buy.stripe.com/5kQeVc25SdNofjl1260Ba06",
-    icon:  "target"
+    cover: "covers/thumb/arcane-game.webp"
   },
 
   { section: "Talk to me" },
@@ -515,6 +530,10 @@ const card = item => {
     ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
     : 'aria-disabled="true"';
 
+  const art = item.cover
+    ? `<span class="cover"><img src="${esc(item.cover)}" alt="" width="44" height="66" loading="lazy" decoding="async"></span>`
+    : `<span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>`;
+
   const eyebrow = live && item.featured && item.badge
     ? `<span class="eyebrow">${esc(item.badge)}</span>` : "";
 
@@ -525,7 +544,7 @@ const card = item => {
   return `
     <li class="reveal" style="--i:${step++}">
       <a class="${cls}" ${attrs}>
-        <span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>
+        ${art}
         <span class="body">
           ${eyebrow}
           <span class="title">${esc(item.title)}</span>

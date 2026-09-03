@@ -24,6 +24,11 @@ The page doesn't load any of these at runtime — the mark is inlined as SVG in
 stays sharp at every size, and picks up the violet accent automatically. The
 files are here as the source of truth for anything else you make.
 
+The one exception is the cover thumbnails under `covers/thumb/`, which the
+three product cards do load. They are ~3 KB each, lazy-loaded, and carry
+explicit dimensions so nothing shifts as they arrive — cheap enough that
+showing the real product beats keeping the page asset-free.
+
 The vector was produced by thresholding the black PNG and tracing it, then
 checked against the original: it differs by 0.5% of the mark's area, all of it
 edge antialiasing. If you ever get the original vector from your designer, drop
@@ -72,6 +77,10 @@ has a real advantage: it stops publishing your mobile number on a public page.
 
 ## Current links
 
+Cards for The Arcane Game, Deep & Dark Psychology and Peptides 101 show their
+cover art instead of an icon — see `covers/`. The Primal Code has a cover but
+no link yet, so it isn't listed.
+
 | Group | Entry | Destination |
 | --- | --- | --- |
 | Start here | The Arcane Archives | https://arcanearchives.shop |
@@ -105,9 +114,12 @@ Every other entry is a link card, and takes:
   a **Soon** badge and isn't clickable.
 - **`title` / `sub`** — the label and the grey line under it. `sub` wraps to two
   lines, so moderately long copy is fine.
+- **`cover`** — path to cover art, e.g. `"covers/thumb/arcane-game.webp"`.
+  Takes the icon's place and renders as a small book cover. Use it on anything
+  that has real artwork; the icon is the fallback for things that don't.
 - **`icon`** — `book`, `list`, `spark`, `flask`, `molecule`, `eye`, `target`,
   `whatsapp`, `instagram`, `tiktok`, or `link`. Unknown values fall back to
-  `link`.
+  `link`. Ignored when `cover` is set.
 - **`badge`** — optional violet pill, e.g. `"Free"`, `"£49"`, `"20% off"`. On
   the featured card it renders above the title instead of beside it.
 - **`featured: true`** — renders as the hero card: bigger, gradient-filled,

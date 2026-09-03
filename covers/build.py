@@ -16,6 +16,7 @@ import base64, io, json, re
 from pathlib import Path
 from fontTools import subset
 from fontTools.ttLib import TTFont
+from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 FONT_DIR = Path("/mnt/skills/examples/canvas-design/canvas-fonts")
@@ -229,7 +230,28 @@ def build():
     (HERE / "canvas.json").write_text(json.dumps(
         {"artboards": boards, "launch": {"view": "canvas"}}, indent=2) + "\n")
 
+    thumbs()
     print("built", len(COVERS), "covers + canvas.json")
+
+
+def thumbs(w=140):
+    """Downscale each rendered cover into a link-hub thumbnail.
+
+    Reads the PNGs rather than producing them — see "Regenerating the PNGs" in
+    the README. Skips silently for any cover not rendered yet.
+    """
+    out = HERE / "thumb"
+    out.mkdir(exist_ok=True)
+    for c in COVERS:
+        src = HERE / f"{c['slug']}.png"
+        if not src.exists():
+            print(f"  no {src.name} yet — thumbnail skipped")
+            continue
+        im = Image.open(src).convert("RGB")
+        im = im.resize((w, round(w * H / W)), Image.LANCZOS)
+        dst = out / f"{c['slug']}.webp"
+        im.save(dst, "WEBP", quality=86, method=6)
+        print(f"  thumb/{dst.name}  {dst.stat().st_size // 1024}KB")
 
 
 if __name__ == "__main__":
