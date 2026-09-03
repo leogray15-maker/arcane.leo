@@ -234,7 +234,7 @@ def build():
     print("built", len(COVERS), "covers + canvas.json")
 
 
-def thumbs(w=140):
+def thumbs(w=240):
     """Downscale each rendered cover into a link-hub thumbnail.
 
     Reads the PNGs rather than producing them — see "Regenerating the PNGs" in

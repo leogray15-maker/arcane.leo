@@ -183,8 +183,8 @@
      image the buyer meets at checkout, so the card and the till agree. */
   .link .cover{
     flex:none;
-    width:44px;height:66px;
-    border-radius:7px;
+    width:80px;height:120px;
+    border-radius:9px;
     overflow:hidden;
     background:#0d0b16;
     border:1px solid rgba(255,255,255,.11);
@@ -413,7 +413,7 @@ const LINKS = [
   },
   {
     title: "Peptides 101",
-    sub:   "Everything you need to know before you start",
+    sub:   "Everything you need to know",
     url:   "https://buy.stripe.com/5kQ00i39WaBc5J85im0Ba05",
     cover: "covers/thumb/peptides-101.webp"
   },
@@ -531,7 +531,7 @@ const card = item => {
     : 'aria-disabled="true"';
 
   const art = item.cover
-    ? `<span class="cover"><img src="${esc(item.cover)}" alt="" width="44" height="66" loading="lazy" decoding="async"></span>`
+    ? `<span class="cover"><img src="${esc(item.cover)}" alt="" width="80" height="120" loading="lazy" decoding="async"></span>`
     : `<span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>`;
 
   const eyebrow = live && item.featured && item.badge
