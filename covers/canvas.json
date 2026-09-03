@@ -1,0 +1,39 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "The Arcane Game",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "PrimalCode.dc.html",
+      "title": "The Primal Code",
+      "x": 880,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "Peptides101.dc.html",
+      "title": "Peptides 101",
+      "x": 1760,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "DarkPsychCodex.dc.html",
+      "title": "The Dark Psych Codex",
+      "x": 2640,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
