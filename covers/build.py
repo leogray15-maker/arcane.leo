@@ -25,6 +25,7 @@ INK = "#f2f0f6"          # near-white, faintly warm
 DIM = "#8b8794"          # attribute row
 SOFT = "#a6a1b0"         # subtitle
 BG = "#08070c"
+LIP = "#e0203a"          # lipstick red — the gown and the kiss
 
 FONTS = {
     "display": FONT_DIR / "BigShoulders-Bold.ttf",
@@ -34,10 +35,29 @@ FONTS = {
 
 # Stroke-drawn marks on a shared 120-unit grid, one weight, one style.
 ICONS = {
-    # attraction / union — a vesica, not a figure on a black box
     "vesica": """
       <circle cx="44" cy="60" r="29"/><circle cx="76" cy="60" r="29"/>
       <circle cx="60" cy="60" r="4.5" fill="currentColor" stroke="none"/>""",
+    # Line-art figure in a red gown. Drawn as vector so it sits on the cover
+    # background directly — the original was a raster on its own black square,
+    # whose edges never matched.
+    "woman": f"""
+      <g fill="none" stroke="{INK}" stroke-width="2.1">
+        <path d="M53,12.5 C53,3.5 67,3.5 67,12.5"/>
+        <ellipse cx="60" cy="18" rx="6" ry="7.6"/>
+        <path d="M60,25.8 L60,32.4"/>
+      </g>
+      <circle cx="60" cy="6" r="3.1" fill="{INK}" stroke="none"/>
+      <path d="M52.5,33 L67.5,33
+               C66,45 65,52 64.5,58 C64.5,64 66,68 68,73
+               C74,88 84,106 92,122 C78,127.5 42,127.5 28,122
+               C36,106 46,88 52,73 C54,68 55.5,64 55.5,58
+               C55,52 54,45 52.5,33 Z"
+            fill="{LIP}" stroke="none"/>
+      <g fill="none" stroke="{INK}" stroke-width="2">
+        <path d="M53.2,35 C49.5,46 48.5,57 50,69"/>
+        <path d="M66.8,35 C70.5,46 71.5,57 70,69"/>
+      </g>""",
     # the primal *code* — a double helix
     # Both strands start and end on the centre line and cross at 47 and 83, so
     # they read as a helix. Rungs sit at the widest separation, never at a
@@ -63,8 +83,16 @@ ICONS = {
       <circle cx="60" cy="60" r="4.5" fill="currentColor" stroke="none"/>""",
 }
 
+KISS = f"""<svg viewBox="0 0 100 80" width="100%" height="100%" aria-hidden="true">
+  <path d="M5,34 C8,16 20,4 30,9 C38,13 45,19 50,22 C55,19 62,13 70,9
+           C80,4 92,16 95,34 C76,29 60,31 50,36 C40,31 24,29 5,34 Z" fill="{LIP}"/>
+  <path d="M7,42 C24,39 40,43 50,45 C60,43 76,39 93,42
+           C89,63 72,77 50,77 C28,77 11,63 7,42 Z" fill="{LIP}"/>
+</svg>"""
+
 COVERS = [
-    dict(slug="arcane-game", name="Main", label="The Arcane Game", accent="#8b5cf6", icon="vesica",
+    dict(slug="arcane-game", name="Main", label="The Arcane Game", accent="#8b5cf6",
+         icon="woman", icon_size=234, kiss=True,
          line1="THE ARCANE", line2="GAME",
          meta="ATTRACTION · SOCIAL DYNAMICS · POWER",
          sub="The unfiltered manual on modern attraction"),
@@ -128,16 +156,21 @@ def body(c: dict, accent: str) -> str:
   <div style="position:relative;display:flex;flex-direction:column;align-items:center;
               padding:150px 64px 0;">
 
-    <div style="color:{accent};width:206px;height:206px;margin-bottom:66px;">
-      <svg viewBox="0 0 120 130" width="206" height="206" fill="none" stroke="currentColor"
-           stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">{ICONS[c['icon']]}</svg>
+    <div style="color:{accent};width:{c.get('icon_size', 206)}px;
+                height:{c.get('icon_size', 206)}px;margin-bottom:{66 if not c.get('kiss') else 44}px;">
+      <svg viewBox="0 0 120 130" width="{c.get('icon_size', 206)}" height="{c.get('icon_size', 206)}"
+           fill="none" stroke="currentColor" stroke-width="3.4"
+           stroke-linecap="round" stroke-linejoin="round">{ICONS[c['icon']]}</svg>
     </div>
 
     <div style="font-family:'ArcaneDisplay',Impact,'Haettenschweiler','Arial Narrow',sans-serif;
                 font-size:{c.get('size', 142)}px;line-height:.84;letter-spacing:.006em;
-                text-align:center;white-space:nowrap;">
+                text-align:center;white-space:nowrap;position:relative;">
       <div style="color:{INK};">{c['line1']}</div>
       <div style="color:{accent};">{c['line2']}</div>
+      {'<div style="position:absolute;left:calc(50% + 56px);top:16px;width:128px;'
+       'height:102px;transform:rotate(-15deg);pointer-events:none;">' + KISS + '</div>'
+       if c.get('kiss') else ''}
     </div>
 
     <div style="font-family:'ArcaneMeta','Helvetica Neue',Arial,sans-serif;font-size:19px;

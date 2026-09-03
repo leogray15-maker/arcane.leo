@@ -17,7 +17,9 @@ rendered from) and `<Name>.dc.html` (the same design as a canvas artboard).
 | Field | What it is |
 | --- | --- |
 | `accent` | the one colour that separates this product from the others |
-| `icon` | a key into `ICONS` — `vesica`, `helix`, `chain`, `eye` |
+| `icon` | a key into `ICONS` — `woman`, `helix`, `chain`, `eye`, `vesica` |
+| `icon_size` | icon height in px, default 206 — a standing figure is narrow, so it needs more |
+| `kiss` | stamps the lipstick print across the title |
 | `line1` / `line2` | the title; line 2 takes the accent colour |
 | `meta` | the three-part attribute row |
 | `sub` | the one-line promise under the rule |
@@ -35,6 +37,14 @@ rendered from) and `<Name>.dc.html` (the same design as a canvas artboard).
 - **The marks are drawn on one 120-unit grid at one stroke weight.** The old
   set mixed a raster illustration with vector glyphs at different weights, so
   the four never read as a family.
+- **The Arcane Game keeps its figure and its kiss** — they were the point, not
+  a mistake. Both are vector now, so the gown sits on the cover background
+  instead of on its own black square, and the kiss lands across a letter of
+  THE ARCANE, which is long enough to still read. It will not go on GAME: at
+  four letters, a kiss big enough to see leaves "GAM".
+- **Red on this cover is deliberate, not the accent.** `LIP` drives the gown
+  and the kiss; the accent still drives the title, rule and glow. It is the one
+  cover in the set using two colours.
 - **The footer is anchored and the lower half carries a wash.** The old covers
   put everything in the top 55% and left the bottom empty. A rule, a bigger
   lockup and a soft accent gradient give the bottom something to be.
