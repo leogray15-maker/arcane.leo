@@ -182,7 +182,8 @@
   /* Banner cards: the artwork spans the card and carries the product name,
      so the strip beneath it only needs the promise and the arrow. At 10:3 the
      card comes out shorter than the old thumbnail-beside-text version. */
-  .link.banner{display:block;padding:0;overflow:hidden}
+  .link.banner,
+  .link.banner.featured{display:block;padding:0;overflow:hidden}
   .link.banner .art{display:block;width:100%;aspect-ratio:10/3;background:#0d0b16}
   .link.banner .art img{width:100%;height:100%;display:block;object-fit:cover}
   .link.banner .foot{
@@ -396,11 +397,11 @@ const LINKS = [
   { section: "Start here" },
   {
     title: "The Arcane Archives",
-    sub:   "Trading, business, psychology, health — all in one place",
+    sub:   "Every domain, one membership",
     url:   "https://arcanearchives.shop",
-    icon:  "book",
+    banner: "covers/thumb/arcane-archives.webp",
     badge: "Membership",   // swap for the price, e.g. "£128", once it's fixed
-    featured: true         // renders as the hero card — use it on exactly one
+    featured: true         // keeps the glow and border under the artwork
   },
 
   { section: "Skin & healing" },
@@ -411,7 +412,7 @@ const LINKS = [
     // instead. Two different Stripe links — check which one is current and
     // make both places match.
     url:   "https://buy.stripe.com/8x2aEW7qc9x82wW1260Ba04",
-    icon:  "list"
+    banner: "covers/thumb/healing-protocols.webp"
   },
   {
     title: "Peptides 101",
@@ -423,14 +424,14 @@ const LINKS = [
     title: "Arcane Track",
     sub:   "Skin recovery & healing tracker",
     url:   "https://arcanetrack.vercel.app",
-    icon:  "spark",
+    banner: "covers/thumb/arcane-track.webp",
     badge: "Free"
   },
   {
     title: "Arcane Peptides",
     sub:   "Shop research peptides",
     url:   "https://arcanepeptides.vercel.app",
-    icon:  "flask"
+    banner: "covers/thumb/arcane-peptides.webp"
   },
 
   { section: "Mind & game" },

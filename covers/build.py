@@ -77,6 +77,35 @@ ICONS = {
       <circle cx="32" cy="20" r="4.5" fill="currentColor" stroke="none"/>
       <circle cx="88" cy="110" r="4.5" fill="currentColor" stroke="none"/>
       <circle cx="108" cy="96" r="4.5" fill="currentColor" stroke="none"/>""",
+    # an ordered protocol: this, then this, then this
+    "steps": """
+      <circle cx="24" cy="22" r="7.5"/><circle cx="24" cy="65" r="7.5"/>
+      <circle cx="24" cy="108" r="7.5"/>
+      <path d="M24,29.5 V57.5 M24,72.5 V100.5"/>
+      <path d="M46,22 H104 M46,65 H88 M46,108 H104"/>""",
+    # measured progress, which is the whole point of the tracker
+    "trend": """
+      <path d="M10,118 H112"/>
+      <path d="M14,98 L44,70 L66,84 L108,32"/>
+      <circle cx="14" cy="98" r="5" fill="currentColor" stroke="none"/>
+      <circle cx="44" cy="70" r="5" fill="currentColor" stroke="none"/>
+      <circle cx="66" cy="84" r="5" fill="currentColor" stroke="none"/>
+      <circle cx="108" cy="32" r="5" fill="currentColor" stroke="none"/>""",
+    # the shop
+    "flask": """
+      <path d="M45,12 H75"/>
+      <path d="M53,12 V48 L26,102 C21,113 29,121 40,121 H80
+               C91,121 99,113 94,102 L67,48 V12"/>
+      <path d="M36,88 H84"/>""",
+    # build in isolation — a monolith inside a closed ring
+    "obelisk": """
+      <circle cx="60" cy="64" r="50"/>
+      <path d="M60,22 L70,45 V95 H50 V45 Z"/>
+      <path d="M40,104 H80"/>""",
+    # the mind as a defended keep
+    "citadel": """
+      <path d="M60,12 L104,30 V64 C104,92 84,110 60,118 C36,110 16,92 16,64 V30 Z"/>
+      <path d="M60,40 L84,50 V68 C84,82 74,91 60,96 C46,91 36,82 36,68 V50 Z"/>""",
     # reading people — an eye, ringed
     "eye": """
       <circle cx="60" cy="60" r="54"/>
@@ -93,6 +122,39 @@ KISS = f"""<svg viewBox="0 0 100 80" width="100%" height="100%" aria-hidden="tru
 </svg>"""
 
 COVERS = [
+    # Hues are spread around the wheel so no two cards adjacent in a hub
+    # section read as the same product: 0 red, 25 orange, 45 gold, 80 lime,
+    # 145 green, 185 cyan, 210 blue, 233 indigo, 263 violet, 340 rose.
+    dict(slug="arcane-archives", name="Archives", label="The Arcane Archives",
+         accent="#e3b341", icon="mark",
+         line1="THE ARCANE", line2="ARCHIVES",
+         meta="TRADING · BUSINESS · MIND · BODY",
+         sub="Every domain, one membership"),
+    dict(slug="healing-protocols", name="HealingProtocols",
+         label="Arcane Healing Protocols", accent="#f2739b", icon="steps",
+         line1="HEALING", line2="PROTOCOLS",
+         meta="SKIN · GUT · RECOVERY",
+         sub="The exact protocols, step by step"),
+    dict(slug="arcane-track", name="ArcaneTrack", label="Arcane Track",
+         accent="#a3d93a", icon="trend",
+         line1="ARCANE", line2="TRACK",
+         meta="LOG · MEASURE · HEAL",
+         sub="Skin recovery and healing, tracked"),
+    dict(slug="arcane-peptides", name="ArcanePeptides", label="Arcane Peptides",
+         accent="#f0873c", icon="flask",
+         line1="ARCANE", line2="PEPTIDES",
+         meta="SOURCED · TESTED · SHIPPED",
+         sub="Research peptides, straight from the shop"),
+    dict(slug="quiet-empire", name="QuietEmpire", label="The Quiet Empire",
+         accent="#6d7cf8", icon="obelisk",
+         line1="THE QUIET", line2="EMPIRE",
+         meta="SOLITUDE · FOCUS · ENTERPRISE",
+         sub="Productive isolation, and the business it builds"),
+    dict(slug="inner-citadel", name="InnerCitadel", label="The Inner Citadel",
+         accent="#22c9d4", icon="citadel",
+         line1="THE INNER", line2="CITADEL",
+         meta="MINDSET · REWIRING · CONTROL",
+         sub="Take command of the mind that runs you"),
     dict(slug="arcane-game", name="Main", label="The Arcane Game", accent="#8b5cf6",
          icon="woman", icon_size=234, kiss=True,
          line1="THE ARCANE", line2="GAME",
@@ -115,11 +177,15 @@ COVERS = [
 LOCKUP = "ARCANE ARCHIVES"
 DOMAIN = "ARCANEARCHIVES.SHOP"
 
-MARK = ('<svg viewBox="239 204 547 570" fill="currentColor" aria-hidden="true">'
-        '<g transform="translate(0,1024) scale(0.1,-0.1)"><path d="'
-        + re.sub(r"\s+", " ", (HERE.parent / "brand/arcane-mark.svg").read_text()
-                 .split('<path d="')[1].split('"')[0]).strip()
-        + '"/></g></svg>')
+MARK_D = re.sub(r"\\s+", " ", (HERE.parent / "brand/arcane-mark.svg").read_text()
+                .split('<path d="')[1].split('"')[0]).strip()
+MARK_G = f'<g transform="translate(0,1024) scale(0.1,-0.1)"><path d="{MARK_D}"/></g>'
+MARK = f'<svg viewBox="239 204 547 570" fill="currentColor" aria-hidden="true">{MARK_G}</svg>'
+
+# The house mark, refitted from its own 547x570 viewBox onto the 120-unit icon
+# grid the other marks use. The Archives is the brand, so it wears the brand.
+ICONS["mark"] = ('<g transform="translate(-48.7,-38.6) scale(0.212)" '
+                 'fill="currentColor" stroke="none">' + MARK_G + '</g>')
 
 
 def woff2(path: Path, chars: str) -> str:
@@ -232,8 +298,9 @@ def banner_body(c: dict, accent: str) -> str:
     </div>
   </div>
 
-  <div style="position:absolute;right:38px;bottom:30px;width:46px;height:46px;
-              color:{INK};opacity:.55;">{MARK}</div>
+  {'' if c['icon'] == 'mark' else
+    f'<div style="position:absolute;right:38px;bottom:30px;width:46px;height:46px;'
+    f'color:{INK};opacity:.55;">{MARK}</div>'}
 </div>"""
 
 
@@ -282,14 +349,21 @@ def build():
         print(f"  {c['slug']}.html + banner + {c['name']}.dc.html")
 
     # One row of frames, 80px of clear space between each.
-    boards = [{"file": f"{c['name']}.dc.html", "title": c["label"],
-               "x": i * (W + 80), "y": 0, "w": W, "h": H}
+    # Ten of each is too many for one row, so each format gets its own page
+    # and wraps into a grid.
+    boards = [{"file": f"{c['name']}.dc.html", "title": c["label"], "page": "covers",
+               "x": (i % 5) * (W + 90), "y": (i // 5) * (H + 180), "w": W, "h": H}
               for i, c in enumerate(COVERS)]
-    boards += [{"file": f"{c['name']}Banner.dc.html", "title": f"{c['label']} — banner",
-                "x": i * (BW + 80), "y": H + 160, "w": BW, "h": BH}
+    boards += [{"file": f"{c['name']}Banner.dc.html", "title": c["label"],
+                "page": "banners",
+                "x": (i % 3) * (BW + 90), "y": (i // 3) * (BH + 180), "w": BW, "h": BH}
                for i, c in enumerate(COVERS)]
-    (HERE / "canvas.json").write_text(json.dumps(
-        {"artboards": boards, "launch": {"view": "canvas"}}, indent=2) + "\n")
+    (HERE / "canvas.json").write_text(json.dumps({
+        "pages": [{"id": "covers", "name": "Covers"},
+                  {"id": "banners", "name": "Banners"}],
+        "artboards": boards,
+        "launch": {"view": "canvas", "page": "banners"},
+    }, indent=2) + "\n")
 
     thumbs()
     print("built", len(COVERS), "covers + canvas.json")

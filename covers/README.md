@@ -1,7 +1,7 @@
 # Product covers
 
-Four cover posters, generated from `build.py` so the whole set stays
-consistent — change one thing in `COVERS` and all four rebuild.
+Ten products, generated from `build.py` so the whole set stays consistent —
+change one thing in `COVERS` and everything rebuilds.
 
 ```
 pip install fonttools brotli
@@ -11,7 +11,7 @@ python3 covers/build.py
 Each product emits four files: `<slug>.html` and `<slug>-banner.html` (the
 standalone pages the PNGs are rendered from), plus `<Name>.dc.html` and
 `<Name>Banner.dc.html` (the same two designs as canvas artboards). `canvas.json`
-puts the covers on one row and the banners on the row below.
+puts the covers on one canvas page and the banners on another.
 
 The banner is **not a crop of the cover**. A 2:3 portrait sliced to 10:3 loses
 the mark and most of the title, so the banner is laid out for its own shape:
@@ -66,7 +66,22 @@ larger than full-scale composition would want.
 screenshot the outer `div` at 2x for a 1600x2400 PNG — or open the canvas and
 use its PNG export.
 
-## Not covered yet
+## Naming
 
-There is no cover for **Arcane Healing Protocols**, which is the second
-best-selling product on the Linktree. Adding one is a new entry in `COVERS`.
+**The Quiet Empire** and **The Inner Citadel** are proposed names, not given
+ones — the source PDFs never arrived, so both were named from a description of
+their contents ("productive isolation / entrepreneurship mastery" and "mindset
+mastery / mind hijacking"). Renaming either is one line in `COVERS`; the
+artwork follows.
+
+## Accent hues
+
+Spread around the wheel so no two cards adjacent in a hub section read as the
+same product: 0 red, 25 orange, 45 gold, 80 lime, 145 green, 185 cyan, 210
+blue, 233 indigo, 263 violet, 340 rose. Adding an eleventh product means
+finding a gap, not picking a colour you like.
+
+## Not on the hub yet
+
+**The Primal Code**, **The Quiet Empire** and **The Inner Citadel** have
+artwork but no URL, so they are built but not linked.
