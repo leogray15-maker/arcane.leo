@@ -43,7 +43,7 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | Item | Where | Status |
 | --- | --- | --- |
 | Profile photo | `AVATAR` const | falls back to the Arcane mark |
-| Prices on the four paid cards | `badge` in `LINKS` | only Archives has one, and it says "Membership" rather than a number |
+| Prices on the seven paid cards | `badge` in `LINKS` | only Archives has one, and it says "Membership" rather than a number |
 
 Every link is live; nothing renders as **Soon**.
 
@@ -57,7 +57,7 @@ one it already had rather than silently switching where your money lands.
 
 ### Prices
 
-Four cards go straight to Stripe checkout. Cold traffic that lands on a payment
+Seven cards go straight to Stripe checkout. Cold traffic that lands on a payment
 form without knowing the number bounces, and it's the cheapest fix on the page:
 put the amount in each card's `badge`, e.g. `badge: "£49"`. The badge renders as
 a violet pill on the right of the card (and as an eyebrow above the title on the
@@ -78,9 +78,7 @@ has a real advantage: it stops publishing your mobile number on a public page.
 ## Current links
 
 Every entry except WhatsApp is a banner card carrying its own artwork — see
-`covers/`. Three of them have artwork but no URL and render dimmed with a
-**Soon** badge: replacing `url: "#"` with the real link is the only change
-needed to make one live.
+`covers/`. All eleven are live; nothing renders as **Soon**.
 
 | Group | Entry | Destination |
 | --- | --- | --- |
@@ -89,11 +87,11 @@ needed to make one live.
 | Skin & healing | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Skin & healing | Arcane Track | https://arcanetrack.vercel.app |
 | Skin & healing | Arcane Peptides | https://arcanepeptides.vercel.app |
-| Skin & healing | The Primal Code | **no link yet** — renders as Soon |
+| Skin & healing | The Primal Code | Stripe (`00waEW39W8t40oO6mq0Ba09`) |
 | Mind & power | Deep & Dark Psychology | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
 | Mind & power | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
-| Mind & power | The Inner Citadel | **no link yet** — renders as Soon |
-| Mind & power | The Quiet Empire | **no link yet** — renders as Soon |
+| Mind & power | The Inner Citadel | Stripe (`bJeeVc8ug7p07RgaCG0Ba0a`) |
+| Mind & power | The Quiet Empire | Stripe (`28EbJ039WdNob3s5im0Ba0b`) |
 | Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
 | — | Instagram | https://instagram.com/arcaneleo.g |
 | — | TikTok | https://tiktok.com/@arcane_advice |
