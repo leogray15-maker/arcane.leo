@@ -1,0 +1,198 @@
+{
+  "pages": [
+    {
+      "id": "covers",
+      "name": "Covers"
+    },
+    {
+      "id": "banners",
+      "name": "Banners"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Archives.dc.html",
+      "title": "The Arcane Archives",
+      "page": "covers",
+      "x": 0,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "HealingProtocols.dc.html",
+      "title": "Arcane Healing Protocols",
+      "page": "covers",
+      "x": 890,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "ArcaneTrack.dc.html",
+      "title": "Arcane Track",
+      "page": "covers",
+      "x": 1780,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "ArcanePeptides.dc.html",
+      "title": "Arcane Peptides",
+      "page": "covers",
+      "x": 2670,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "QuietEmpire.dc.html",
+      "title": "The Quiet Empire",
+      "page": "covers",
+      "x": 3560,
+      "y": 0,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "InnerCitadel.dc.html",
+      "title": "The Inner Citadel",
+      "page": "covers",
+      "x": 0,
+      "y": 1380,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "The Arcane Game",
+      "page": "covers",
+      "x": 890,
+      "y": 1380,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "PrimalCode.dc.html",
+      "title": "The Primal Code",
+      "page": "covers",
+      "x": 1780,
+      "y": 1380,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "Peptides101.dc.html",
+      "title": "Peptides 101",
+      "page": "covers",
+      "x": 2670,
+      "y": 1380,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "DarkPsychCodex.dc.html",
+      "title": "The Dark Psych Codex",
+      "page": "covers",
+      "x": 3560,
+      "y": 1380,
+      "w": 800,
+      "h": 1200
+    },
+    {
+      "file": "ArchivesBanner.dc.html",
+      "title": "The Arcane Archives",
+      "page": "banners",
+      "x": 0,
+      "y": 0,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "HealingProtocolsBanner.dc.html",
+      "title": "Arcane Healing Protocols",
+      "page": "banners",
+      "x": 1290,
+      "y": 0,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "ArcaneTrackBanner.dc.html",
+      "title": "Arcane Track",
+      "page": "banners",
+      "x": 2580,
+      "y": 0,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "ArcanePeptidesBanner.dc.html",
+      "title": "Arcane Peptides",
+      "page": "banners",
+      "x": 0,
+      "y": 540,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "QuietEmpireBanner.dc.html",
+      "title": "The Quiet Empire",
+      "page": "banners",
+      "x": 1290,
+      "y": 540,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "InnerCitadelBanner.dc.html",
+      "title": "The Inner Citadel",
+      "page": "banners",
+      "x": 2580,
+      "y": 540,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "MainBanner.dc.html",
+      "title": "The Arcane Game",
+      "page": "banners",
+      "x": 0,
+      "y": 1080,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "PrimalCodeBanner.dc.html",
+      "title": "The Primal Code",
+      "page": "banners",
+      "x": 1290,
+      "y": 1080,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "Peptides101Banner.dc.html",
+      "title": "Peptides 101",
+      "page": "banners",
+      "x": 2580,
+      "y": 1080,
+      "w": 1200,
+      "h": 360
+    },
+    {
+      "file": "DarkPsychCodexBanner.dc.html",
+      "title": "The Dark Psych Codex",
+      "page": "banners",
+      "x": 0,
+      "y": 1620,
+      "w": 1200,
+      "h": 360
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "banners"
+  }
+}

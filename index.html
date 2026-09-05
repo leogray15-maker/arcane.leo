@@ -4,13 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leo Gray | Arcane</title>
-<meta name="description" content="The knowledge they don't want you to know. Skin recovery protocols, peptides, and the research behind them.">
+<meta name="description" content="The knowledge they don't want you to know. Skin recovery protocols, peptides, psychology, and the research behind them.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Leo Gray | Arcane">
 <meta property="og:description" content="The Knowledge They Don't Want You To Know">
+<meta property="og:url" content="https://arcane-leo.vercel.app/">
+<meta property="og:image" content="https://arcane-leo.vercel.app/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://arcane-leo.vercel.app/brand/og-image.png">
 <meta name="theme-color" content="#08070d">
+<link rel="canonical" href="https://arcane-leo.vercel.app/">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='207 184 611 611'><rect x='207' y='184' width='611' height='611' rx='104' fill='%23120e24'/><g transform='translate(0.000000,1024.000000) scale(0.100000,-0.100000)' fill='%23a78bfa'><path d='M5082 8183 c-11 -10 -96 -157 -188 -328 -91 -170 -177 -328 -189 -350 -12 -22 -38 -69 -58 -105 -19 -36 -105 -193 -192 -350 -86 -157 -225 -409 -307 -560 -83 -151 -154 -279 -158 -285 -4 -5 -31 -55 -60 -110 -29 -55 -176 -322 -327 -593 -150 -271 -339 -613 -420 -760 -80 -147 -158 -289 -173 -317 -64 -114 -409 -741 -485 -880 -45 -82 -95 -174 -109 -204 l-28 -53 34 4 c18 3 94 17 168 31 375 72 800 61 1168 -29 478 -116 962 -391 1302 -738 30 -31 58 -56 63 -56 5 0 65 53 132 119 400 386 892 629 1465 722 89 15 194 22 365 26 208 4 262 2 405 -16 91 -12 211 -32 268 -45 56 -13 102 -21 102 -19 0 12 -122 234 -437 798 -77 138 -159 286 -183 330 -23 44 -62 114 -85 155 -23 41 -78 140 -122 220 -44 80 -130 235 -190 345 -61 110 -178 322 -261 470 -128 232 -301 547 -430 785 -19 36 -52 94 -72 130 -20 36 -57 101 -80 145 -24 44 -127 233 -230 420 -174 317 -382 699 -523 962 -33 62 -68 121 -79 133 -23 25 -59 26 -86 3z m102 -918 c29 -55 85 -163 126 -240 40 -77 138 -264 218 -415 290 -553 543 -1042 540 -1045 -2 -1 -41 -22 -88 -46 -108 -56 -279 -170 -379 -253 -161 -135 -340 -340 -432 -498 -22 -38 -43 -68 -47 -68 -4 0 -19 22 -33 48 -46 83 -179 253 -278 355 -158 163 -320 286 -533 404 -99 55 -106 61 -94 79 7 10 99 186 204 389 451 875 726 1395 735 1392 5 -1 32 -47 61 -102z m-1179 -2166 c119 -45 297 -142 410 -222 138 -98 317 -278 393 -396 76 -117 136 -252 167 -376 13 -52 45 -208 70 -347 26 -143 52 -259 60 -267 36 -37 49 1 110 344 54 300 98 439 187 590 95 161 261 340 424 457 135 97 475 262 494 241 4 -4 65 -120 135 -258 70 -137 174 -340 230 -450 171 -333 307 -606 303 -609 -1 -2 -75 -8 -163 -14 -643 -47 -1197 -279 -1610 -674 l-95 -90 -62 62 c-174 174 -367 309 -612 430 -326 160 -676 249 -1083 276 -57 3 -103 8 -103 9 0 6 660 1325 663 1325 1 0 38 -14 82 -31z'/></g></svg>">
 
@@ -58,9 +64,14 @@
 
   main{position:relative;width:100%;max-width:var(--maxw)}
 
+  /* Staggered entrance. Lives on the <li>/<h2> wrapper, never on the card
+     itself — the card keeps its transform free for :hover. */
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .reveal{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--i,0) * 45ms)}
+
   /* ================= hero ================= */
 
-  .hero{text-align:center;margin-bottom:clamp(26px,5vw,34px)}
+  .hero{text-align:center;margin-bottom:clamp(22px,4.5vw,30px)}
 
   .avatar{
     position:relative;
@@ -119,6 +130,20 @@
     box-shadow:0 0 0 3px rgba(74,222,128,.18);
   }
 
+  /* ================= section headings ================= */
+  /* Eight links in one undifferentiated column reads as a wall. Chunking
+     them into three labelled groups is what keeps the page scannable. */
+
+  .group-label{
+    display:flex;align-items:center;gap:13px;
+    margin:26px 0 13px;
+    font-size:10.5px;font-weight:600;
+    letter-spacing:.19em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .group-label::before,.group-label::after{content:"";flex:1;height:1px;background:var(--line)}
+  .group:first-of-type .group-label{margin-top:0}
+
   /* ================= link cards ================= */
 
   .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
@@ -154,6 +179,25 @@
   }
   .link .icon svg{width:21px;height:21px;display:block}
 
+  /* Banner cards: the artwork spans the card and carries the product name,
+     so the strip beneath it only needs the promise and the arrow. At 10:3 the
+     card comes out shorter than the old thumbnail-beside-text version. */
+  .link.banner,
+  .link.banner.featured{display:block;padding:0;overflow:hidden}
+  .link.banner .art{display:block;width:100%;aspect-ratio:10/3;background:#0d0b16}
+  .link.banner .art img{width:100%;height:100%;display:block;object-fit:cover}
+  .link.banner .foot{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 16px 14px;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .link.banner .foot .sub{flex:1;margin-top:0}
+  .link.banner.pending{opacity:.72}
+  .link.banner.pending .art{filter:saturate(.8)}
+  .link.banner.pending:hover{opacity:.72;border-color:var(--line)}
+
   .link .body{min-width:0;flex:1}
   .link .title{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
   .link .sub{
@@ -180,8 +224,28 @@
       var(--card);
     box-shadow:0 0 34px -16px rgba(139,92,246,.85);
   }
-  .link.featured .icon{background:linear-gradient(150deg,var(--violet),var(--violet-lo));color:#fff}
-  .link.featured .title{font-size:17px}
+  .link.featured .icon{
+    width:46px;height:46px;
+    background:linear-gradient(150deg,var(--violet),var(--violet-lo));
+    color:#fff;
+  }
+  .link.featured .icon svg{width:23px;height:23px}
+  .link.featured .title{font-size:17.5px}
+  .link.featured .sub{font-size:13.5px}
+  /* On the hero card the badge sits above the title rather than out to the
+     right — on a phone the right-hand pill squeezed the title into a wrap
+     and clipped the subtitle. */
+  .link.featured .eyebrow{
+    display:inline-block;
+    margin-bottom:5px;
+    font-size:9.5px;font-weight:700;
+    letter-spacing:.11em;text-transform:uppercase;
+    color:var(--violet-hi);
+    background:rgba(139,92,246,.16);
+    border:1px solid rgba(167,139,250,.34);
+    border-radius:999px;
+    padding:2px 8px;
+  }
 
   /* whatsapp gets its own accent — it's a conversation, not a product */
   .link.chat .icon{background:rgba(37,211,102,.14);color:#25d366}
@@ -283,6 +347,7 @@
 
   @media (prefers-reduced-motion:reduce){
     *{transition:none !important}
+    .reveal{animation:none}
     .link:hover,.socials a:hover{transform:none}
   }
 </style>
@@ -298,7 +363,7 @@
     <div class="proof"><span class="dot"></span><span id="proof-text"></span></div>
   </section>
 
-  <ul class="links" id="links"></ul>
+  <div id="links"></div>
 
   <blockquote class="quote" id="quote"></blockquote>
 
@@ -328,40 +393,93 @@ const AVATAR = "";
 /* Small credibility line under the tagline. Keep it specific and true. */
 const PROOF = "2,500+ following across IG & TikTok";
 
+/* One list, top to bottom, exactly as it renders.
+   A { section: "..." } entry starts a new labelled group. */
 const LINKS = [
+
+  { section: "Start here" },
   {
     title: "The Arcane Archives",
-    sub:   "Protocols, research, and the why behind them",
+    sub:   "Every domain, one membership",
     url:   "https://arcanearchives.shop",
-    icon:  "book",
-    featured: true          // renders as the hero card
+    banner: "covers/thumb/arcane-archives.webp",
+    badge: "Membership",   // swap for the price, e.g. "£128", once it's fixed
+    featured: true         // keeps the glow and border under the artwork
   },
+
+  { section: "Skin & healing" },
   {
     title: "Arcane Healing Protocols",
     sub:   "The exact protocols, step by step",
+    // NOTE: your Linktree points this at buy.stripe.com/dRm6oGfWlaBc9Zo4ei0Ba03
+    // instead. Two different Stripe links — check which one is current and
+    // make both places match.
     url:   "https://buy.stripe.com/8x2aEW7qc9x82wW1260Ba04",
-    icon:  "list"
+    banner: "covers/thumb/healing-protocols.webp"
   },
+  {
+    title: "Peptides 101",
+    sub:   "Everything you need to know",
+    url:   "https://buy.stripe.com/5kQ00i39WaBc5J85im0Ba05",
+    banner: "covers/thumb/peptides-101.webp"
+  },
+  {
+    title: "The Primal Code",
+    sub:   "Build a body that opens doors before you speak",
+    url:   "#",                 // no link yet — renders dimmed with a Soon badge
+    banner: "covers/thumb/primal-code.webp"
+  },
+
   {
     title: "Arcane Track",
     sub:   "Skin recovery & healing tracker",
     url:   "https://arcanetrack.vercel.app",
-    icon:  "spark",
+    banner: "covers/thumb/arcane-track.webp",
     badge: "Free"
   },
   {
     title: "Arcane Peptides",
     sub:   "Shop research peptides",
     url:   "https://arcanepeptides.vercel.app",
-    icon:  "flask"
+    banner: "covers/thumb/arcane-peptides.webp"
+  },
+
+  { section: "Mind & power" },
+  {
+    title: "Deep & Dark Psychology",
+    sub:   "The complete masterclass on how people really work",
+    url:   "https://buy.stripe.com/7sYfZgh0MfVw2wW8uy0Ba07",
+    // the artwork brands this one "The Dark Psych Codex"; the Stripe product
+    // name is what the alt text and the link's accessible name still say
+    banner: "covers/thumb/dark-psych-codex.webp"
   },
   {
+    title: "The Arcane Game",
+    sub:   "Attraction, social dynamics & status",
+    url:   "https://buy.stripe.com/5kQeVc25SdNofjl1260Ba06",
+    banner: "covers/thumb/arcane-game.webp"
+  },
+  {
+    title: "The Inner Citadel",
+    sub:   "Take command of the mind that runs you",
+    url:   "#",                 // no link yet
+    banner: "covers/thumb/inner-citadel.webp"
+  },
+  {
+    title: "The Quiet Empire",
+    sub:   "Productive isolation, and the business it builds",
+    url:   "#",                 // no link yet
+    banner: "covers/thumb/quiet-empire.webp"
+  },
+
+  { section: "Talk to me" },
+  {
     title: "WhatsApp me",
-    sub:   "Questions about your skin? Ask me",
+    sub:   "Not sure where to start? Ask me directly",
     // 07405557399 in international form: leading 0 dropped, 44 prefixed.
     // ?text= prefills the message so nobody has to work out how to open.
     url:   "https://wa.me/447405557399?text=" + encodeURIComponent(
-             "Hi Leo, I found you through your links page - I've got a question about my skin."),
+             "Hi Leo, I found you through your links page - I've got a question."),
     icon:  "whatsapp",
     style: "chat"
   }
@@ -389,6 +507,12 @@ const ICONS = {
   list:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
   spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M5.9 5.9l2.5 2.5M15.6 15.6l2.5 2.5M18.1 5.9l-2.5 2.5M8.4 15.6l-2.5 2.5"/><circle cx="12" cy="12" r="3.2"/></svg>',
   flask:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7 15h10"/></svg>',
+  /* peptides-as-a-subject, distinct from the flask that means "shop" */
+  molecule:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="7" r="2.6"/><circle cx="17.5" cy="6" r="2.6"/><circle cx="11" cy="17.5" r="2.6"/><path d="M9.09 6.76 14.91 6.24M7.52 9.39 9.98 15.11M16.22 8.26 12.28 15.24"/></svg>',
+  /* reading people — dark psychology */
+  eye:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6.1 5.5 12 5.5 21.5 12 21.5 12 17.9 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  /* deliberate practice — the game */
+  target:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.4"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg>',
   whatsapp:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a8.8 8.8 0 0 0-7.5 13.4L3.2 20.8l4.4-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.9 8.4c.2-.4.3-.4.5-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.3 0 .5a5.8 5.8 0 0 0 2.4 2.1c.2.1.4.1.5 0l.5-.6c.1-.2.3-.2.5-.1l1.4.7c.2.1.3.2.3.4a1.7 1.7 0 0 1-1.2 1.4c-.5.1-1.1.2-3-.8a8.2 8.2 0 0 1-3.2-3.5c-.4-1-.4-1.7-.3-2z"/></svg>',
   instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>',
   tiktok:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.2v11.4a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3.2c.4 2.7 2.3 4.3 5.1 4.5"/></svg>',
@@ -409,33 +533,70 @@ document.getElementById("avatar").innerHTML = AVATAR
 
 document.getElementById("proof-text").textContent = PROOF;
 
-document.getElementById("links").innerHTML = LINKS.map(item => {
-  const live = isLive(item.url);
-  const external = /^(https?:|https:\/\/wa\.me)/i.test(item.url || "");
+/* Split the flat list into groups on each { section } marker, so the source
+   stays one readable top-to-bottom list but the markup gets real headings. */
+const groups = [];
+for (const item of LINKS) {
+  if (item.section) { groups.push({ label: item.section, items: [] }); continue; }
+  if (!groups.length) groups.push({ label: null, items: [] });
+  groups[groups.length - 1].items.push(item);
+}
 
-  const cls = ["link", item.featured ? "featured" : "", item.style || "", live ? "" : "pending"]
-    .filter(Boolean).join(" ");
+let step = 0;   // drives the staggered entrance across every group
+
+const card = item => {
+  const live = isLive(item.url);
+  const external = /^https?:/i.test(item.url || "");
+
+  const cls = ["link", item.banner ? "banner" : "", item.featured ? "featured" : "",
+               item.style || "", live ? "" : "pending"].filter(Boolean).join(" ");
 
   const attrs = live
     ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
     : 'aria-disabled="true"';
 
+  const eyebrow = live && item.featured && item.badge
+    ? `<span class="eyebrow">${esc(item.badge)}</span>` : "";
+
   const right = live
-    ? `${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
+    ? `${item.badge && !item.featured ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
     : `<span class="badge">Soon</span>`;
 
+  /* Banner card: the image names the product, so the alt text is the link's
+     accessible name and no separate title row is needed. */
+  if (item.banner) return `
+    <li class="reveal" style="--i:${step++}">
+      <a class="${cls}" ${attrs}>
+        <span class="art"><img src="${esc(item.banner)}" alt="${esc(item.title)}"
+              width="1200" height="360" loading="lazy" decoding="async"></span>
+        <span class="foot">
+          <span class="sub">${esc(item.sub || "")}</span>
+          ${live
+            ? `${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
+            : `<span class="badge">Soon</span>`}
+        </span>
+      </a>
+    </li>`;
+
   return `
-    <li>
+    <li class="reveal" style="--i:${step++}">
       <a class="${cls}" ${attrs}>
         <span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>
         <span class="body">
+          ${eyebrow}
           <span class="title">${esc(item.title)}</span>
           ${item.sub ? `<span class="sub">${esc(item.sub)}</span>` : ""}
         </span>
         ${right}
       </a>
     </li>`;
-}).join("");
+};
+
+document.getElementById("links").innerHTML = groups.map(g => `
+  <section class="group">
+    ${g.label ? `<h2 class="group-label reveal" style="--i:${step++}">${esc(g.label)}</h2>` : ""}
+    <ul class="links">${g.items.map(card).join("")}</ul>
+  </section>`).join("");
 
 const quoteEl = document.getElementById("quote");
 if (QUOTE && QUOTE.text) {
