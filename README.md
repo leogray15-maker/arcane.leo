@@ -77,9 +77,10 @@ has a real advantage: it stops publishing your mobile number on a public page.
 
 ## Current links
 
-Cards for The Arcane Game, Deep & Dark Psychology and Peptides 101 are banner
-cards carrying their own artwork — see `covers/`. The Primal Code has artwork
-but no link yet, so it isn't listed.
+Every entry except WhatsApp is a banner card carrying its own artwork — see
+`covers/`. Three of them have artwork but no URL and render dimmed with a
+**Soon** badge: replacing `url: "#"` with the real link is the only change
+needed to make one live.
 
 | Group | Entry | Destination |
 | --- | --- | --- |
@@ -88,8 +89,11 @@ but no link yet, so it isn't listed.
 | Skin & healing | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Skin & healing | Arcane Track | https://arcanetrack.vercel.app |
 | Skin & healing | Arcane Peptides | https://arcanepeptides.vercel.app |
-| Mind & game | Deep & Dark Psychology | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
-| Mind & game | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
+| Skin & healing | The Primal Code | **no link yet** — renders as Soon |
+| Mind & power | Deep & Dark Psychology | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
+| Mind & power | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
+| Mind & power | The Inner Citadel | **no link yet** — renders as Soon |
+| Mind & power | The Quiet Empire | **no link yet** — renders as Soon |
 | Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
 | — | Instagram | https://instagram.com/arcaneleo.g |
 | — | TikTok | https://tiktok.com/@arcane_advice |
@@ -135,7 +139,7 @@ never touch HTML.
 
 - **Eight links in one flat column read as a wall** and nobody finishes it. They
   are chunked into four labelled groups — *Start here*, *Skin & healing*,
-  *Mind & game*, *Talk to me* — so a visitor scans four short lists instead of
+  *Mind & power*, *Talk to me* — so a visitor scans four short lists instead of
   one long one and can skip straight to the half they came for. No group holds
   more than four entries; that's the point, and it's worth resisting the urge to
   let one grow past five.

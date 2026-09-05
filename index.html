@@ -194,6 +194,9 @@
     border-top:1px solid rgba(255,255,255,.06);
   }
   .link.banner .foot .sub{flex:1;margin-top:0}
+  .link.banner.pending{opacity:.72}
+  .link.banner.pending .art{filter:saturate(.8)}
+  .link.banner.pending:hover{opacity:.72;border-color:var(--line)}
 
   .link .body{min-width:0;flex:1}
   .link .title{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
@@ -421,6 +424,13 @@ const LINKS = [
     banner: "covers/thumb/peptides-101.webp"
   },
   {
+    title: "The Primal Code",
+    sub:   "Build a body that opens doors before you speak",
+    url:   "#",                 // no link yet — renders dimmed with a Soon badge
+    banner: "covers/thumb/primal-code.webp"
+  },
+
+  {
     title: "Arcane Track",
     sub:   "Skin recovery & healing tracker",
     url:   "https://arcanetrack.vercel.app",
@@ -434,7 +444,7 @@ const LINKS = [
     banner: "covers/thumb/arcane-peptides.webp"
   },
 
-  { section: "Mind & game" },
+  { section: "Mind & power" },
   {
     title: "Deep & Dark Psychology",
     sub:   "The complete masterclass on how people really work",
@@ -448,6 +458,18 @@ const LINKS = [
     sub:   "Attraction, social dynamics & status",
     url:   "https://buy.stripe.com/5kQeVc25SdNofjl1260Ba06",
     banner: "covers/thumb/arcane-game.webp"
+  },
+  {
+    title: "The Inner Citadel",
+    sub:   "Take command of the mind that runs you",
+    url:   "#",                 // no link yet
+    banner: "covers/thumb/inner-citadel.webp"
+  },
+  {
+    title: "The Quiet Empire",
+    sub:   "Productive isolation, and the business it builds",
+    url:   "#",                 // no link yet
+    banner: "covers/thumb/quiet-empire.webp"
   },
 
   { section: "Talk to me" },
@@ -549,8 +571,9 @@ const card = item => {
               width="1200" height="360" loading="lazy" decoding="async"></span>
         <span class="foot">
           <span class="sub">${esc(item.sub || "")}</span>
-          ${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}
-          <span class="arrow" aria-hidden="true">${ARROW}</span>
+          ${live
+            ? `${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
+            : `<span class="badge">Soon</span>`}
         </span>
       </a>
     </li>`;
