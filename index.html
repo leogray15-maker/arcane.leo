@@ -299,40 +299,43 @@
 
   /* ================= socials ================= */
 
-  .divider{
-    display:flex;align-items:center;gap:13px;
-    margin:28px 0 16px;
-    color:var(--muted);
-    font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
-  }
-  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-
+  /* Three across, stacked rather than side-by-side: at a third of the width
+     an icon beside two lines of text leaves ~80px for the handle, and
+     @arcane_advice does not fit in 80px. */
   .socials{
-    list-style:none;margin:0;padding:0;
-    display:flex;gap:11px;
+    list-style:none;
+    margin:0 0 clamp(24px,4.5vw,32px);
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:9px;
   }
-  .socials li{flex:1 1 0;min-width:0}
   .socials a{
-    display:flex;align-items:center;gap:10px;
-    padding:11px 14px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    padding:13px 8px 12px;
     border:1px solid var(--line);
-    border-radius:13px;
+    border-radius:14px;
     background:var(--card);
     color:var(--text);
     text-decoration:none;
-    font-size:13.5px;font-weight:550;
     transition:background .18s ease,border-color .18s ease,transform .18s ease;
   }
-  .socials .txt{display:flex;flex-direction:column;min-width:0;line-height:1.25}
-  .socials .txt > span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .socials a:hover,.socials a:focus-visible{
     background:var(--card-hi);
     border-color:rgba(167,139,250,.45);
     transform:translateY(-2px);
   }
   .socials a:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
-  .socials svg{width:18px;height:18px;color:var(--violet-hi);display:block;flex:none}
-  .socials .handle{color:var(--muted);font-weight:400;font-size:11.5px}
+  .socials svg{width:21px;height:21px;color:var(--violet-hi);display:block;flex:none}
+  .socials .name{font-size:13px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+  .socials .handle{
+    max-width:100%;
+    color:var(--muted);font-weight:400;font-size:11px;line-height:1.2;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  /* WhatsApp is a conversation, not a feed — it keeps its own accent. */
+  .socials a.chat svg{color:#25d366}
+  .socials a.chat:hover,.socials a.chat:focus-visible{border-color:rgba(37,211,102,.42)}
 
   /* ================= footer ================= */
 
@@ -363,12 +366,11 @@
     <div class="proof"><span class="dot"></span><span id="proof-text"></span></div>
   </section>
 
+  <ul class="socials" id="socials"></ul>
+
   <div id="links"></div>
 
   <blockquote class="quote" id="quote"></blockquote>
-
-  <div class="divider">Follow</div>
-  <ul class="socials" id="socials"></ul>
 
   <footer class="page">
     <p class="disclaimer">
@@ -426,7 +428,7 @@ const LINKS = [
   {
     title: "The Primal Code",
     sub:   "Build a body that opens doors before you speak",
-    url:   "#",                 // no link yet — renders dimmed with a Soon badge
+    url:   "https://buy.stripe.com/00waEW39W8t40oO6mq0Ba09",
     banner: "covers/thumb/primal-code.webp"
   },
 
@@ -462,27 +464,16 @@ const LINKS = [
   {
     title: "The Inner Citadel",
     sub:   "Take command of the mind that runs you",
-    url:   "#",                 // no link yet
+    url:   "https://buy.stripe.com/bJeeVc8ug7p07RgaCG0Ba0a",
     banner: "covers/thumb/inner-citadel.webp"
   },
   {
     title: "The Quiet Empire",
     sub:   "Productive isolation, and the business it builds",
-    url:   "#",                 // no link yet
+    url:   "https://buy.stripe.com/28EbJ039WdNob3s5im0Ba0b",
     banner: "covers/thumb/quiet-empire.webp"
   },
 
-  { section: "Talk to me" },
-  {
-    title: "WhatsApp me",
-    sub:   "Not sure where to start? Ask me directly",
-    // 07405557399 in international form: leading 0 dropped, 44 prefixed.
-    // ?text= prefills the message so nobody has to work out how to open.
-    url:   "https://wa.me/447405557399?text=" + encodeURIComponent(
-             "Hi Leo, I found you through your links page - I've got a question."),
-    icon:  "whatsapp",
-    style: "chat"
-  }
 ];
 
 /* Set to null to hide the testimonial entirely. */
@@ -493,7 +484,14 @@ const QUOTE = {
 
 const SOCIALS = [
   { name: "Instagram", handle: "@arcaneleo.g",   url: "https://instagram.com/arcaneleo.g", icon: "instagram" },
-  { name: "TikTok",    handle: "@arcane_advice", url: "https://tiktok.com/@arcane_advice", icon: "tiktok"    }
+  { name: "TikTok",    handle: "@arcane_advice", url: "https://tiktok.com/@arcane_advice", icon: "tiktok"    },
+  {
+    name: "WhatsApp", handle: "Message me", icon: "whatsapp", style: "chat",
+    // 07951182240 in international form: leading 0 dropped, 44 prefixed.
+    // ?text= prefills the message so nobody has to work out how to open.
+    url: "https://wa.me/447951182240?text=" + encodeURIComponent(
+           "Hi Leo, I found you through your links page - I've got a question.")
+  }
 ];
 
 /* ==========================================================================
@@ -608,12 +606,10 @@ if (QUOTE && QUOTE.text) {
 
 document.getElementById("socials").innerHTML = SOCIALS.filter(s => isLive(s.url)).map(s => `
   <li>
-    <a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
+    <a class="${s.style || ""}" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">
       <span aria-hidden="true">${ICONS[s.icon] || ICONS.link}</span>
-      <span class="txt">
-        <span>${esc(s.name)}</span>
-        <span class="handle">${esc(s.handle || "")}</span>
-      </span>
+      <span class="name">${esc(s.name)}</span>
+      <span class="handle">${esc(s.handle || "")}</span>
     </a>
   </li>`).join("");
 

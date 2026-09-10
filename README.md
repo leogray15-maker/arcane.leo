@@ -43,7 +43,7 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | Item | Where | Status |
 | --- | --- | --- |
 | Profile photo | `AVATAR` const | falls back to the Arcane mark |
-| Prices on the four paid cards | `badge` in `LINKS` | only Archives has one, and it says "Membership" rather than a number |
+| Prices on the seven paid cards | `badge` in `LINKS` | only Archives has one, and it says "Membership" rather than a number |
 
 Every link is live; nothing renders as **Soon**.
 
@@ -57,7 +57,7 @@ one it already had rather than silently switching where your money lands.
 
 ### Prices
 
-Four cards go straight to Stripe checkout. Cold traffic that lands on a payment
+Seven cards go straight to Stripe checkout. Cold traffic that lands on a payment
 form without knowing the number bounces, and it's the cheapest fix on the page:
 put the amount in each card's `badge`, e.g. `badge: "£49"`. The badge renders as
 a violet pill on the right of the card (and as an eyebrow above the title on the
@@ -65,7 +65,7 @@ featured card).
 
 ### WhatsApp link
 
-`https://wa.me/447405557399?text=<prefilled message>` — the number is in
+`https://wa.me/447951182240?text=<prefilled message>` — the number is in
 international form (leading `0` dropped, `44` prefixed), which is what `wa.me`
 requires. The `?text=` part prefills the first message so nobody has to work
 out what to say; edit that string in `LINKS` to change it.
@@ -77,10 +77,10 @@ has a real advantage: it stops publishing your mobile number on a public page.
 
 ## Current links
 
-Every entry except WhatsApp is a banner card carrying its own artwork — see
-`covers/`. Three of them have artwork but no URL and render dimmed with a
-**Soon** badge: replacing `url: "#"` with the real link is the only change
-needed to make one live.
+Every entry in `LINKS` is a banner card carrying its own artwork — see
+`covers/`. All ten are live; nothing renders as **Soon**. Instagram, TikTok and
+WhatsApp are not links in that sense — they sit in `SOCIALS`, as a row of three
+directly under the hero.
 
 | Group | Entry | Destination |
 | --- | --- | --- |
@@ -89,14 +89,14 @@ needed to make one live.
 | Skin & healing | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Skin & healing | Arcane Track | https://arcanetrack.vercel.app |
 | Skin & healing | Arcane Peptides | https://arcanepeptides.vercel.app |
-| Skin & healing | The Primal Code | **no link yet** — renders as Soon |
+| Skin & healing | The Primal Code | Stripe (`00waEW39W8t40oO6mq0Ba09`) |
 | Mind & power | Deep & Dark Psychology | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
 | Mind & power | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
-| Mind & power | The Inner Citadel | **no link yet** — renders as Soon |
-| Mind & power | The Quiet Empire | **no link yet** — renders as Soon |
-| Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
-| — | Instagram | https://instagram.com/arcaneleo.g |
-| — | TikTok | https://tiktok.com/@arcane_advice |
+| Mind & power | The Inner Citadel | Stripe (`bJeeVc8ug7p07RgaCG0Ba0a`) |
+| Mind & power | The Quiet Empire | Stripe (`28EbJ039WdNob3s5im0Ba0b`) |
+| Top row | Instagram | https://instagram.com/arcaneleo.g |
+| Top row | TikTok | https://tiktok.com/@arcane_advice |
+| Top row | WhatsApp | `wa.me/447951182240` with a prefilled message |
 
 Peptides 101 is listed on Linktree as "Pept!des 101" — the `!` is there to dodge
 platform keyword filters. On your own domain nothing is filtering you, so it's
@@ -130,7 +130,14 @@ Every other entry is a link card, and takes:
   the featured card it renders above the title instead of beside it.
 - **`featured: true`** — renders as the hero card: bigger, gradient-filled,
   glowing. Use it on exactly one entry; its pull comes from being the only one.
-- **`style: "chat"`** — the green WhatsApp treatment.
+- **`style: "chat"`** — the green WhatsApp treatment. Also honoured in
+  `SOCIALS`.
+
+`SOCIALS` takes `name`, `handle`, `url`, `icon` and optional `style`, and
+renders three across as icon over name over handle. Stacked rather than
+side-by-side for a reason: at a third of the page width, an icon beside two
+lines of text leaves about 80px for the handle, and `@arcane_advice` does not
+fit in 80px. A fourth entry would need the grid's column count changed too.
 
 Reorder the array to reorder the page. The markup is generated from it, so you
 never touch HTML.
@@ -138,10 +145,10 @@ never touch HTML.
 ## Why it's laid out this way
 
 - **Eight links in one flat column read as a wall** and nobody finishes it. They
-  are chunked into four labelled groups — *Start here*, *Skin & healing*,
-  *Mind & power*, *Talk to me* — so a visitor scans four short lists instead of
-  one long one and can skip straight to the half they came for. No group holds
-  more than four entries; that's the point, and it's worth resisting the urge to
+  are chunked into three labelled groups — *Start here*, *Skin & healing*,
+  *Mind & power* — so a visitor scans three short lists instead of one long one
+  and can skip straight to the half they came for. No group holds more than
+  five entries; that's the point, and it's worth resisting the urge to
   let one grow past five.
 - **The two halves of the brand are separated on purpose.** Someone arriving
   from an eczema video and someone arriving from a psychology video want
@@ -155,9 +162,13 @@ never touch HTML.
   it's what the testimonial is about and where the click data is.
 - **Arcane Track is badged Free** — it's the cheapest yes for someone arriving
   cold from TikTok, and it makes the paid links feel less like the only ask.
-- **WhatsApp sits last, styled differently.** It's the catch for people who
-  read everything and still want to talk before buying — the highest-intent
-  visitors you have.
+- **WhatsApp sits at the top with Instagram and TikTok, not at the bottom.**
+  It used to sit last, on the theory that it catches people who read everything
+  and still want to talk. The counter-argument won: someone arriving from a
+  TikTok video looking for the way to ask a question should not have to scroll
+  past ten products to find it, and grouping it with the two social handles
+  makes it read as "here's how to reach me" rather than as another thing being
+  sold.
 - **The testimonial sits below the links, not above.** It answers the doubt
   that surfaces *after* someone considers buying, which is where proof does the
   most work.
