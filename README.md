@@ -65,7 +65,7 @@ featured card).
 
 ### WhatsApp link
 
-`https://wa.me/447405557399?text=<prefilled message>` — the number is in
+`https://wa.me/447951182240?text=<prefilled message>` — the number is in
 international form (leading `0` dropped, `44` prefixed), which is what `wa.me`
 requires. The `?text=` part prefills the first message so nobody has to work
 out what to say; edit that string in `LINKS` to change it.
@@ -92,7 +92,7 @@ Every entry except WhatsApp is a banner card carrying its own artwork — see
 | Mind & power | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
 | Mind & power | The Inner Citadel | Stripe (`bJeeVc8ug7p07RgaCG0Ba0a`) |
 | Mind & power | The Quiet Empire | Stripe (`28EbJ039WdNob3s5im0Ba0b`) |
-| Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
+| Talk to me | WhatsApp me | `wa.me/447951182240` with a prefilled message |
 | — | Instagram | https://instagram.com/arcaneleo.g |
 | — | TikTok | https://tiktok.com/@arcane_advice |
 
