@@ -1,9 +1,23 @@
 # Leo Gray | Arcane — link hub
 
-A Linktree replacement, built as one self-contained `index.html`. No build step,
-no dependencies, no monthly fee, no Linktree branding — and unlike Linktree it
-can show social proof, rank links by importance, and carry your own visual
-identity.
+A landing page, built as one self-contained `index.html`. No build step, no
+dependencies, no monthly fee, no Linktree branding.
+
+It is **three offers stacked in order of how much you want them taken**, not a
+list of links:
+
+1. **The Arcane Archives** — the membership. Above the fold, biggest, brightest,
+   full-width button. Six individual products live inside a collapsed expander
+   beneath it so they never compete with the membership.
+2. **Arcane Peptides** — the shop. Flat card, its own orange, research-use line
+   under its own button.
+3. **Arcane Track** — the free tracker. Flat card, its own green, and the
+   healing testimonial directly underneath it.
+
+The previous version was eight product cards of roughly equal weight in one
+scroll. Eight equal choices is not a menu, it is a decision to postpone, and the
+membership — the only recurring revenue on the page — was one card among eight.
+That is the problem this layout exists to fix.
 
 ## Brand assets
 
@@ -24,10 +38,13 @@ The page doesn't load any of these at runtime — the mark is inlined as SVG in
 stays sharp at every size, and picks up the violet accent automatically. The
 files are here as the source of truth for anything else you make.
 
-The one exception is the banner art under `covers/thumb/`, which the three
-product cards do load. They are 10-15 KB each, lazy-loaded, and carry explicit
-dimensions so nothing shifts as they arrive — cheap enough that showing the
-real product beats keeping the page asset-free.
+The banner art under `covers/thumb/` is no longer loaded at runtime. The page
+used to render every product as a banner card; it now renders three hero
+sections and six compact rows, each carrying its product's glyph lifted from
+that product's cover art rather than the full artwork. The `.webp` files are
+kept because the covers are still the source of truth for each product's
+colour and mark — and because putting a banner back is a one-line change if
+you want one.
 
 The vector was produced by thresholding the black PNG and tracing it, then
 checked against the original: it differs by 0.5% of the mark's area, all of it
@@ -43,9 +60,21 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | Item | Where | Status |
 | --- | --- | --- |
 | Profile photo | `AVATAR` const | falls back to the Arcane mark |
-| Prices on the four paid cards | `badge` in `LINKS` | only Archives has one, and it says "Membership" rather than a number |
+| The Inner Citadel link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
+| The Primal Code link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
 
-Every link is live; nothing renders as **Soon**.
+Two things that were on the old page are **not** on this one, on purpose, and
+both are decisions rather than oversights:
+
+- **The Quiet Empire** has no row. The six products specified for the expander
+  didn't include it. Its artwork and its colour (`#6d7cf8`) are still in
+  `covers/`, so adding a seventh row is a six-line paste into `ARCHIVES.items`
+  — but note that Hero 1's copy promises "six systems", so a seventh row and
+  that sentence need to agree.
+- **Trading has no product**, although Hero 1's subhead and body copy both lead
+  with it. Nothing on the page sells it and nothing in the expander covers it.
+  Either that product exists and wants a row, or the word is doing marketing
+  work the page can't cash.
 
 ### Two different Healing Protocols links
 
@@ -57,46 +86,42 @@ one it already had rather than silently switching where your money lands.
 
 ### Prices
 
-Four cards go straight to Stripe checkout. Cold traffic that lands on a payment
-form without knowing the number bounces, and it's the cheapest fix on the page:
-put the amount in each card's `badge`, e.g. `badge: "£49"`. The badge renders as
-a violet pill on the right of the card (and as an eyebrow above the title on the
-featured card).
+The Archives button carries its price — `Join The Archives — £128/mo` — which is
+the one that matters, because it is the offer the page is built around.
+
+The four expander rows that go straight to Stripe still don't show a number.
+That is a deliberate trade for now: a price on every row turns the expander back
+into a comparison table, which is the decision paralysis this layout removes.
+If you want them, the place to put one is the end of each row's `sub`.
 
 ### WhatsApp link
 
 `https://wa.me/447405557399?text=<prefilled message>` — the number is in
 international form (leading `0` dropped, `44` prefixed), which is what `wa.me`
 requires. The `?text=` part prefills the first message so nobody has to work
-out what to say; edit that string in `LINKS` to change it.
+out what to say; edit that string in `TALK` to change it.
 
 WhatsApp usernames exist but the `wa.me/<username>` form isn't reliably live
 for everyone yet, so the number is used here because it works on every device
 today. Once your username resolves, switching to it is a one-line change and
 has a real advantage: it stops publishing your mobile number on a public page.
 
-## Current links
+## Where everything points
 
-Every entry except WhatsApp is a banner card carrying its own artwork — see
-`covers/`. Three of them have artwork but no URL and render dimmed with a
-**Soon** badge: replacing `url: "#"` with the real link is the only change
-needed to make one live.
-
-| Group | Entry | Destination |
+| Section | Entry | Destination |
 | --- | --- | --- |
-| Start here | The Arcane Archives | https://arcanearchives.shop |
-| Skin & healing | Arcane Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
-| Skin & healing | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
-| Skin & healing | Arcane Track | https://arcanetrack.vercel.app |
-| Skin & healing | Arcane Peptides | https://arcanepeptides.vercel.app |
-| Skin & healing | The Primal Code | **no link yet** — renders as Soon |
-| Mind & power | Deep & Dark Psychology | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
-| Mind & power | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
-| Mind & power | The Inner Citadel | **no link yet** — renders as Soon |
-| Mind & power | The Quiet Empire | **no link yet** — renders as Soon |
+| Hero 1 | Join The Archives — £128/mo | https://arcanearchives.shop |
+| Hero 1 expander | The Dark Psych Codex | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
+| Hero 1 expander | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
+| Hero 1 expander | The Inner Citadel | **no link yet** — renders as Soon |
+| Hero 1 expander | The Primal Code | **no link yet** — renders as Soon |
+| Hero 1 expander | Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
+| Hero 1 expander | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
+| Hero 2 | Shop Peptides | https://arcanepeptides.vercel.app |
+| Hero 3 | Get Arcane Track — Free | https://arcanetrack.vercel.app |
 | Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
-| — | Instagram | https://instagram.com/arcaneleo.g |
-| — | TikTok | https://tiktok.com/@arcane_advice |
+| Follow | Instagram | https://instagram.com/arcaneleo.g |
+| Follow | TikTok | https://tiktok.com/@arcane_advice |
 
 Peptides 101 is listed on Linktree as "Pept!des 101" — the `!` is there to dodge
 platform keyword filters. On your own domain nothing is filtering you, so it's
@@ -105,67 +130,94 @@ spelled properly here.
 ## Editing
 
 Everything editable sits in one block near the bottom of `index.html`, marked
-`EDIT HERE`: `AVATAR`, `PROOF`, `LINKS`, `QUOTE`, and `SOCIALS`.
+`EDIT HERE`: `AVATAR`, `PROOF`, `ARCHIVES`, `TIERS`, `QUOTE`, `TALK`, and
+`SOCIALS`. The markup is generated from them, so you never touch HTML.
 
-`LINKS` is one flat list that renders top to bottom exactly as written. An
-entry of the form `{ section: "Skin & healing" }` starts a new labelled group;
-everything after it belongs to that group until the next `section` entry. Add,
-rename, or delete a group by editing one line.
+### `ARCHIVES` — Hero 1
 
-Every other entry is a link card, and takes:
+| Key | What it is |
+| --- | --- |
+| `eyebrow` | the small violet line above the headline |
+| `headline` | the `<h1>`, rendered in the white-to-violet gradient |
+| `dots` | the `·`-separated subhead; the separators get their own opacity |
+| `copy` | the body paragraph |
+| `cta` / `url` | the full-width button's label and destination |
+| `icon` | key into `ICONS` for the tile above the eyebrow |
+| `toggle` | the expander's label. The `↓` is added for you — don't type one |
+| `note` | the line above the six rows |
+| `items` | the six rows themselves |
 
-- **`url`** — the destination. Set it to `"#"` and the card renders dimmed with
-  a **Soon** badge and isn't clickable.
-- **`title` / `sub`** — the label and the grey line under it. `sub` wraps to two
-  lines, so moderately long copy is fine.
-- **`banner`** — path to banner art, e.g. `"covers/thumb/arcane-game.webp"`.
-  Turns the row into a banner card: artwork across the full width with a strip
-  underneath carrying `sub` and the arrow. The artwork already contains the
-  product name, so no title row is drawn — `title` becomes the image's alt
-  text and the link's accessible name. Use it on anything with real artwork.
-- **`icon`** — `book`, `list`, `spark`, `flask`, `molecule`, `eye`, `target`,
-  `whatsapp`, `instagram`, `tiktok`, or `link`. Unknown values fall back to
-  `link`. Ignored when `cover` is set.
-- **`badge`** — optional violet pill, e.g. `"Free"`, `"£49"`, `"20% off"`. On
-  the featured card it renders above the title instead of beside it.
-- **`featured: true`** — renders as the hero card: bigger, gradient-filled,
-  glowing. Use it on exactly one entry; its pull comes from being the only one.
-- **`style: "chat"`** — the green WhatsApp treatment.
+**"They" is unexplained on purpose.** Anyone who has to ask who *they* are isn't
+the buyer yet. No tooltip, no footnote, no "(the establishment)" — the line does
+its filtering by being unanswered, and explaining it is the one edit that breaks
+it.
 
-Reorder the array to reorder the page. The markup is generated from it, so you
-never touch HTML.
+### `ARCHIVES.items` — the expander rows
+
+Each row takes `title`, `sub`, `url`, `icon`, and `accent`.
+
+- **`url`** — set it to `"#"` and the row renders dimmed with a **Soon** badge
+  and isn't clickable.
+- **`accent`** — the product's own hex, the same one its cover art uses:
+  Dark Psych `#f04444`, Arcane Game `#8b5cf6`, Inner Citadel `#22c9d4`,
+  Primal Code `#2fd671`, Healing Protocols `#f2739b`, Peptides 101 `#3b95f0`,
+  Arcane Peptides `#f0873c`, Arcane Track `#a3d93a`, Quiet Empire `#6d7cf8`.
+  One hex in the data becomes five CSS custom properties on the element, so the
+  icon tile, the border, the hover fill, the arrow and the focus ring all move
+  together. **Don't flatten these to violet** — the colour is how someone
+  recognises a product they've already seen on TikTok.
+- **`icon`** — `mark`, `eye`, `pawn`, `shield`, `helix`, `protocol`,
+  `molecule`, `flask`, `chart`, `whatsapp`, `instagram`, `tiktok`, `link`.
+  Unknown values fall back to `link`. The product glyphs are traced from the
+  matching cover art, so a row and the cover it links to are visibly the same
+  product.
+
+### `TIERS` — Heroes 2 and 3
+
+Same shape, minus the expander: `headline`, `dots`, `copy`, `cta`, `url`,
+`icon`, `accent`, and an optional `fineprint` rendered directly under the
+button. Add a fourth entry and it renders as a fourth flat card — but every
+card you add costs Hero 1 some of its dominance, which is the whole asset.
 
 ## Why it's laid out this way
 
-- **Eight links in one flat column read as a wall** and nobody finishes it. They
-  are chunked into four labelled groups — *Start here*, *Skin & healing*,
-  *Mind & power*, *Talk to me* — so a visitor scans four short lists instead of
-  one long one and can skip straight to the half they came for. No group holds
-  more than four entries; that's the point, and it's worth resisting the urge to
-  let one grow past five.
-- **The two halves of the brand are separated on purpose.** Someone arriving
-  from an eczema video and someone arriving from a psychology video want
-  completely different things, and mixing peptide protocols with attraction and
-  social dynamics in one undifferentiated list makes both look unserious.
-- **The first card takes a disproportionate share of clicks**, so Archives is
-  featured and sits first. It's also the only recurring-revenue product and the
-  one your Linktree data shows winning by a wide margin (66 clicks against 27
-  for the runner-up). Move a different entry to the top if the priority changes.
-- **Skin & healing sits above Mind & game** because it's the proven inbound —
-  it's what the testimonial is about and where the click data is.
-- **Arcane Track is badged Free** — it's the cheapest yes for someone arriving
-  cold from TikTok, and it makes the paid links feel less like the only ask.
-- **WhatsApp sits last, styled differently.** It's the catch for people who
-  read everything and still want to talk before buying — the highest-intent
-  visitors you have.
-- **The testimonial sits below the links, not above.** It answers the doubt
-  that surfaces *after* someone considers buying, which is where proof does the
-  most work.
+- **Eight cards of equal weight is not a menu, it's a decision to postpone.**
+  The old page asked a first-time visitor to rank eight products against each
+  other before doing anything. This one asks one question — membership, yes or
+  no — and hides the other six behind a tap for the minority who want to buy a
+  single topic.
+- **Hero 1 is louder than Heroes 2 and 3 on purpose** — bigger padding, a
+  gradient background, a violet glow, a gradient headline, and the only
+  full-width filled button on the page. Heroes 2 and 3 are flat cards with
+  buttons that size to their own text. Levelling that up is the one change that
+  undoes the restructure.
+- **The expander is collapsed on load, always.** It's a native `<details>`, so
+  it needs no JavaScript to open, works with the keyboard, and can't get stuck
+  half-open. Someone who wants the membership never sees six more choices.
+- **"Every product below is included free in the full Archives"** sits above
+  the six rows because that sentence is the argument for the membership, made
+  at the exact moment someone is about to buy one product instead.
+- **The research-use line sits under the Peptides button, not in the footer.**
+  In the footer nobody reads it, and this is the one product where it has to be
+  read. The footer disclaimer covers it too — that duplication is deliberate.
+- **The testimonial sits under Arcane Track**, not near the peptide shop. It
+  describes healing eczema. Next to a product sold "for research purposes only"
+  it reads as a human-use claim for the thing being sold; next to the tracker
+  it reads as what it is, which is someone describing their recovery. Moving it
+  back up next to Peptides is a compliance problem, not a layout preference.
+- **The identity strip is one short row**, not the old stacked block with a
+  104px avatar. Every pixel it gave up is a pixel of Hero 1 that lands above
+  the fold — the Archives button clears the fold on a 390×844 phone with room
+  to spare.
+- **WhatsApp sits last.** It's the catch for people who read everything and
+  still want to talk before buying — the highest-intent visitors you have.
 
 ## The testimonial
 
-`QUOTE` currently holds a message from your TikTok content. Set `QUOTE = null`
-to hide the section. Two things worth doing:
+`QUOTE` currently holds a message from your TikTok content, and it renders
+directly under Hero 3 — see the layout notes above for why it is there and not
+beside the peptide shop. Set `QUOTE = null` to hide the section. Two things
+worth doing:
 
 - Confirm the sender is fine with it being quoted on a public page, even
   unattributed.
@@ -189,8 +241,11 @@ Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
   `https://arcane-leo.vercel.app/`. If you put the hub on a custom domain,
   those three absolute URLs in `<head>` are the only things that need changing —
   they have to be absolute, so a relative path won't work.
-- Cards fade up in sequence on load, 45ms apart. It's disabled outright under
-  `prefers-reduced-motion`.
+- Sections fade up in sequence on load, 70ms apart. It's disabled outright
+  under `prefers-reduced-motion`, along with every hover transform.
 - The footer disclaimer covers educational-use, research-use, and
   individual-results. Given the health claims in this niche and the existing
-  TikTok account warning, keep it.
+  TikTok account warning, keep it — and keep the shorter research-use line
+  under the Peptides button as well.
+- The page still loads zero images. The three hero tiles and the six expander
+  rows use inline SVG glyphs, so the whole thing is one HTTP request.

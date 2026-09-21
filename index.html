@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leo Gray | Arcane</title>
-<meta name="description" content="The knowledge they don't want you to know. Skin recovery protocols, peptides, psychology, and the research behind them.">
+<meta name="description" content="The Arcane Archives — trading, business, mind and body in one membership. Plus research peptides and a free skin-recovery tracker.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Leo Gray | Arcane">
@@ -19,7 +19,6 @@
 <link rel="canonical" href="https://arcane-leo.vercel.app/">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='207 184 611 611'><rect x='207' y='184' width='611' height='611' rx='104' fill='%23120e24'/><g transform='translate(0.000000,1024.000000) scale(0.100000,-0.100000)' fill='%23a78bfa'><path d='M5082 8183 c-11 -10 -96 -157 -188 -328 -91 -170 -177 -328 -189 -350 -12 -22 -38 -69 -58 -105 -19 -36 -105 -193 -192 -350 -86 -157 -225 -409 -307 -560 -83 -151 -154 -279 -158 -285 -4 -5 -31 -55 -60 -110 -29 -55 -176 -322 -327 -593 -150 -271 -339 -613 -420 -760 -80 -147 -158 -289 -173 -317 -64 -114 -409 -741 -485 -880 -45 -82 -95 -174 -109 -204 l-28 -53 34 4 c18 3 94 17 168 31 375 72 800 61 1168 -29 478 -116 962 -391 1302 -738 30 -31 58 -56 63 -56 5 0 65 53 132 119 400 386 892 629 1465 722 89 15 194 22 365 26 208 4 262 2 405 -16 91 -12 211 -32 268 -45 56 -13 102 -21 102 -19 0 12 -122 234 -437 798 -77 138 -159 286 -183 330 -23 44 -62 114 -85 155 -23 41 -78 140 -122 220 -44 80 -130 235 -190 345 -61 110 -178 322 -261 470 -128 232 -301 547 -430 785 -19 36 -52 94 -72 130 -20 36 -57 101 -80 145 -24 44 -127 233 -230 420 -174 317 -382 699 -523 962 -33 62 -68 121 -79 133 -23 25 -59 26 -86 3z m102 -918 c29 -55 85 -163 126 -240 40 -77 138 -264 218 -415 290 -553 543 -1042 540 -1045 -2 -1 -41 -22 -88 -46 -108 -56 -279 -170 -379 -253 -161 -135 -340 -340 -432 -498 -22 -38 -43 -68 -47 -68 -4 0 -19 22 -33 48 -46 83 -179 253 -278 355 -158 163 -320 286 -533 404 -99 55 -106 61 -94 79 7 10 99 186 204 389 451 875 726 1395 735 1392 5 -1 32 -47 61 -102z m-1179 -2166 c119 -45 297 -142 410 -222 138 -98 317 -278 393 -396 76 -117 136 -252 167 -376 13 -52 45 -208 70 -347 26 -143 52 -259 60 -267 36 -37 49 1 110 344 54 300 98 439 187 590 95 161 261 340 424 457 135 97 475 262 494 241 4 -4 65 -120 135 -258 70 -137 174 -340 230 -450 171 -333 307 -606 303 -609 -1 -2 -75 -8 -163 -14 -643 -47 -1197 -279 -1610 -674 l-95 -90 -62 62 c-174 174 -367 309 -612 430 -326 160 -676 249 -1083 276 -57 3 -103 8 -103 9 0 6 660 1325 663 1325 1 0 38 -14 82 -31z'/></g></svg>">
-
 <style>
   :root{
     --bg:#08070d;
@@ -32,7 +31,7 @@
     --text:#f4f2f8;
     --muted:#9b96ac;
     --radius:18px;
-    --maxw:540px;
+    --maxw:600px;
   }
 
   *{box-sizing:border-box}
@@ -48,39 +47,47 @@
     -webkit-font-smoothing:antialiased;
     display:flex;
     justify-content:center;
-    padding:clamp(24px,6vw,52px) 18px 40px;
+    padding:clamp(20px,5vw,42px) 16px 40px;
   }
 
+  /* The ambient glow. The top lobe is deliberately strong — it sits behind
+     Hero 1 and is half of what makes the primary offer read as the brightest
+     thing on the page before anyone has read a word. */
   body::before{
     content:"";
     position:fixed;
     inset:0;
     pointer-events:none;
     background:
-      radial-gradient(70% 46% at 50% -8%, rgba(109,77,240,.30) 0%, transparent 68%),
-      radial-gradient(50% 34% at 8% 42%, rgba(139,92,246,.11) 0%, transparent 70%),
+      radial-gradient(74% 44% at 50% -6%, rgba(109,77,240,.34) 0%, transparent 68%),
+      radial-gradient(50% 34% at 8% 42%, rgba(139,92,246,.10) 0%, transparent 70%),
       radial-gradient(58% 40% at 100% 104%, rgba(76,60,160,.20) 0%, transparent 70%);
   }
 
   main{position:relative;width:100%;max-width:var(--maxw)}
 
-  /* Staggered entrance. Lives on the <li>/<h2> wrapper, never on the card
-     itself — the card keeps its transform free for :hover. */
   @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .reveal{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--i,0) * 45ms)}
+  .reveal{animation:rise .5s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--i,0) * 70ms)}
 
-  /* ================= hero ================= */
+  /* ================= identity strip =================
+     Kept to one short row rather than the old stacked block. Every pixel it
+     gives up is a pixel of Hero 1 that lands above the fold. */
 
-  .hero{text-align:center;margin-bottom:clamp(22px,4.5vw,30px)}
+  .ident{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:clamp(18px,4vw,24px);
+  }
 
   .avatar{
     position:relative;
-    width:104px;height:104px;
-    margin:0 auto 18px;
+    flex:none;
+    width:60px;height:60px;
     border-radius:50%;
-    padding:2.5px;
+    padding:2px;
     background:linear-gradient(150deg,var(--violet-hi),var(--violet-lo) 55%,rgba(255,255,255,.12));
-    box-shadow:0 0 40px -8px rgba(139,92,246,.55);
+    box-shadow:0 0 30px -8px rgba(139,92,246,.6);
   }
   .avatar > *{
     width:100%;height:100%;
@@ -90,194 +97,314 @@
     background:#140f26;
   }
   .avatar .glyph{display:grid;place-items:center}
-  .avatar .glyph svg{width:50px;height:50px}
+  .avatar .glyph svg{width:29px;height:29px}
 
-  h1{
-    margin:0;
-    font-size:clamp(27px,6.4vw,34px);
+  .ident .who{min-width:0}
+  .ident .name{
+    font-size:17px;
+    font-weight:650;
+    letter-spacing:-.015em;
+  }
+  .ident .name .sep{color:var(--violet-hi);font-weight:400;margin:0 .3em}
+
+  .proof{
+    margin-top:5px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:4px 11px 4px 9px;
+    border:1px solid rgba(139,92,246,.28);
+    border-radius:999px;
+    background:rgba(139,92,246,.09);
+    font-size:11.5px;
+    color:#cfc6ea;
+  }
+  .proof .dot{
+    width:5px;height:5px;border-radius:50%;
+    background:#4ade80;
+    box-shadow:0 0 0 3px rgba(74,222,128,.18);
+  }
+
+  /* ================= the three tiers =================
+     One offer per screen instead of eight cards of equal weight. Hero 1 is
+     bigger, brighter and glows; 2 and 3 are flat cards carrying their own
+     product colour. The hierarchy is the whole point — resist levelling it. */
+
+  .tier{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:var(--card);
+    padding:clamp(20px,5vw,26px);
+  }
+  .tier + .tier{margin-top:clamp(13px,3vw,16px)}
+
+  .tier.primary{
+    margin-bottom:clamp(18px,4vw,24px);
+    padding:clamp(24px,6vw,34px) clamp(20px,5vw,30px) clamp(22px,5vw,28px);
+    border-color:rgba(167,139,250,.42);
+    background:
+      radial-gradient(120% 86% at 50% -12%, rgba(139,92,246,.26) 0%, transparent 62%),
+      linear-gradient(158deg, rgba(139,92,246,.17) 0%, rgba(99,72,220,.06) 52%, transparent 88%),
+      rgba(255,255,255,.05);
+    box-shadow:
+      0 0 64px -22px rgba(139,92,246,.95),
+      inset 0 1px 0 rgba(255,255,255,.07);
+  }
+
+  /* the mark, oversized and barely there, behind the primary card */
+  .tier .watermark{
+    position:absolute;
+    right:-46px;bottom:-62px;
+    width:230px;height:230px;
+    color:var(--violet-hi);
+    opacity:.055;
+    pointer-events:none;
+  }
+  .tier .watermark svg{width:100%;height:100%;display:block}
+
+  .tier .inner{position:relative}
+
+  .tier .mark{
+    width:48px;height:48px;
+    display:grid;place-items:center;
+    border-radius:14px;
+    border:1px solid var(--a-line);
+    background:var(--a-soft);
+    color:var(--a);
+  }
+  .tier .mark svg{width:25px;height:25px;display:block}
+
+  .tier.primary .mark{
+    width:58px;height:58px;
+    border:none;
+    border-radius:17px;
+    background:linear-gradient(150deg,var(--violet-hi),var(--violet) 45%,var(--violet-lo));
+    color:#fff;
+    box-shadow:0 0 30px -8px rgba(139,92,246,.9);
+  }
+  .tier.primary .mark svg{width:31px;height:31px}
+
+  .tier .eyebrow{
+    display:block;
+    margin-top:15px;
+    font-size:10.5px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;
+    color:var(--violet-hi);
+  }
+
+  .tier h2{
+    margin:12px 0 0;
+    font-size:clamp(21px,5.2vw,25px);
     font-weight:650;
     letter-spacing:-.02em;
+    line-height:1.2;
   }
-  h1 .sep{color:var(--violet-hi);font-weight:400;margin:0 .18em}
 
-  .tagline{
-    margin:12px auto 0;
-    max-width:22ch;
-    font-size:clamp(15px,3.9vw,17px);
-    font-weight:500;
-    line-height:1.35;
-    background:linear-gradient(100deg,#fff 10%,var(--violet-hi) 92%);
+  .tier h1{
+    margin:12px 0 0;
+    font-size:clamp(28px,7.2vw,40px);
+    font-weight:700;
+    letter-spacing:-.028em;
+    line-height:1.13;
+    background:linear-gradient(100deg,#fff 18%,var(--violet-hi) 96%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
   }
 
-  .proof{
-    margin:16px auto 0;
+  /* Trading · Business · Mind · Body */
+  .tier .dots{
+    margin:11px 0 0;
+    font-size:11px;font-weight:600;
+    letter-spacing:.19em;text-transform:uppercase;
+    color:var(--a);
+    opacity:.92;
+  }
+  /* Tracking has to come down with the viewport or the fourth word wraps
+     onto a line of its own on a phone. */
+  .tier.primary .dots{
+    font-size:clamp(10.5px,2.85vw,12.5px);
+    letter-spacing:clamp(.13em,.55vw,.21em);
+    color:var(--violet-hi);
+    opacity:1;
+  }
+  .tier .dots .sep{opacity:.45;margin:0 .15em}
+
+  .tier .copy{
+    margin:13px 0 0;
+    font-size:14.5px;
+    line-height:1.62;
+    color:#c7c1d8;
+  }
+  .tier.primary .copy{
+    max-width:47ch;
+    font-size:15.5px;
+    line-height:1.66;
+    color:#e0daf0;
+  }
+
+  /* ================= calls to action ================= */
+
+  .cta{
     display:inline-flex;
     align-items:center;
+    justify-content:center;
     gap:9px;
-    padding:6px 14px 6px 11px;
-    border:1px solid rgba(139,92,246,.28);
-    border-radius:999px;
-    background:rgba(139,92,246,.09);
-    font-size:12.5px;
-    color:#cfc6ea;
-  }
-  .proof .dot{
-    width:6px;height:6px;border-radius:50%;
-    background:#4ade80;
-    box-shadow:0 0 0 3px rgba(74,222,128,.18);
-  }
-
-  /* ================= section headings ================= */
-  /* Eight links in one undifferentiated column reads as a wall. Chunking
-     them into three labelled groups is what keeps the page scannable. */
-
-  .group-label{
-    display:flex;align-items:center;gap:13px;
-    margin:26px 0 13px;
-    font-size:10.5px;font-weight:600;
-    letter-spacing:.19em;text-transform:uppercase;
-    color:var(--muted);
-  }
-  .group-label::before,.group-label::after{content:"";flex:1;height:1px;background:var(--line)}
-  .group:first-of-type .group-label{margin-top:0}
-
-  /* ================= link cards ================= */
-
-  .links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
-
-  .link{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    padding:15px 17px;
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    background:var(--card);
-    color:inherit;
+    margin-top:17px;
+    padding:13px 21px;
+    border:1px solid var(--a-line);
+    border-radius:14px;
+    background:var(--a-soft);
+    color:var(--a);
+    font-size:14.5px;
+    font-weight:650;
+    letter-spacing:-.01em;
     text-decoration:none;
     transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
   }
-  .link:hover,.link:focus-visible{
-    background:var(--card-hi);
-    border-color:rgba(167,139,250,.45);
+  .cta:hover,.cta:focus-visible{
+    background:var(--a-mid);
+    border-color:var(--a);
     transform:translateY(-2px);
-    box-shadow:0 10px 30px -14px rgba(139,92,246,.7);
+    box-shadow:0 12px 30px -16px var(--a-glow);
   }
-  .link:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px}
-  .link:active{transform:translateY(0)}
+  .cta:focus-visible{outline:2px solid var(--a);outline-offset:3px}
+  .cta:active{transform:translateY(0)}
+  .cta svg{width:16px;height:16px;display:block;transition:transform .18s ease}
+  .cta:hover svg,.cta:focus-visible svg{transform:translateX(3px)}
 
-  .link .icon{
-    flex:none;
-    width:42px;height:42px;
-    display:grid;place-items:center;
-    border-radius:12px;
-    background:rgba(139,92,246,.13);
-    color:var(--violet-hi);
+  /* the primary CTA is full-width, filled and glowing — 2 and 3 are not */
+  .tier.primary .cta{
+    display:flex;
+    width:100%;
+    margin-top:21px;
+    padding:17px 22px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(120deg,var(--violet-hi) 0%,var(--violet) 42%,var(--violet-lo) 100%);
+    color:#fff;
+    font-size:clamp(15px,4vw,17px);
+    font-weight:700;
+    box-shadow:
+      0 14px 36px -14px rgba(139,92,246,1),
+      inset 0 1px 0 rgba(255,255,255,.28);
   }
-  .link .icon svg{width:21px;height:21px;display:block}
+  .tier.primary .cta:hover,.tier.primary .cta:focus-visible{
+    box-shadow:
+      0 18px 44px -12px rgba(139,92,246,1),
+      inset 0 1px 0 rgba(255,255,255,.34);
+  }
 
-  /* Banner cards: the artwork spans the card and carries the product name,
-     so the strip beneath it only needs the promise and the arrow. At 10:3 the
-     card comes out shorter than the old thumbnail-beside-text version. */
-  .link.banner,
-  .link.banner.featured{display:block;padding:0;overflow:hidden}
-  .link.banner .art{display:block;width:100%;aspect-ratio:10/3;background:#0d0b16}
-  .link.banner .art img{width:100%;height:100%;display:block;object-fit:cover}
-  .link.banner .foot{
+  /* research-use line. Sits under its own button, not in the footer, because
+     that is where it has to be read to mean anything. */
+  .tier .fineprint{
+    margin:10px 0 0;
+    font-size:11px;
+    line-height:1.55;
+    color:var(--muted);
+  }
+
+  /* ================= the archive expander =================
+     Collapsed on load. Someone who wants the membership never has to see
+     six more decisions; someone who only wants one topic is one tap away. */
+
+  .expander{margin-top:16px}
+
+  .expander summary{
+    display:block;
+    padding:6px 2px;
+    list-style:none;
+    cursor:pointer;
+    color:var(--muted);
+    font-size:13px;
+    transition:color .18s ease;
+  }
+  .expander summary::-webkit-details-marker{display:none}
+  .expander summary::marker{content:""}
+  .expander summary:hover,.expander[open] summary{color:var(--violet-hi)}
+  .expander summary:focus-visible{outline:2px solid var(--violet-hi);outline-offset:3px;border-radius:8px}
+  /* Inline with the label, not a flex sibling, and bound to the final word —
+     left to itself the arrow wraps onto a line of its own on a phone. */
+  .expander .tail{white-space:nowrap}
+  .expander .chev{display:inline-block;margin-left:6px;font-size:12px;transition:transform .25s ease}
+  .expander[open] .chev{transform:rotate(180deg)}
+
+  .expander-body{
+    padding-top:14px;
+    animation:rise .38s cubic-bezier(.2,.7,.3,1) both;
+  }
+  .expander-note{
+    margin:0 0 11px;
+    font-size:11.5px;
+    line-height:1.5;
+    color:var(--muted);
+  }
+
+  /* ================= compact product rows ================= */
+
+  .mini-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+
+  .mini{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:13px 16px 14px;
-    border-top:1px solid rgba(255,255,255,.06);
+    padding:11px 13px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:rgba(255,255,255,.03);
+    color:inherit;
+    text-decoration:none;
+    transition:background .18s ease,border-color .18s ease,transform .18s ease;
   }
-  .link.banner .foot .sub{flex:1;margin-top:0}
-  .link.banner.pending{opacity:.72}
-  .link.banner.pending .art{filter:saturate(.8)}
-  .link.banner.pending:hover{opacity:.72;border-color:var(--line)}
+  .mini:hover,.mini:focus-visible{
+    background:var(--a-soft);
+    border-color:var(--a-line);
+    transform:translateX(2px);
+  }
+  .mini:focus-visible{outline:2px solid var(--a);outline-offset:3px}
 
-  .link .body{min-width:0;flex:1}
-  .link .title{display:block;font-weight:600;font-size:16px;letter-spacing:-.01em}
-  .link .sub{
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;
-    line-clamp:2;
-    overflow:hidden;
-    margin-top:2px;
-    color:var(--muted);
-    font-size:13px;
-  }
-
-  .link .arrow{flex:none;color:var(--muted);transition:transform .18s ease,color .18s ease}
-  .link:hover .arrow,.link:focus-visible .arrow{color:var(--violet-hi);transform:translateX(3px)}
-  .link .arrow svg{width:16px;height:16px;display:block}
-
-  /* featured: the one card that should out-pull the rest */
-  .link.featured{
-    padding:19px 17px;
-    border-color:rgba(167,139,250,.42);
-    background:
-      linear-gradient(140deg,rgba(139,92,246,.20),rgba(99,72,220,.07) 60%,transparent),
-      var(--card);
-    box-shadow:0 0 34px -16px rgba(139,92,246,.85);
-  }
-  .link.featured .icon{
-    width:46px;height:46px;
-    background:linear-gradient(150deg,var(--violet),var(--violet-lo));
-    color:#fff;
-  }
-  .link.featured .icon svg{width:23px;height:23px}
-  .link.featured .title{font-size:17.5px}
-  .link.featured .sub{font-size:13.5px}
-  /* On the hero card the badge sits above the title rather than out to the
-     right — on a phone the right-hand pill squeezed the title into a wrap
-     and clipped the subtitle. */
-  .link.featured .eyebrow{
-    display:inline-block;
-    margin-bottom:5px;
-    font-size:9.5px;font-weight:700;
-    letter-spacing:.11em;text-transform:uppercase;
-    color:var(--violet-hi);
-    background:rgba(139,92,246,.16);
-    border:1px solid rgba(167,139,250,.34);
-    border-radius:999px;
-    padding:2px 8px;
-  }
-
-  /* whatsapp gets its own accent — it's a conversation, not a product */
-  .link.chat .icon{background:rgba(37,211,102,.14);color:#25d366}
-  .link.chat:hover,.link.chat:focus-visible{
-    border-color:rgba(37,211,102,.42);
-    box-shadow:0 10px 30px -14px rgba(37,211,102,.55);
-  }
-  .link.chat:hover .arrow,.link.chat:focus-visible .arrow{color:#25d366}
-
-  .badge{
+  .mini .g{
     flex:none;
-    font-size:10px;
-    font-weight:700;
-    letter-spacing:.09em;
-    text-transform:uppercase;
-    color:var(--violet-hi);
-    background:rgba(139,92,246,.15);
-    border:1px solid rgba(167,139,250,.34);
+    width:34px;height:34px;
+    display:grid;place-items:center;
+    border-radius:10px;
+    border:1px solid var(--a-line);
+    background:var(--a-soft);
+    color:var(--a);
+  }
+  .mini .g svg{width:18px;height:18px;display:block}
+
+  .mini .b{min-width:0;flex:1}
+  .mini .t{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .mini .s{display:block;margin-top:1px;font-size:12px;line-height:1.42;color:var(--muted)}
+
+  .mini .arrow{flex:none;color:var(--muted);transition:transform .18s ease,color .18s ease}
+  .mini:hover .arrow,.mini:focus-visible .arrow{color:var(--a);transform:translateX(3px)}
+  .mini .arrow svg{width:15px;height:15px;display:block}
+
+  .mini .badge{
+    flex:none;
+    font-size:9.5px;font-weight:700;
+    letter-spacing:.09em;text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--line);
     border-radius:999px;
-    padding:3px 9px;
+    padding:3px 8px;
   }
 
-  /* placeholder state for entries with no URL yet */
-  .link.pending{opacity:.45;cursor:default}
-  .link.pending:hover{background:var(--card);border-color:var(--line);transform:none;box-shadow:none}
-  .link.pending .icon{background:rgba(255,255,255,.05);color:var(--muted)}
-  .link.pending .badge{color:var(--muted);background:none;border-color:var(--line)}
+  .mini.pending{opacity:.5;cursor:default}
+  .mini.pending:hover{background:rgba(255,255,255,.03);border-color:var(--line);transform:none}
+  .mini.pending .g{color:var(--muted);background:rgba(255,255,255,.05);border-color:var(--line)}
 
-  /* ================= testimonial ================= */
+  /* ================= testimonial =================
+     Sits under Arcane Track, which is what it is actually describing. It used
+     to sit beside the peptide shop, which sells for research use only — the
+     wrong claim next to the wrong product. */
 
   .quote{
-    margin:26px 0 0;
+    margin:clamp(20px,4.5vw,26px) 0 0;
     padding:18px 19px;
     border:1px solid var(--line);
     border-left:2px solid var(--violet);
@@ -297,11 +424,11 @@
     letter-spacing:.02em;
   }
 
-  /* ================= socials ================= */
+  /* ================= dividers, socials, footer ================= */
 
   .divider{
     display:flex;align-items:center;gap:13px;
-    margin:28px 0 16px;
+    margin:26px 0 14px;
     color:var(--muted);
     font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
   }
@@ -334,9 +461,7 @@
   .socials svg{width:18px;height:18px;color:var(--violet-hi);display:block;flex:none}
   .socials .handle{color:var(--muted);font-weight:400;font-size:11.5px}
 
-  /* ================= footer ================= */
-
-  footer.page{margin-top:34px;text-align:center;color:var(--muted);font-size:12px}
+  footer.page{margin-top:32px;text-align:center;color:var(--muted);font-size:12px}
   footer.page .disclaimer{
     margin:0 auto 12px;
     max-width:46ch;
@@ -347,8 +472,8 @@
 
   @media (prefers-reduced-motion:reduce){
     *{transition:none !important}
-    .reveal{animation:none}
-    .link:hover,.socials a:hover{transform:none}
+    .reveal,.expander-body{animation:none}
+    .tier .cta:hover,.mini:hover,.socials a:hover{transform:none}
   }
 </style>
 </head>
@@ -356,25 +481,29 @@
 <body>
 <main>
 
-  <section class="hero">
+  <header class="ident reveal" style="--i:0">
     <div class="avatar" id="avatar"></div>
-    <h1>Leo Gray<span class="sep">|</span>Arcane</h1>
-    <p class="tagline">The Knowledge They Don't Want You To Know</p>
-    <div class="proof"><span class="dot"></span><span id="proof-text"></span></div>
-  </section>
+    <div class="who">
+      <div class="name">Leo Gray<span class="sep">|</span>Arcane</div>
+      <div class="proof"><span class="dot"></span><span id="proof-text"></span></div>
+    </div>
+  </header>
 
-  <div id="links"></div>
+  <div id="tiers"></div>
 
-  <blockquote class="quote" id="quote"></blockquote>
+  <blockquote class="quote reveal" id="quote" style="--i:5"></blockquote>
 
-  <div class="divider">Follow</div>
-  <ul class="socials" id="socials"></ul>
+  <div class="divider reveal" style="--i:6">Talk to me</div>
+  <ul class="mini-list" id="talk"></ul>
+
+  <div class="divider reveal" style="--i:7">Follow</div>
+  <ul class="socials reveal" id="socials" style="--i:8"></ul>
 
   <footer class="page">
     <p class="disclaimer">
       Educational content only — not medical advice, and not a substitute for
-      care from a qualified clinician. Peptides are sold for research purposes.
-      Individual results vary.
+      care from a qualified clinician. Peptides are sold for research purposes
+      only and are not for human consumption. Individual results vary.
     </p>
     <p>&copy; <span id="year"></span> Arcane</p>
   </footer>
@@ -384,111 +513,139 @@
 <script>
 /* ==========================================================================
    EDIT HERE — everything you'd want to change lives in this block.
+
+   The page is three offers, in order of how much you want them taken:
+   the Archives membership, then the peptide shop, then the free tracker.
+   Hero 1 carries the glow and the full-width button; the other two are
+   deliberately quieter. Six individual products live inside the collapsed
+   expander under Hero 1 so they never compete with the membership.
    ========================================================================== */
 
 /* Your photo. Drop a file next to index.html and put its name here,
    e.g. "leo.jpg". Leave empty to show the Arcane mark instead. */
 const AVATAR = "";
 
-/* Small credibility line under the tagline. Keep it specific and true. */
+/* Small credibility line beside your name. Keep it specific and true. */
 const PROOF = "2,500+ following across IG & TikTok";
 
-/* One list, top to bottom, exactly as it renders.
-   A { section: "..." } entry starts a new labelled group. */
-const LINKS = [
+/* ---------- HERO 1 — the primary offer ---------- */
+const ARCHIVES = {
+  eyebrow:  "The Arcane Archives",
+  headline: "The Knowledge They Don't Want You To Know",
+  /* "They" is left unexplained on purpose. Anyone who has to ask isn't the
+     buyer yet — do not add a tooltip or a footnote here. */
+  dots:     "Trading · Business · Mind · Body",
+  copy:     "Everything I know. One membership. Six systems most people spend " +
+            "years figuring out the hard way — trading, persuasion, attraction, " +
+            "mindset, business, healing — built into one place, updated for life.",
+  cta:      "Join The Archives — £128/mo",
+  url:      "https://arcanearchives.shop",
+  icon:     "mark",
 
-  { section: "Start here" },
-  {
-    title: "The Arcane Archives",
-    sub:   "Every domain, one membership",
-    url:   "https://arcanearchives.shop",
-    banner: "covers/thumb/arcane-archives.webp",
-    badge: "Membership",   // swap for the price, e.g. "£128", once it's fixed
-    featured: true         // keeps the glow and border under the artwork
-  },
+  /* The expander under the button. Collapsed on load, always. */
+  toggle:   "Only want one topic? Explore the Archives separately",
+  note:     "Every product below is included free in the full Archives.",
 
-  { section: "Skin & healing" },
-  {
-    title: "Arcane Healing Protocols",
-    sub:   "The exact protocols, step by step",
-    // NOTE: your Linktree points this at buy.stripe.com/dRm6oGfWlaBc9Zo4ei0Ba03
-    // instead. Two different Stripe links — check which one is current and
-    // make both places match.
-    url:   "https://buy.stripe.com/8x2aEW7qc9x82wW1260Ba04",
-    banner: "covers/thumb/healing-protocols.webp"
-  },
-  {
-    title: "Peptides 101",
-    sub:   "Everything you need to know",
-    url:   "https://buy.stripe.com/5kQ00i39WaBc5J85im0Ba05",
-    banner: "covers/thumb/peptides-101.webp"
-  },
-  {
-    title: "The Primal Code",
-    sub:   "Build a body that opens doors before you speak",
-    url:   "#",                 // no link yet — renders dimmed with a Soon badge
-    banner: "covers/thumb/primal-code.webp"
-  },
+  /* Each row keeps its own product colour — the same colour its cover art
+     uses. That mapping is the site's one piece of visual wayfinding; don't
+     flatten these to violet. `url: "#"` renders the row dimmed with Soon. */
+  items: [
+    {
+      title: "The Dark Psych Codex",
+      sub:   "Stop getting talked over, talked into things, and talked past.",
+      url:   "https://buy.stripe.com/7sYfZgh0MfVw2wW8uy0Ba07",
+      icon:  "eye",
+      accent:"#f04444"
+    },
+    {
+      title: "The Arcane Game",
+      sub:   "Attraction isn't luck. It's a system most men are never taught.",
+      url:   "https://buy.stripe.com/5kQeVc25SdNofjl1260Ba06",
+      icon:  "pawn",
+      accent:"#8b5cf6"
+    },
+    {
+      title: "The Inner Citadel",
+      sub:   "Take command of the mind that's been running you.",
+      url:   "#",                 // no link yet — renders dimmed with Soon
+      icon:  "shield",
+      accent:"#22c9d4"
+    },
+    {
+      title: "The Primal Code",
+      sub:   "Build a body that opens doors before you speak.",
+      url:   "#",                 // no link yet
+      icon:  "helix",
+      accent:"#2fd671"
+    },
+    {
+      title: "Healing Protocols",
+      sub:   "Skin, gut, recovery — the exact steps, not the guesswork.",
+      // NOTE: your Linktree points this at buy.stripe.com/dRm6oGfWlaBc9Zo4ei0Ba03
+      // instead. Two different Stripe links — check which one is current and
+      // make both places match.
+      url:   "https://buy.stripe.com/8x2aEW7qc9x82wW1260Ba04",
+      icon:  "protocol",
+      accent:"#f2739b"
+    },
+    {
+      title: "Peptides 101",
+      sub:   "Everything you need to know before you start.",
+      url:   "https://buy.stripe.com/5kQ00i39WaBc5J85im0Ba05",
+      icon:  "molecule",
+      accent:"#3b95f0"
+    }
+  ]
+};
 
+/* ---------- HEROES 2 and 3 — the secondary offers ---------- */
+const TIERS = [
   {
-    title: "Arcane Track",
-    sub:   "Skin recovery & healing tracker",
-    url:   "https://arcanetrack.vercel.app",
-    banner: "covers/thumb/arcane-track.webp",
-    badge: "Free"
+    headline: "Arcane Peptides",
+    dots:     "Sourced · Tested · Shipped",
+    copy:     "Research peptides, done properly. No guessing what you're " +
+              "getting. Every batch verified, every order discreet, every " +
+              "product backed by the same knowledge in Peptides 101 — so you " +
+              "know exactly what you're using and why.",
+    cta:      "Shop Peptides",
+    url:      "https://arcanepeptides.vercel.app",
+    icon:     "flask",
+    accent:   "#f0873c",
+    /* Sits directly under the button on purpose. In the footer nobody reads
+       it, and this is the one product where it has to be read. */
+    fineprint:"Sold for research purposes only. Not for human consumption."
   },
   {
-    title: "Arcane Peptides",
-    sub:   "Shop research peptides",
-    url:   "https://arcanepeptides.vercel.app",
-    banner: "covers/thumb/arcane-peptides.webp"
-  },
-
-  { section: "Mind & power" },
-  {
-    title: "Deep & Dark Psychology",
-    sub:   "The complete masterclass on how people really work",
-    url:   "https://buy.stripe.com/7sYfZgh0MfVw2wW8uy0Ba07",
-    // the artwork brands this one "The Dark Psych Codex"; the Stripe product
-    // name is what the alt text and the link's accessible name still say
-    banner: "covers/thumb/dark-psych-codex.webp"
-  },
-  {
-    title: "The Arcane Game",
-    sub:   "Attraction, social dynamics & status",
-    url:   "https://buy.stripe.com/5kQeVc25SdNofjl1260Ba06",
-    banner: "covers/thumb/arcane-game.webp"
-  },
-  {
-    title: "The Inner Citadel",
-    sub:   "Take command of the mind that runs you",
-    url:   "#",                 // no link yet
-    banner: "covers/thumb/inner-citadel.webp"
-  },
-  {
-    title: "The Quiet Empire",
-    sub:   "Productive isolation, and the business it builds",
-    url:   "#",                 // no link yet
-    banner: "covers/thumb/quiet-empire.webp"
-  },
-
-  { section: "Talk to me" },
-  {
-    title: "WhatsApp me",
-    sub:   "Not sure where to start? Ask me directly",
-    // 07405557399 in international form: leading 0 dropped, 44 prefixed.
-    // ?text= prefills the message so nobody has to work out how to open.
-    url:   "https://wa.me/447405557399?text=" + encodeURIComponent(
-             "Hi Leo, I found you through your links page - I've got a question."),
-    icon:  "whatsapp",
-    style: "chat"
+    headline: "Arcane Track",
+    dots:     "Log · Measure · Heal",
+    copy:     "Your skin recovery, actually tracked. Free tracker for anyone " +
+              "healing eczema, psoriasis, or dermatitis. Log symptoms, spot " +
+              "patterns, see real progress — the same tracking method behind " +
+              "the healing protocols above.",
+    cta:      "Get Arcane Track — Free",
+    url:      "https://arcanetrack.vercel.app",
+    icon:     "chart",
+    accent:   "#a3d93a"
   }
 ];
 
-/* Set to null to hide the testimonial entirely. */
+/* Set to null to hide the testimonial entirely. It renders under Hero 3
+   because Track is what it describes — keep it away from the peptide shop,
+   which sells for research use only. */
 const QUOTE = {
   text: "I'm messaging just to literally thank you for introducing me to peptides to heal eczema. I'm fully healed now and I've never felt better, after 4 months of hell.",
   from: "Message received from a follower"
+};
+
+const TALK = {
+  title: "WhatsApp me",
+  sub:   "Not sure where to start? Ask me directly.",
+  // 07405557399 in international form: leading 0 dropped, 44 prefixed.
+  // ?text= prefills the message so nobody has to work out how to open.
+  url:   "https://wa.me/447405557399?text=" + encodeURIComponent(
+           "Hi Leo, I found you through your links page - I've got a question."),
+  icon:  "whatsapp",
+  accent:"#25d366"
 };
 
 const SOCIALS = [
@@ -500,19 +657,36 @@ const SOCIALS = [
    Rendering — no need to edit below here.
    ========================================================================== */
 
+/* Product glyphs are lifted from each product's cover art, so a row in the
+   expander and the cover it links to are recognisably the same thing. */
 const ICONS = {
   /* the Arcane mark, vectorised from the brand artwork */
   mark:      '<svg viewBox="239 204 547 570" fill="currentColor"><g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"><path d="M5082 8183 c-11 -10 -96 -157 -188 -328 -91 -170 -177 -328 -189 -350 -12 -22 -38 -69 -58 -105 -19 -36 -105 -193 -192 -350 -86 -157 -225 -409 -307 -560 -83 -151 -154 -279 -158 -285 -4 -5 -31 -55 -60 -110 -29 -55 -176 -322 -327 -593 -150 -271 -339 -613 -420 -760 -80 -147 -158 -289 -173 -317 -64 -114 -409 -741 -485 -880 -45 -82 -95 -174 -109 -204 l-28 -53 34 4 c18 3 94 17 168 31 375 72 800 61 1168 -29 478 -116 962 -391 1302 -738 30 -31 58 -56 63 -56 5 0 65 53 132 119 400 386 892 629 1465 722 89 15 194 22 365 26 208 4 262 2 405 -16 91 -12 211 -32 268 -45 56 -13 102 -21 102 -19 0 12 -122 234 -437 798 -77 138 -159 286 -183 330 -23 44 -62 114 -85 155 -23 41 -78 140 -122 220 -44 80 -130 235 -190 345 -61 110 -178 322 -261 470 -128 232 -301 547 -430 785 -19 36 -52 94 -72 130 -20 36 -57 101 -80 145 -24 44 -127 233 -230 420 -174 317 -382 699 -523 962 -33 62 -68 121 -79 133 -23 25 -59 26 -86 3z m102 -918 c29 -55 85 -163 126 -240 40 -77 138 -264 218 -415 290 -553 543 -1042 540 -1045 -2 -1 -41 -22 -88 -46 -108 -56 -279 -170 -379 -253 -161 -135 -340 -340 -432 -498 -22 -38 -43 -68 -47 -68 -4 0 -19 22 -33 48 -46 83 -179 253 -278 355 -158 163 -320 286 -533 404 -99 55 -106 61 -94 79 7 10 99 186 204 389 451 875 726 1395 735 1392 5 -1 32 -47 61 -102z m-1179 -2166 c119 -45 297 -142 410 -222 138 -98 317 -278 393 -396 76 -117 136 -252 167 -376 13 -52 45 -208 70 -347 26 -143 52 -259 60 -267 36 -37 49 1 110 344 54 300 98 439 187 590 95 161 261 340 424 457 135 97 475 262 494 241 4 -4 65 -120 135 -258 70 -137 174 -340 230 -450 171 -333 307 -606 303 -609 -1 -2 -75 -8 -163 -14 -643 -47 -1197 -279 -1610 -674 l-95 -90 -62 62 c-174 174 -367 309 -612 430 -326 160 -676 249 -1083 276 -57 3 -103 8 -103 9 0 6 660 1325 663 1325 1 0 38 -14 82 -31z"/></g></svg>',
-  book:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
-  list:      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
-  spark:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21M5.9 5.9l2.5 2.5M15.6 15.6l2.5 2.5M18.1 5.9l-2.5 2.5M8.4 15.6l-2.5 2.5"/><circle cx="12" cy="12" r="3.2"/></svg>',
-  flask:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7 15h10"/></svg>',
-  /* peptides-as-a-subject, distinct from the flask that means "shop" */
-  molecule:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="7" r="2.6"/><circle cx="17.5" cy="6" r="2.6"/><circle cx="11" cy="17.5" r="2.6"/><path d="M9.09 6.76 14.91 6.24M7.52 9.39 9.98 15.11M16.22 8.26 12.28 15.24"/></svg>',
-  /* reading people — dark psychology */
-  eye:       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6.1 5.5 12 5.5 21.5 12 21.5 12 17.9 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>',
-  /* deliberate practice — the game */
-  target:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="4.4"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg>',
+
+  /* reading people — The Dark Psych Codex */
+  eye:       '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="60" r="52"/><path d="M20,60 C37,40 83,40 100,60 C83,80 37,80 20,60 Z"/><circle cx="60" cy="60" r="12"/></svg>',
+
+  /* the chess pawn from the Game cover */
+  pawn:      '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="60" cy="28" r="15"/><path d="M53,44 C53,62 48,76 34,100 H86 C72,76 67,62 67,44"/><path d="M28,100 H92 C96,100 98,103 98,107 V112 H22 V107 C22,103 24,100 28,100 Z"/></svg>',
+
+  /* the fortress shield — The Inner Citadel */
+  shield:    '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><path d="M60,12 L104,30 V64 C104,92 84,110 60,118 C36,110 16,92 16,64 V30 Z"/><path d="M60,42 L82,51 V68 C82,81 73,89 60,94 C47,89 38,81 38,68 V51 Z"/></svg>',
+
+  /* the twisted strand — The Primal Code */
+  helix:     '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M60,11 C104,25 104,33 60,47 C16,61 16,69 60,83 C104,97 104,105 60,119"/><path d="M60,11 C16,25 16,33 60,47 C104,61 104,69 60,83 C16,97 16,105 60,119"/><path d="M33,65 H87"/></svg>',
+
+  /* steps in sequence — Healing Protocols */
+  protocol:  '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="22" r="7.5"/><circle cx="24" cy="65" r="7.5"/><circle cx="24" cy="108" r="7.5"/><path d="M24,29.5 V57.5 M24,72.5 V100.5"/><path d="M46,22 H104 M46,65 H88 M46,108 H104"/></svg>',
+
+  /* the compound — Peptides 101 */
+  molecule:  '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M60,42 L86,57 V87 L60,102 L34,87 V57 Z"/><path d="M60,42 V22 M86,87 L102,96 M34,57 L18,48"/><circle cx="60" cy="16" r="7.5" fill="currentColor" stroke="none"/><circle cx="107" cy="99" r="7.5" fill="currentColor" stroke="none"/><circle cx="13" cy="45" r="7.5" fill="currentColor" stroke="none"/></svg>',
+
+  /* the vial — Arcane Peptides */
+  flask:     '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><path d="M45,12 H75"/><path d="M53,12 V48 L26,102 C21,113 29,121 40,121 H80 C91,121 99,113 94,102 L67,48 V12"/><path d="M36,88 H84"/></svg>',
+
+  /* the progress line — Arcane Track */
+  chart:     '<svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10,118 H112"/><path d="M14,98 L44,70 L66,84 L108,32"/><circle cx="14" cy="98" r="5.5" fill="currentColor" stroke="none"/><circle cx="44" cy="70" r="5.5" fill="currentColor" stroke="none"/><circle cx="66" cy="84" r="5.5" fill="currentColor" stroke="none"/><circle cx="108" cy="32" r="5.5" fill="currentColor" stroke="none"/></svg>',
+
   whatsapp:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2a8.8 8.8 0 0 0-7.5 13.4L3.2 20.8l4.4-1.2A8.8 8.8 0 1 0 12 3.2z"/><path d="M8.9 8.4c.2-.4.3-.4.5-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.1-.1.3 0 .5a5.8 5.8 0 0 0 2.4 2.1c.2.1.4.1.5 0l.5-.6c.1-.2.3-.2.5-.1l1.4.7c.2.1.3.2.3.4a1.7 1.7 0 0 1-1.2 1.4c-.5.1-1.1.2-3-.8a8.2 8.2 0 0 1-3.2-3.5c-.4-1-.4-1.7-.3-2z"/></svg>',
   instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>',
   tiktok:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.2v11.4a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3.2c.4 2.7 2.3 4.3 5.1 4.5"/></svg>',
@@ -526,6 +700,33 @@ const esc = s => String(s).replace(/[&<>"]/g, c =>
 
 const isLive = url => Boolean(url) && url !== "#";
 
+/* One accent colour in, four CSS custom properties out. Written inline on the
+   element so a product's colour lives in one place in the data above. */
+const tint = (hex, a) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+};
+const accent = hex => `--a:${hex};--a-soft:${tint(hex,.13)};` +
+                      `--a-mid:${tint(hex,.21)};--a-line:${tint(hex,.34)};` +
+                      `--a-glow:${tint(hex,.6)}`;
+
+/* Glues the down-arrow to the last word of the toggle label, so a label that
+   wraps takes the arrow with it instead of stranding it on its own line. */
+const withChevron = label => {
+  const cut = label.lastIndexOf(" ");
+  const head = cut < 0 ? "" : esc(label.slice(0, cut + 1));
+  const tail = esc(cut < 0 ? label : label.slice(cut + 1));
+  return `${head}<span class="tail">${tail}` +
+         `<span class="chev" aria-hidden="true">&#8595;</span></span>`;
+};
+
+/* "Trading · Business · Mind · Body" — the separators get their own opacity */
+const dots = s => esc(s).replace(/·/g, '<span class="sep">·</span>');
+
+const href = url => /^https?:/i.test(url)
+  ? `href="${esc(url)}" target="_blank" rel="noopener noreferrer"`
+  : `href="${esc(url)}"`;
+
 /* Avatar: your photo if one is set, otherwise the Arcane mark. */
 document.getElementById("avatar").innerHTML = AVATAR
   ? `<img src="${esc(AVATAR)}" alt="Leo Gray">`
@@ -533,70 +734,66 @@ document.getElementById("avatar").innerHTML = AVATAR
 
 document.getElementById("proof-text").textContent = PROOF;
 
-/* Split the flat list into groups on each { section } marker, so the source
-   stays one readable top-to-bottom list but the markup gets real headings. */
-const groups = [];
-for (const item of LINKS) {
-  if (item.section) { groups.push({ label: item.section, items: [] }); continue; }
-  if (!groups.length) groups.push({ label: null, items: [] });
-  groups[groups.length - 1].items.push(item);
-}
-
-let step = 0;   // drives the staggered entrance across every group
-
-const card = item => {
+/* A compact row inside the expander — or, with a different accent, the
+   WhatsApp row at the bottom of the page. */
+const miniRow = item => {
   const live = isLive(item.url);
-  const external = /^https?:/i.test(item.url || "");
-
-  const cls = ["link", item.banner ? "banner" : "", item.featured ? "featured" : "",
-               item.style || "", live ? "" : "pending"].filter(Boolean).join(" ");
-
-  const attrs = live
-    ? `href="${esc(item.url)}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}`
-    : 'aria-disabled="true"';
-
-  const eyebrow = live && item.featured && item.badge
-    ? `<span class="eyebrow">${esc(item.badge)}</span>` : "";
-
-  const right = live
-    ? `${item.badge && !item.featured ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
-    : `<span class="badge">Soon</span>`;
-
-  /* Banner card: the image names the product, so the alt text is the link's
-     accessible name and no separate title row is needed. */
-  if (item.banner) return `
-    <li class="reveal" style="--i:${step++}">
-      <a class="${cls}" ${attrs}>
-        <span class="art"><img src="${esc(item.banner)}" alt="${esc(item.title)}"
-              width="1200" height="360" loading="lazy" decoding="async"></span>
-        <span class="foot">
-          <span class="sub">${esc(item.sub || "")}</span>
-          ${live
-            ? `${item.badge ? `<span class="badge">${esc(item.badge)}</span>` : ""}<span class="arrow" aria-hidden="true">${ARROW}</span>`
-            : `<span class="badge">Soon</span>`}
-        </span>
-      </a>
-    </li>`;
-
   return `
-    <li class="reveal" style="--i:${step++}">
-      <a class="${cls}" ${attrs}>
-        <span class="icon" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>
-        <span class="body">
-          ${eyebrow}
-          <span class="title">${esc(item.title)}</span>
-          ${item.sub ? `<span class="sub">${esc(item.sub)}</span>` : ""}
+    <li>
+      <a class="mini${live ? "" : " pending"}" style="${accent(item.accent)}"
+         ${live ? href(item.url) : 'aria-disabled="true"'}>
+        <span class="g" aria-hidden="true">${ICONS[item.icon] || ICONS.link}</span>
+        <span class="b">
+          <span class="t">${esc(item.title)}</span>
+          <span class="s">${esc(item.sub || "")}</span>
         </span>
-        ${right}
+        ${live
+          ? `<span class="arrow" aria-hidden="true">${ARROW}</span>`
+          : `<span class="badge">Soon</span>`}
       </a>
     </li>`;
 };
 
-document.getElementById("links").innerHTML = groups.map(g => `
-  <section class="group">
-    ${g.label ? `<h2 class="group-label reveal" style="--i:${step++}">${esc(g.label)}</h2>` : ""}
-    <ul class="links">${g.items.map(card).join("")}</ul>
-  </section>`).join("");
+/* Hero 1. The expander is a <details>, so it is collapsed on load, opens on
+   click or Enter, and still works if the JS that built it is the only JS the
+   browser ever runs. */
+const primaryTier = t => `
+  <section class="tier primary reveal" style="--i:1">
+    <span class="watermark" aria-hidden="true">${ICONS.mark}</span>
+    <div class="inner">
+      <span class="mark" aria-hidden="true">${ICONS[t.icon] || ICONS.link}</span>
+      <span class="eyebrow">${esc(t.eyebrow)}</span>
+      <h1>${esc(t.headline)}</h1>
+      <p class="dots">${dots(t.dots)}</p>
+      <p class="copy">${esc(t.copy)}</p>
+      <a class="cta" ${href(t.url)}>${esc(t.cta)}<span aria-hidden="true">${ARROW}</span></a>
+
+      <details class="expander">
+        <summary>${withChevron(t.toggle)}</summary>
+        <div class="expander-body">
+          <p class="expander-note">${esc(t.note)}</p>
+          <ul class="mini-list">${t.items.map(miniRow).join("")}</ul>
+        </div>
+      </details>
+    </div>
+  </section>`;
+
+/* Heroes 2 and 3. Same skeleton, no glow, no gradient headline, a button that
+   sizes to its own text rather than the full width of the card. */
+const secondaryTier = (t, i) => `
+  <section class="tier reveal" style="${accent(t.accent)};--i:${i + 2}">
+    <div class="inner">
+      <span class="mark" aria-hidden="true">${ICONS[t.icon] || ICONS.link}</span>
+      <h2>${esc(t.headline)}</h2>
+      <p class="dots">${dots(t.dots)}</p>
+      <p class="copy">${esc(t.copy)}</p>
+      <a class="cta" ${href(t.url)}>${esc(t.cta)}<span aria-hidden="true">${ARROW}</span></a>
+      ${t.fineprint ? `<p class="fineprint">${esc(t.fineprint)}</p>` : ""}
+    </div>
+  </section>`;
+
+document.getElementById("tiers").innerHTML =
+  primaryTier(ARCHIVES) + TIERS.map(secondaryTier).join("");
 
 const quoteEl = document.getElementById("quote");
 if (QUOTE && QUOTE.text) {
@@ -605,6 +802,8 @@ if (QUOTE && QUOTE.text) {
 } else {
   quoteEl.remove();
 }
+
+document.getElementById("talk").innerHTML = miniRow(TALK);
 
 document.getElementById("socials").innerHTML = SOCIALS.filter(s => isLive(s.url)).map(s => `
   <li>
