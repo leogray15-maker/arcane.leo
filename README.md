@@ -11,8 +11,8 @@ list of links:
    beneath it so they never compete with the membership.
 2. **Arcane Peptides** — the shop. Flat card, its own orange, research-use line
    under its own button.
-3. **Arcane Track** — the free tracker. Flat card, its own green, and the
-   healing testimonial directly underneath it.
+3. **Arcane Track** — the tracker, £11.99/mo or £70/year. Flat card, its own
+   green, and the healing testimonial directly underneath it.
 
 The previous version was eight product cards of roughly equal weight in one
 scroll. Eight equal choices is not a menu, it is a decision to postpone, and the
@@ -63,18 +63,18 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | The Inner Citadel link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
 | The Primal Code link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
 
-Two things that were on the old page are **not** on this one, on purpose, and
-both are decisions rather than oversights:
+**The Quiet Empire has no row**, and that is a decision rather than an
+oversight — the six products specified for the expander didn't include it. Its
+artwork and its colour (`#6d7cf8`) are still in `covers/`, so adding a seventh
+row is a six-line paste into `ARCHIVES.items` whenever the seventh product is
+ready. Nothing in Hero 1's copy counts the products any more, so a seventh row
+needs no copy change to go with it.
 
-- **The Quiet Empire** has no row. The six products specified for the expander
-  didn't include it. Its artwork and its colour (`#6d7cf8`) are still in
-  `covers/`, so adding a seventh row is a six-line paste into `ARCHIVES.items`
-  — but note that Hero 1's copy promises "six systems", so a seventh row and
-  that sentence need to agree.
-- **Trading has no product**, although Hero 1's subhead and body copy both lead
-  with it. Nothing on the page sells it and nothing in the expander covers it.
-  Either that product exists and wants a row, or the word is doing marketing
-  work the page can't cash.
+**There is no free entry point on the page any more.** Track used to be the
+cheapest yes — the thing someone arriving cold from TikTok could take without
+deciding anything. The cheapest yes is now £11.99/mo. If the funnel wants a
+free step back, it has to come from somewhere else: a free tier of Track, a
+lead magnet, or a free module out of the Archives.
 
 ### Two different Healing Protocols links
 
@@ -86,8 +86,11 @@ one it already had rather than silently switching where your money lands.
 
 ### Prices
 
-The Archives button carries its price — `Join The Archives — £128/mo` — which is
-the one that matters, because it is the offer the page is built around.
+Every button on the page carries its own number: `Join The Archives — £128/mo`,
+`Shop Peptides`, and `Get Arcane Track — £11.99/mo` with the £70 annual price
+in the `fineprint` line under it. Cold traffic that lands on a payment form
+without knowing the number bounces, which is why the price is on the button
+rather than one click later.
 
 The four expander rows that go straight to Stripe still don't show a number.
 That is a deliberate trade for now: a price on every row turns the expander back
@@ -118,7 +121,7 @@ has a real advantage: it stops publishing your mobile number on a public page.
 | Hero 1 expander | Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
 | Hero 1 expander | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Hero 2 | Shop Peptides | https://arcanepeptides.vercel.app |
-| Hero 3 | Get Arcane Track — Free | https://arcanetrack.vercel.app |
+| Hero 3 | Get Arcane Track — £11.99/mo | https://arcanetrack.vercel.app |
 | Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
 | Follow | Instagram | https://instagram.com/arcaneleo.g |
 | Follow | TikTok | https://tiktok.com/@arcane_advice |
@@ -186,6 +189,12 @@ card you add costs Hero 1 some of its dominance, which is the whole asset.
   other before doing anything. This one asks one question — membership, yes or
   no — and hides the other six behind a tap for the minority who want to buy a
   single topic.
+- **Hero 1's copy sells the library, not a feature list.** The pitch is that
+  every separate product is one slice cut out of 3,300+ modules and a million
+  words, and that the deepest material was never cut out at all. That argument
+  gets stronger every time a new product ships; a list of six systems got
+  weaker. It is also the reason the copy no longer counts anything — a number
+  that has to be edited every time you launch is a number that will go stale.
 - **Hero 1 is louder than Heroes 2 and 3 on purpose** — bigger padding, a
   gradient background, a violet glow, a gradient headline, and the only
   full-width filled button on the page. Heroes 2 and 3 are flat cards with
@@ -196,7 +205,8 @@ card you add costs Hero 1 some of its dominance, which is the whole asset.
   half-open. Someone who wants the membership never sees six more choices.
 - **"Every product below is included free in the full Archives"** sits above
   the six rows because that sentence is the argument for the membership, made
-  at the exact moment someone is about to buy one product instead.
+  at the exact moment someone is about to buy one product instead. It is the
+  same argument as Hero 1's copy, repeated where the decision actually happens.
 - **The research-use line sits under the Peptides button, not in the footer.**
   In the footer nobody reads it, and this is the one product where it has to be
   read. The footer disclaimer covers it too — that duplication is deliberate.
