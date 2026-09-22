@@ -179,8 +179,9 @@ Each row takes `title`, `sub`, `url`, `icon`, and `accent`.
   icon tile, the border, the hover fill, the arrow and the focus ring all move
   together. **Don't flatten these to violet** — the colour is how someone
   recognises a product they've already seen on TikTok.
-- **`icon`** — `mark`, `eye`, `pawn`, `shield`, `helix`, `protocol`,
-  `molecule`, `flask`, `chart`, `whatsapp`, `instagram`, `tiktok`, `link`.
+- **`icon`** — `mark`, `markTrack`, `eye`, `pawn`, `shield`, `helix`,
+  `protocol`, `molecule`, `flask`, `chart`, `whatsapp`, `instagram`, `tiktok`,
+  `link`.
   Unknown values fall back to `link`. The product glyphs are traced from the
   matching cover art, so a row and the cover it links to are visibly the same
   product.
@@ -193,6 +194,15 @@ the button, and `features`, an array of short strings rendered as a chip row
 between the copy and the button. Add a fourth entry and it renders as a fourth
 flat card, but every card you add costs Hero 1 some of its dominance, which is
 the whole asset.
+
+**On `watermark`:** every tier carries the Arcane mark, centred behind it,
+at 5.5% opacity and tinted with that tier's own accent — so Peptides ghosts
+orange and Track ghosts green. A tier can name a different one with
+`watermark: "<icon key>"`; Track does, because it has its own lockup
+(`markTrack` — the mark with its pulse bar underneath, drawn as vector in
+`ICONS` rather than loaded as the PNG). The width is `min(64%,300px)`:
+percentage-first, because a fixed width is near-full-bleed on a phone card
+and half that on a desktop one.
 
 **On `features`:** Track has nine-plus features and the card can't sell them
 all. The three worth selling — the barcode ingredient scanner, healthy places
