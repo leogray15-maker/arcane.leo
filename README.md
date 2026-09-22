@@ -60,8 +60,10 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | Item | Where | Status |
 | --- | --- | --- |
 | Profile photo | `AVATAR` const | falls back to the Arcane mark |
-| The Inner Citadel link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
-| The Primal Code link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
+
+Every link on the page is live — nothing renders as **Soon** any more. The
+`url: "#"` mechanism is still in the code for the next product that gets a
+row before it gets a checkout.
 
 **The Quiet Empire has no row**, and that is a decision rather than an
 oversight — the six products specified for the list didn't include it. Its
@@ -75,6 +77,14 @@ cheapest yes — the thing someone arriving cold from TikTok could take without
 deciding anything. The cheapest yes is now £11.99/mo. If the funnel wants a
 free step back, it has to come from somewhere else: a free tier of Track, a
 lead magnet, or a free module out of the Archives.
+
+### Stripe ids are case-sensitive, and some of them look alike
+
+The Arcane Game link was broken for a while by a single character: its id ends
+`…fjI1260Ba06` with a capital **I**, and it had been transcribed as `…fjl1260Ba06`
+with a lowercase **L**. In most sans-serif fonts those are the same glyph.
+Stripe ids also contain `0`/`O` pairs. Copy them from the Stripe dashboard and
+paste them — never retype one, and never trust one you have read off a screen.
 
 ### Two different Healing Protocols links
 
@@ -115,11 +125,11 @@ has a real advantage: it stops publishing your mobile number on a public page.
 | --- | --- | --- |
 | Hero 1 | Join The Archives — £128/mo | https://arcanearchives.shop |
 | Hero 1 list | The Dark Psych Codex | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
-| Hero 1 list | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
-| Hero 1 list | The Inner Citadel | **no link yet** — renders as Soon |
-| Hero 1 list | The Primal Code | **no link yet** — renders as Soon |
+| Hero 1 list | The Arcane Game | Stripe (`5kQeVc25SdNofjI1260Ba06`) |
+| Hero 1 list | The Inner Citadel | Stripe (`bJeeVc8ug7p07RgaCG0Ba0a`) |
+| Hero 1 list | The Primal Code | Stripe (`00waEW39W8t40oO6mq0Ba09`) |
 | Hero 1 list | Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
-| Hero 1 list | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
+| Hero 1 list | Peptides 101 | Stripe (`3cIfZg4e0fVw3B08uy0Ba0c`) |
 | Hero 2 | Shop Peptides | https://arcanepeptides.vercel.app |
 | Hero 3 | Get Arcane Track — £11.99/mo | https://arcanetrack.vercel.app |
 | Talk to me | WhatsApp me | `wa.me/447951182240` with a prefilled message |
