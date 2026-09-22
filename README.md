@@ -99,7 +99,7 @@ If you want them, the place to put one is the end of each row's `sub`.
 
 ### WhatsApp link
 
-`https://wa.me/447405557399?text=<prefilled message>` — the number is in
+`https://wa.me/447951182240?text=<prefilled message>` — the number is in
 international form (leading `0` dropped, `44` prefixed), which is what `wa.me`
 requires. The `?text=` part prefills the first message so nobody has to work
 out what to say; edit that string in `TALK` to change it.
@@ -122,7 +122,7 @@ has a real advantage: it stops publishing your mobile number on a public page.
 | Hero 1 expander | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Hero 2 | Shop Peptides | https://arcanepeptides.vercel.app |
 | Hero 3 | Get Arcane Track — £11.99/mo | https://arcanetrack.vercel.app |
-| Talk to me | WhatsApp me | `wa.me/447405557399` with a prefilled message |
+| Talk to me | WhatsApp me | `wa.me/447951182240` with a prefilled message |
 | Follow | Instagram | https://instagram.com/arcaneleo.g |
 | Follow | TikTok | https://tiktok.com/@arcane_advice |
 
