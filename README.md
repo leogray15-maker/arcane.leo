@@ -189,12 +189,12 @@ card you add costs Hero 1 some of its dominance, which is the whole asset.
   other before doing anything. This one asks one question — membership, yes or
   no — and hides the other six behind a tap for the minority who want to buy a
   single topic.
-- **Hero 1's copy sells the library, not a feature list.** The pitch is that
-  every separate product is one slice cut out of 3,300+ modules and a million
-  words, and that the deepest material was never cut out at all. That argument
-  gets stronger every time a new product ships; a list of six systems got
-  weaker. It is also the reason the copy no longer counts anything — a number
-  that has to be edited every time you launch is a number that will go stale.
+- **Hero 1's copy leads with the number, not an argument.** "3,330+ modules
+  across trading, business, persuasion, attraction, discipline and health" does
+  in one line what a paragraph of positioning was doing worse: nobody argues
+  with a count. The earlier draft listed six systems, which went stale the
+  moment a seventh shipped; the module count only goes up. It is the one number
+  on the page worth keeping current — raise it when the library grows.
 - **Hero 1 is louder than Heroes 2 and 3 on purpose** — bigger padding, a
   gradient background, a violet glow, a gradient headline, and the only
   full-width filled button on the page. Heroes 2 and 3 are flat cards with
