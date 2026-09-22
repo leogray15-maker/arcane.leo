@@ -7,8 +7,8 @@ It is **three offers stacked in order of how much you want them taken**, not a
 list of links:
 
 1. **The Arcane Archives** — the membership. Above the fold, biggest, brightest,
-   full-width button. Six individual products live inside a collapsed expander
-   beneath it so they never compete with the membership.
+   full-width button. The six individual products sit beneath it, below the
+   membership rather than beside it.
 2. **Arcane Peptides** — the shop. Flat card, its own orange, research-use line
    under its own button.
 3. **Arcane Track** — the tracker, £11.99/mo or £70/year. Flat card, its own
@@ -64,7 +64,7 @@ the tagline or wordmark changes; committing the regenerated PNG is what ships.
 | The Primal Code link | `ARCHIVES.items` | `url: "#"` — renders dimmed with a **Soon** badge |
 
 **The Quiet Empire has no row**, and that is a decision rather than an
-oversight — the six products specified for the expander didn't include it. Its
+oversight — the six products specified for the list didn't include it. Its
 artwork and its colour (`#6d7cf8`) are still in `covers/`, so adding a seventh
 row is a six-line paste into `ARCHIVES.items` whenever the seventh product is
 ready. Nothing in Hero 1's copy counts the products any more, so a seventh row
@@ -92,10 +92,10 @@ in the `fineprint` line under it. Cold traffic that lands on a payment form
 without knowing the number bounces, which is why the price is on the button
 rather than one click later.
 
-The four expander rows that go straight to Stripe still don't show a number.
-That is a deliberate trade for now: a price on every row turns the expander back
-into a comparison table, which is the decision paralysis this layout removes.
-If you want them, the place to put one is the end of each row's `sub`.
+The four product rows that go straight to Stripe still don't show a number.
+That is a deliberate trade: a price on every row turns the list back into a
+comparison table, which is the decision paralysis this layout removes. If you
+want them, the place to put one is the end of each row's `sub`.
 
 ### WhatsApp link
 
@@ -114,12 +114,12 @@ has a real advantage: it stops publishing your mobile number on a public page.
 | Section | Entry | Destination |
 | --- | --- | --- |
 | Hero 1 | Join The Archives — £128/mo | https://arcanearchives.shop |
-| Hero 1 expander | The Dark Psych Codex | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
-| Hero 1 expander | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
-| Hero 1 expander | The Inner Citadel | **no link yet** — renders as Soon |
-| Hero 1 expander | The Primal Code | **no link yet** — renders as Soon |
-| Hero 1 expander | Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
-| Hero 1 expander | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
+| Hero 1 list | The Dark Psych Codex | Stripe (`7sYfZgh0MfVw2wW8uy0Ba07`) |
+| Hero 1 list | The Arcane Game | Stripe (`5kQeVc25SdNofjl1260Ba06`) |
+| Hero 1 list | The Inner Citadel | **no link yet** — renders as Soon |
+| Hero 1 list | The Primal Code | **no link yet** — renders as Soon |
+| Hero 1 list | Healing Protocols | Stripe (`8x2aEW7qc9x82wW1260Ba04`) |
+| Hero 1 list | Peptides 101 | Stripe (`5kQ00i39WaBc5J85im0Ba05`) |
 | Hero 2 | Shop Peptides | https://arcanepeptides.vercel.app |
 | Hero 3 | Get Arcane Track — £11.99/mo | https://arcanetrack.vercel.app |
 | Talk to me | WhatsApp me | `wa.me/447951182240` with a prefilled message |
@@ -146,7 +146,7 @@ Everything editable sits in one block near the bottom of `index.html`, marked
 | `copy` | the body paragraph |
 | `cta` / `url` | the full-width button's label and destination |
 | `icon` | key into `ICONS` for the tile above the eyebrow |
-| `toggle` | the expander's label. The `↓` is added for you — don't type one |
+| `lede` | the violet line introducing the six products |
 | `note` | the line above the six rows |
 | `items` | the six rows themselves |
 
@@ -155,7 +155,7 @@ the buyer yet. No tooltip, no footnote, no "(the establishment)" — the line do
 its filtering by being unanswered, and explaining it is the one edit that breaks
 it.
 
-### `ARCHIVES.items` — the expander rows
+### `ARCHIVES.items` — the six product rows
 
 Each row takes `title`, `sub`, `url`, `icon`, and `accent`.
 
@@ -177,7 +177,7 @@ Each row takes `title`, `sub`, `url`, `icon`, and `accent`.
 
 ### `TIERS` — Heroes 2 and 3
 
-Same shape, minus the expander: `headline`, `dots`, `copy`, `cta`, `url`,
+Same shape, minus the product list: `headline`, `dots`, `copy`, `cta`, `url`,
 `icon`, `accent`, and an optional `fineprint` rendered directly under the
 button. Add a fourth entry and it renders as a fourth flat card — but every
 card you add costs Hero 1 some of its dominance, which is the whole asset.
@@ -187,8 +187,8 @@ card you add costs Hero 1 some of its dominance, which is the whole asset.
 - **Eight cards of equal weight is not a menu, it's a decision to postpone.**
   The old page asked a first-time visitor to rank eight products against each
   other before doing anything. This one asks one question — membership, yes or
-  no — and hides the other six behind a tap for the minority who want to buy a
-  single topic.
+  no — and puts the other six underneath it, where they read as what the
+  membership contains rather than as six rivals to it.
 - **Hero 1's copy leads with the number, not an argument.** "3,330+ modules
   across trading, business, persuasion, attraction, discipline and health" does
   in one line what a paragraph of positioning was doing worse: nobody argues
@@ -200,9 +200,12 @@ card you add costs Hero 1 some of its dominance, which is the whole asset.
   full-width filled button on the page. Heroes 2 and 3 are flat cards with
   buttons that size to their own text. Levelling that up is the one change that
   undoes the restructure.
-- **The expander is collapsed on load, always.** It's a native `<details>`, so
-  it needs no JavaScript to open, works with the keyboard, and can't get stuck
-  half-open. Someone who wants the membership never sees six more choices.
+- **The six products are always visible, under the button rather than above
+  it.** They were behind a collapsed `<details>` at first, on the reasoning
+  that six more choices dilute the one being asked for. Position turned out to
+  do that job on its own: below a full-width £128 button, the rows read as the
+  contents of the membership, not as competition for it — and the tap that
+  stood between a single-topic buyer and what they came for is gone.
 - **"Every product below is included free in the full Archives"** sits above
   the six rows because that sentence is the argument for the membership, made
   at the exact moment someone is about to buy one product instead. It is the
@@ -257,5 +260,5 @@ Once it's live, swap the `linktr.ee/Arcaneleo.g` link in your TikTok bio and the
   individual-results. Given the health claims in this niche and the existing
   TikTok account warning, keep it — and keep the shorter research-use line
   under the Peptides button as well.
-- The page still loads zero images. The three hero tiles and the six expander
+- The page still loads zero images. The three hero tiles and the six product
   rows use inline SVG glyphs, so the whole thing is one HTTP request.
