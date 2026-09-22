@@ -188,9 +188,20 @@ Each row takes `title`, `sub`, `url`, `icon`, and `accent`.
 ### `TIERS` — Heroes 2 and 3
 
 Same shape, minus the product list: `headline`, `dots`, `copy`, `cta`, `url`,
-`icon`, `accent`, and an optional `fineprint` rendered directly under the
-button. Add a fourth entry and it renders as a fourth flat card — but every
-card you add costs Hero 1 some of its dominance, which is the whole asset.
+`icon`, `accent`, plus two optional keys — `fineprint`, rendered directly under
+the button, and `features`, an array of short strings rendered as a chip row
+between the copy and the button. Add a fourth entry and it renders as a fourth
+flat card, but every card you add costs Hero 1 some of its dominance, which is
+the whole asset.
+
+**On `features`:** Track has nine-plus features and the card can't sell them
+all. The three worth selling — the barcode ingredient scanner, healthy places
+to eat, and the twenty-second daily log — are written into `copy` as prose,
+because a sentence gets read. Everything else is a chip, because a chip gets
+scanned. Promoting a chip into the copy means demoting something else out of
+it; the card stops working if the copy becomes a list. The chips are
+deliberately small and low-contrast for the same reason the Track button is
+outlined rather than filled: nothing in Hero 3 should compete with Hero 1.
 
 ## Why it's laid out this way
 
